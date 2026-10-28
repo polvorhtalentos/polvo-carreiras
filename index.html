@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Vagas abertas e banco de talentos da POLVO Consultoria de Carreira.">
+<title>Carreiras POLVO</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap">
+<style>
+/* Layout: site de carreiras em seções largas; herói tipográfico, lista de vagas em cartões, página da vaga com coluna de candidatura fixa. Identidade POLVO: fundo Tinta, lavanda, laranja pontual, Montserrat. */
+:root{--tinta:#13111B;--sf:#1D1A28;--sf2:#2A2638;--bd:#3A3649;--papel:#F9F8FB;--nevoa:#C4C0CE;--cinza:#A9A6B5;--lav:#9C90D4;--lavd:#7D70B0;--lar:#F2A13A;--al:#E96B6B;--font:'Montserrat','Segoe UI',system-ui,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--tinta);color:var(--papel);font-family:var(--font);font-weight:500;font-size:16px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--tinta)}
+a{color:var(--lav)}
+:focus-visible{outline:2px solid var(--lar);outline-offset:3px}
+.in-w{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(19,17,27,.88);backdrop-filter:blur(10px);border-bottom:1px solid rgba(156,144,212,.14)}
+header.top .in-w{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:72px}
+.logo{font-weight:900;letter-spacing:.35em;font-size:22px;display:inline-flex;align-items:baseline;color:var(--lav);text-decoration:none;white-space:nowrap}
+.logo svg{width:.8em;height:.7em;margin-right:.35em;fill:currentColor}
+.logo small{font-size:10px;letter-spacing:.22em;color:var(--lar);margin-left:10px;font-weight:800}
+nav.links{display:flex;gap:6px;align-items:center}
+nav.links a{color:var(--nevoa);text-decoration:none;font-weight:700;font-size:14px;padding:8px 12px;border-radius:999px}
+nav.links a:hover{color:var(--papel);background:var(--sf2)}
+.pill-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:60px;border:2px solid var(--lav);background:rgba(156,144,212,.16);color:var(--papel);font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:13px;text-decoration:none;cursor:pointer;font-family:var(--font)}
+.pill-btn:hover{background:rgba(156,144,212,.3)}
+.pill-btn.go{background:var(--lar);border-color:var(--lar);color:var(--tinta)}
+.pill-btn.go:hover{filter:brightness(1.06)}
+.pill-btn[disabled]{opacity:.5;cursor:not-allowed}
+/* Herói */
+.hero{position:relative;overflow:hidden;padding-block:88px 72px}
+.hero::before{content:"";position:absolute;width:760px;height:760px;left:-260px;top:-320px;background:radial-gradient(rgba(125,112,176,.55),transparent 65%);pointer-events:none}
+.hero::after{content:"";position:absolute;width:560px;height:560px;right:-200px;bottom:-260px;background:radial-gradient(rgba(242,161,58,.2),transparent 65%);pointer-events:none}
+.stripes{position:absolute;left:0;bottom:0;width:240px;height:160px;background:repeating-linear-gradient(135deg,#7D70B0 0 6px,transparent 6px 22px);opacity:.35;pointer-events:none;-webkit-mask:linear-gradient(45deg,#000,transparent 75%);mask:linear-gradient(45deg,#000,transparent 75%)}
+.hero .in-w{position:relative;z-index:1}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--lar);margin-bottom:18px}
+h1{font-size:clamp(38px,6.4vw,84px);line-height:.98;font-weight:900;letter-spacing:-.02em;text-transform:uppercase;margin:0 0 22px;max-width:15ch;text-wrap:balance}
+h1 em{font-style:normal;color:var(--lav)}
+.lead{font-size:clamp(17px,1.6vw,20px);color:var(--nevoa);max-width:58ch;margin:0 0 30px}
+.search{display:grid;grid-template-columns:minmax(0,2fr) repeat(3,minmax(0,1fr));gap:10px;background:var(--sf);border:1px solid var(--bd);border-radius:24px;padding:10px;max-width:980px}
+.search input,.search select{width:100%;padding:14px 16px;border-radius:16px;border:1px solid transparent;background:var(--tinta);color:var(--papel);font:inherit;font-size:15px}
+.search input:focus,.search select:focus{outline:none;border-color:var(--lav)}
+/* Seções */
+section.block{padding-block:56px}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+h2{font-size:clamp(26px,3.2vw,40px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:1.05;margin:0;text-wrap:balance}
+.count{color:var(--cinza);font-weight:700;font-size:14px}
+.jobs{display:grid;gap:22px;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr))}
+.job{display:flex;flex-direction:column;gap:14px;padding:30px 30px 26px;border-radius:30px;border:3px solid rgba(156,144,212,.45);background:rgba(125,112,176,.12);color:inherit;text-decoration:none;transition:transform .15s,border-color .15s}
+.job:hover{transform:translateY(-3px);border-color:var(--lav)}
+.job.feat{border-color:var(--lar);background:rgba(242,161,58,.1)}
+.job .area{font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--lar)}
+.job h3{font-size:24px;font-weight:900;line-height:1.15;margin:0;letter-spacing:-.01em}
+.job p{margin:0;color:var(--nevoa);font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:6px 12px;border-radius:999px;background:var(--sf2);border:1px solid var(--bd);font-size:13px;font-weight:700;color:var(--papel)}
+.job .more{margin-top:auto;font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:13px;color:var(--lav);display:flex;align-items:center;gap:8px}
+.empty{padding:40px;border:2px dashed var(--bd);border-radius:30px;text-align:center;color:var(--nevoa)}
+.values{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
+.val{padding:28px;border-radius:30px;background:var(--sf);border:1px solid var(--bd)}
+.val b{display:inline-flex;width:40px;height:40px;border-radius:50%;background:var(--lar);color:var(--tinta);align-items:center;justify-content:center;font-weight:900;margin-bottom:14px}
+.val h3{margin:0 0 8px;font-size:18px;font-weight:900;text-transform:uppercase}
+.val p{margin:0;color:var(--nevoa);font-size:15px}
+/* Página da vaga */
+.vhero{padding-block:56px 40px;position:relative;overflow:hidden;border-bottom:1px solid var(--bd)}
+.vhero::before{content:"";position:absolute;width:640px;height:640px;left:-240px;top:-300px;background:radial-gradient(rgba(125,112,176,.45),transparent 65%);pointer-events:none}
+.vhero .in-w{position:relative}
+.back{display:inline-flex;align-items:center;gap:8px;color:var(--nevoa);text-decoration:none;font-weight:700;font-size:14px;margin-bottom:22px}
+.vhero h1{font-size:clamp(34px,5vw,64px);max-width:20ch}
+.vgrid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:40px;padding-block:44px 80px;align-items:start}
+.vcol h2{font-size:20px;margin:36px 0 12px}
+.vcol h2:first-child{margin-top:0}
+.vcol p{color:var(--nevoa);margin:0 0 12px}
+.vcol ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.vcol li{display:flex;gap:12px;color:var(--nevoa)}
+.vcol li::before{content:"";width:9px;height:9px;border-radius:2px;background:var(--lar);flex:none;margin-top:8px}
+.steps{display:flex;flex-direction:column;gap:12px;counter-reset:s}
+.steps div{display:flex;gap:14px;align-items:center;color:var(--nevoa)}
+.steps div::before{counter-increment:s;content:counter(s);width:34px;height:34px;border-radius:50%;background:var(--lar);color:var(--tinta);display:flex;align-items:center;justify-content:center;font-weight:900;flex:none}
+aside.apply{position:sticky;top:96px;padding:28px;border-radius:30px;border:3px solid rgba(156,144,212,.45);background:rgba(125,112,176,.12);display:flex;flex-direction:column;gap:14px}
+aside.apply dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:14px}
+aside.apply dt{color:var(--cinza);font-weight:700}
+aside.apply dd{margin:0;font-weight:700}
+/* Formulário */
+.form-wrap{border-top:1px solid var(--bd);padding-block:56px 90px;background:linear-gradient(180deg,rgba(125,112,176,.08),transparent 300px)}
+form.app{max-width:820px;display:flex;flex-direction:column;gap:22px}
+fieldset{border:1px solid var(--bd);border-radius:30px;padding:26px;margin:0;background:var(--sf)}
+legend{padding:0 10px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;font-size:15px}
+.fg{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+.fg .wide{grid-column:1/-1}
+label.f{display:flex;flex-direction:column;gap:7px;font-size:14px;font-weight:700;color:var(--nevoa);min-width:0}
+.req{color:var(--lar)}
+.hint{font-size:12.5px;color:var(--cinza);font-weight:500}
+.in{width:100%;padding:13px 14px;border-radius:14px;border:1px solid var(--bd);background:var(--tinta);color:var(--papel);font:inherit;font-size:15px}
+textarea.in{min-height:130px;resize:vertical}
+.in:focus{outline:none;border-color:var(--lav)}
+.in.err,.drop.err{border-color:var(--al)}
+.checks{display:flex;flex-wrap:wrap;gap:8px}
+.ck{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:1px solid var(--bd);background:var(--tinta);cursor:pointer;font-weight:700;font-size:14px;color:var(--papel)}
+.ck input{accent-color:var(--lar);width:17px;height:17px;margin:0}
+.ck:has(input:checked){border-color:var(--lav);background:rgba(125,112,176,.22)}
+.drop{position:relative;border:2px dashed var(--bd);border-radius:22px;padding:26px;text-align:center;background:var(--tinta);cursor:pointer}
+.drop:hover{border-color:var(--lav)}
+.drop input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.drop b{display:block;font-size:16px;margin-bottom:4px}
+.drop.ok{border-style:solid;border-color:var(--lav);background:rgba(125,112,176,.14)}
+.consent{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--nevoa)}
+.consent input{width:20px;height:20px;margin-top:2px;accent-color:var(--lar);flex:none}
+.msg{color:var(--al);font-weight:700;font-size:14px;min-height:20px}
+.send{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));margin:20px 0}
+.code{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;white-space:pre-wrap;word-break:break-word;background:var(--tinta);border:1px dashed var(--lav);border-radius:16px;padding:16px;max-height:220px;overflow:auto;color:var(--papel)}
+.done{max-width:820px}
+.done h2{margin-bottom:14px}
+.done p{color:var(--nevoa)}
+.note{display:flex;gap:12px;align-items:flex-start;padding:16px 18px;border-radius:18px;background:rgba(242,161,58,.12);border:1px solid rgba(242,161,58,.45);color:var(--papel);font-weight:600}
+footer{border-top:1px solid var(--bd);padding-block:36px calc(36px + env(safe-area-inset-bottom,0px));color:var(--cinza);font-size:14px}
+footer .in-w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+@media (max-width:900px){.vgrid{grid-template-columns:minmax(0,1fr)}aside.apply{position:static;order:-1}.search{grid-template-columns:1fr 1fr}.search input{grid-column:1/-1}}
+@media (max-width:560px){nav.links a.hide-sm{display:none}.hero{padding-block:56px 48px}.job{padding:24px}fieldset{padding:20px 16px}.search{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.job{transition:none}}
+</style>
+</head><body>
+<header class="top"><div class="in-w"><a class="logo" href="#inicio" aria-label="POLVO · Carreiras">POL<svg viewBox="0 0 100 88" aria-hidden="true"><path d="M0 0H100L50 88Z"/></svg>O<small>CARREIRAS</small></a>
+<nav class="links" aria-label="Navegação"><a href="#vagas" class="hide-sm">Vagas</a><a href="#vaga-banco-de-talentos" class="hide-sm">Banco de talentos</a><a href="#vagas" class="pill-btn go" style="padding:10px 18px">Ver vagas</a></nav></div></header>
+<main id="app"></main>
+<footer><div class="in-w"><span>POLVO Consultoria de Carreira · Seus dados são tratados de acordo com a LGPD (Lei 13.709/2018).</span><span>Dúvidas: <span style="color:var(--papel);user-select:all">polvorh.talentos@gmail.com</span></span></div></footer>
+<script>
+"use strict";
+const DEST = "polvorh.talentos@gmail.com";
+/* Envio automático (FormSubmit). Depois de ativar, troque FS_ID pelo código aleatório que a FormSubmit envia, para esconder o e-mail. */
+const FS_ID = DEST;
+let ENVIO = "";
+const EMPRESA = "POLVO";
+const SOBRE = "A POLVO é uma consultoria de carreira que abre a caixa-preta do RH. A gente une recrutamento, desenvolvimento e dados para conectar pessoas a empresas de forma humana, transparente e sem enrolação.";
+const VAGAS = [
+  { id: "teste-analista-financeiro-pl", titulo: "Analista Financeiro Pleno", area: "Financeiro", senioridade: "Pleno", local: "São Paulo, SP", modelo: "Híbrido", regime: "CLT", faixa: "R$ 7.000 a R$ 9.500",
+    resumo: "Responder pela rotina de contas a pagar e a receber, conciliações bancárias e apoio ao fechamento mensal de uma operação com vários CNPJs.",
+    descricao: ["Você vai responder pela rotina de contas a pagar e a receber, pelas conciliações bancárias e pelo apoio ao fechamento mensal de uma operação com vários CNPJs.", "É uma posição para quem gosta de organização, de números que fecham e de melhorar processos no dia a dia."],
+    atividades: ["Conduzir a rotina de contas a pagar e a receber", "Fazer as conciliações bancárias", "Apoiar o fechamento mensal", "Organizar controles e relatórios em Excel", "Lançar e acompanhar movimentações no ERP"],
+    requisitos: ["Contas a pagar e a receber como rotina principal", "Conciliação bancária", "Excel avançado (PROCV, tabela dinâmica)", "Fechamento mensal", "ERP (SAP, TOTVS ou similar)"],
+    beneficios: ["Modelo híbrido", "Contratação CLT", "Faixa salarial informada desde o início"],
+    etapas: ["Candidatura e triagem", "Entrevista com o RH", "Entrevista com a gestão", "Teste ou case", "Proposta"] },
+  { id: "banco-de-talentos", titulo: "Banco de Talentos", area: "Todas as áreas", senioridade: "Todos os níveis", local: "Brasil", modelo: "Presencial, híbrido ou remoto", regime: "CLT, PJ ou estágio", fixa: true,
+    resumo: "Não encontrou a vaga ideal? Deixe seu currículo e a gente te chama quando surgir uma oportunidade com o seu perfil.",
+    descricao: ["O Banco de Talentos da POLVO é a porta sempre aberta para quem quer ser lembrado nas próximas oportunidades.", "Cada candidatura é lida por uma pessoa do nosso time. Quando abrir uma vaga com o seu perfil, você é uma das primeiras pessoas que a gente procura."],
+    atividades: [], requisitos: ["Currículo atualizado", "Vontade de crescer e de contar sua trajetória com clareza"],
+    beneficios: ["Seu perfil fica disponível para todas as vagas que abrirmos", "Retorno quando houver uma oportunidade aderente"],
+    etapas: ["Candidatura", "Leitura do currículo pelo time", "Contato quando surgir uma vaga com o seu perfil"] }
+];
+const AREAS = ["Administrativo", "Atendimento ao cliente", "Comercial e vendas", "Criação e design", "Dados e BI", "Financeiro", "Jurídico", "Logística e operações", "Marketing e comunicação", "Pessoas e RH", "Produto e projetos", "Tecnologia", "Outra"];
+const UFS = "AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC SP SE TO".split(" ");
+const TRI = '<svg viewBox="0 0 100 88" aria-hidden="true"><path d="M0 0H100L50 88Z"/></svg>';
+const e = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const norm = s => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+const app = document.getElementById("app");
+let F = { q: "", area: "", modelo: "", local: "" };
+
+/* ---------- Lista ---------- */
+function listHTML() {
+  const q = norm(F.q);
+  const vs = VAGAS.filter(v => (!q || norm([v.titulo, v.area, v.resumo, v.local].join(" ")).includes(q)) && (!F.area || v.area === F.area || v.fixa) && (!F.modelo || norm(v.modelo).includes(norm(F.modelo))) && (!F.local || norm(v.local).includes(norm(F.local)) || v.fixa));
+  const opt = (arr, val, lbl) => `<option value="">${lbl}</option>` + arr.map(x => `<option${x === val ? " selected" : ""}>${e(x)}</option>`).join("");
+  const abertas = VAGAS.filter(v => !v.fixa).length;
+  return `<section class="hero" id="inicio"><div class="stripes"></div><div class="in-w"><div class="eyebrow">Carreiras POLVO</div>
+   <h1>Vem fazer o RH <em>sem crachá</em> com a gente</h1>
+   <p class="lead">${e(SOBRE)} Veja as vagas abertas ou entre no nosso Banco de Talentos.</p>
+   <div class="search" role="search"><input id="q" placeholder="Buscar por cargo, área ou palavra-chave" value="${e(F.q)}" aria-label="Buscar vagas">
+    <select id="fa" aria-label="Área">${opt([...new Set(VAGAS.filter(v => !v.fixa).map(v => v.area))], F.area, "Todas as áreas")}</select>
+    <select id="fm" aria-label="Modelo de trabalho">${opt(["Presencial", "Híbrido", "Remoto"], F.modelo, "Qualquer modelo")}</select>
+    <select id="fl" aria-label="Local">${opt([...new Set(VAGAS.filter(v => !v.fixa).map(v => v.local))], F.local, "Todos os locais")}</select></div></div></section>
+  <section class="block" id="vagas"><div class="in-w"><div class="sec-head"><h2>Vagas abertas</h2><span class="count">${abertas} ${abertas === 1 ? "vaga" : "vagas"} + Banco de Talentos</span></div>
+   ${vs.length ? `<div class="jobs">${vs.map(v => `<a class="job ${v.fixa ? "feat" : ""}" href="#vaga-${v.id}"><span class="area">${v.fixa ? "Sempre aberta" : e(v.area)}</span><h3>${e(v.titulo)}</h3><p>${e(v.resumo)}</p>
+     <div class="chips">${[v.fixa ? null : v.senioridade, v.local, v.modelo, v.regime].filter(Boolean).map(c => `<span class="chip">${e(c)}</span>`).join("")}</div><span class="more">${v.fixa ? "Deixar meu currículo" : "Ver vaga"} →</span></a>`).join("")}</div>`
+     : `<div class="empty">Nenhuma vaga com esses filtros. Que tal o <a href="#vaga-banco-de-talentos">Banco de Talentos</a>?</div>`}</div></section>
+  <section class="block" style="padding-top:12px"><div class="in-w"><div class="sec-head"><h2>Como é o nosso processo</h2></div><div class="values">
+   <div class="val"><b>1</b><h3>Gente lendo gente</h3><p>Cada candidatura é lida por uma pessoa do time. Sem filtro por foto, idade ou faculdade.</p></div>
+   <div class="val"><b>2</b><h3>Transparência</h3><p>Faixa e etapas informadas desde o início. Você sabe onde está no processo.</p></div>
+   <div class="val"><b>3</b><h3>Retorno sempre</h3><p>Avançando ou não, você recebe uma devolutiva. Respeito pelo seu tempo é regra.</p></div></div></div></section>`;
+}
+/* ---------- Página da vaga ---------- */
+function vagaHTML(v) {
+  const li = a => `<ul>${a.map(x => `<li>${e(x)}</li>`).join("")}</ul>`;
+  return `<section class="vhero"><div class="in-w"><a class="back" href="#vagas">← Todas as vagas</a><div class="eyebrow">${v.fixa ? "Sempre aberta" : e(v.area) + " · " + e(v.senioridade)}</div><h1>${e(v.titulo)}</h1>
+   <div class="chips">${[v.local, v.modelo, v.regime, v.faixa].filter(Boolean).map(c => `<span class="chip">${e(c)}</span>`).join("")}</div></div></section>
+  <div class="in-w vgrid"><div class="vcol">
+   <h2>Sobre a vaga</h2>${v.descricao.map(p => `<p>${e(p)}</p>`).join("")}
+   ${v.atividades.length ? `<h2>O que você vai fazer</h2>${li(v.atividades)}` : ""}
+   <h2>${v.fixa ? "O que a gente pede" : "O que buscamos"}</h2>${li(v.requisitos)}
+   <h2>${v.fixa ? "Como funciona" : "O que oferecemos"}</h2>${li(v.beneficios)}
+   <h2>Etapas do processo</h2><div class="steps">${v.etapas.map(s => `<div>${e(s)}</div>`).join("")}</div>
+   <h2>Sobre a POLVO</h2><p>${e(SOBRE)}</p></div>
+   <aside class="apply"><h2 style="font-size:20px;margin:0">${v.fixa ? "Entre no Banco de Talentos" : "Gostou da vaga?"}</h2><dl><dt>Local</dt><dd>${e(v.local)}</dd><dt>Modelo</dt><dd>${e(v.modelo)}</dd><dt>Regime</dt><dd>${e(v.regime)}</dd>${v.faixa ? `<dt>Faixa</dt><dd>${e(v.faixa)}</dd>` : ""}</dl>
+    <a class="pill-btn go" href="#form-${v.id}" data-jump="1">Candidatar-se</a><span class="hint">Leva cerca de 6 minutos. Tenha seu currículo em PDF ou DOCX.</span></aside></div>
+  <section class="form-wrap" id="form-${v.id}"><div class="in-w">${formHTML(v)}</div></section>`;
+}
+/* ---------- Formulário ---------- */
+let D = null, CV = null, CODE = "";
+const KEY = id => "polvo-vagas-" + id;
+function blank(v) { return { nome: "", nome_social: "", email: "", telefone: "", cidade: "", uf: "", linkedin: "", portfolio: "", area: v.fixa ? "" : v.area, cargo: v.fixa ? "" : v.titulo, resumo: "", pretensao: "", inicio: "", modalidade: [], fonte: "", pcd: "", adaptacao: "", raca: "", genero: "", orientacao: "", consent_auto: false, consent: false }; }
+function formHTML(v) {
+  if (CODE) return doneHTML(v);
+  const inp = (k, l, o = {}) => `<label class="f ${o.wide ? "wide" : ""}">${l}${o.req ? ' <span class="req">*</span>' : ""}<input class="in" id="${k}" data-k="${k}" value="${e(D[k])}" type="${o.type || "text"}" ${o.ph ? `placeholder="${e(o.ph)}"` : ""} ${o.auto ? `autocomplete="${o.auto}"` : ""} ${o.im ? `inputmode="${o.im}"` : ""}>${o.hint ? `<span class="hint">${o.hint}</span>` : ""}</label>`;
+  const sel = (k, l, list, o = {}) => `<label class="f ${o.wide ? "wide" : ""}">${l}${o.req ? ' <span class="req">*</span>' : ""}<select class="in" id="${k}" data-k="${k}"><option value="">Selecione</option>${list.map(x => `<option${D[k] === x ? " selected" : ""}>${e(x)}</option>`).join("")}</select></label>`;
+  return `<form class="app" id="frm" novalidate><div><div class="eyebrow">Candidatura</div><h2>${v.fixa ? "Deixe seu currículo" : "Candidate-se para " + e(v.titulo)}</h2><p style="color:var(--nevoa);margin:10px 0 0">Campos com <span class="req">*</span> são obrigatórios. Suas respostas ficam salvas neste navegador até você enviar.</p></div>
+  <fieldset><legend>Dados pessoais</legend><div class="fg">
+   ${inp("nome", "Nome completo", { req: 1, wide: 1, auto: "name" })}${inp("nome_social", "Nome social", { wide: 1, hint: "Opcional. Se preencher, é assim que vamos te chamar." })}
+   ${inp("email", "E-mail", { req: 1, type: "email", auto: "email" })}${inp("telefone", "Telefone / WhatsApp", { req: 1, type: "tel", auto: "tel", ph: "(11) 99999-9999" })}
+   ${inp("cidade", "Cidade", { req: 1, auto: "address-level2" })}${sel("uf", "Estado", UFS, { req: 1 })}
+   ${inp("linkedin", "LinkedIn", { ph: "linkedin.com/in/seu-perfil" })}${inp("portfolio", "Portfólio ou site", { ph: "Opcional" })}</div></fieldset>
+  <fieldset><legend>Experiência</legend><div class="fg">
+   ${sel("area", "Área de atuação", AREAS, { req: 1 })}${inp("cargo", "Cargo pretendido", { req: 1, ph: "Ex.: Analista Financeiro" })}
+   <label class="f wide">Resumo da experiência <span class="req">*</span><textarea class="in" id="resumo" data-k="resumo" placeholder="Em poucas linhas: onde você trabalhou, o que fazia e do que mais se orgulha.">${e(D.resumo)}</textarea></label>
+   ${inp("pretensao", "Pretensão salarial (R$)", { im: "numeric", ph: "R$ 0,00" })}${sel("inicio", "Disponibilidade para começar", ["Imediata", "Em até 15 dias", "Em até 30 dias", "Mais de 30 dias"])}
+   <div class="f wide" style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:700;color:var(--nevoa)">Modelo de trabalho que você aceita<div class="checks">${["Presencial", "Híbrido", "Remoto"].map(x => `<label class="ck"><input type="checkbox" data-m="modalidade" value="${x}" ${D.modalidade.includes(x) ? "checked" : ""}> ${x}</label>`).join("")}</div></div>
+   <div class="f wide" style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:700;color:var(--nevoa)">Currículo <span class="req" style="display:contents">*</span>
+    <div class="drop ${CV ? "ok" : ""}" id="drop"><input type="file" id="cv" accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" aria-label="Enviar currículo"><b>${CV ? "✓ " + e(CV.nome) : "Clique ou arraste seu currículo aqui"}</b><span class="hint">${CV ? (CV.texto ? `Lemos ${CV.texto.length.toLocaleString("pt-BR")} caracteres do arquivo. Clique para trocar.` : "Não conseguimos ler o texto deste arquivo, mas você pode seguir. Clique para trocar.") : "PDF ou DOCX, até 10 MB"}</span></div></div>
+   ${sel("fonte", "Como você soube da vaga?", ["LinkedIn", "Instagram", "Indicação", "Site de vagas", "Site da POLVO", "Outro"], { wide: 1 })}</div></fieldset>
+  <fieldset><legend>Autodeclaração (opcional)</legend><p style="color:var(--nevoa);margin:0 0 16px;font-size:14px">A POLVO trabalha com vagas afirmativas. Estas informações são voluntárias, usadas só para direcionar você a essas vagas e para indicadores de diversidade. Elas não entram na avaliação das demais vagas.</p><div class="fg">
+   ${sel("raca", "Raça ou cor (IBGE)", ["Branca", "Preta", "Parda", "Amarela", "Indígena", "Prefiro não informar"])}${sel("genero", "Identidade de gênero", ["Mulher cis", "Homem cis", "Mulher trans", "Homem trans", "Pessoa não binária", "Outra", "Prefiro não informar"])}
+   ${sel("orientacao", "Orientação sexual", ["Heterossexual", "Lésbica", "Gay", "Bissexual", "Pansexual", "Assexual", "Outra", "Prefiro não informar"])}${sel("pcd", "Pessoa com deficiência?", ["Sim", "Não", "Prefiro não informar"])}
+   ${inp("adaptacao", "Precisa de alguma adaptação no processo?", { wide: 1, ph: "Ex.: intérprete de Libras, entrevista online" })}
+   <label class="consent wide"><input type="checkbox" id="consent_auto" data-c="consent_auto" ${D.consent_auto ? "checked" : ""}> Autorizo o uso da minha autodeclaração para vagas afirmativas e indicadores de diversidade.</label></div></fieldset>
+  <label class="consent"><input type="checkbox" id="consent" data-c="consent" ${D.consent ? "checked" : ""}> <span>Li e concordo que a POLVO trate meus dados para participar de processos seletivos e manter meu perfil no banco de talentos por até 12 meses. <span class="req">*</span></span></label>
+  <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap"><button type="submit" class="pill-btn go" id="sub">Enviar candidatura</button><span class="msg" id="ms" role="status"></span></div></form>`;
+}
+function doneHTML(v) {
+  if (ENVIO === "enviando") return `<div class="done" role="status"><div class="eyebrow">Enviando</div><h2>Enviando sua candidatura…</h2><p>Não feche esta página. Leva só alguns segundos.</p></div>`;
+  if (ENVIO === "ok") return `<div class="done" role="status"><div class="eyebrow">Candidatura enviada</div><h2>Recebemos, ${e((D.nome_social || D.nome).split(" ")[0])}!</h2><p>Sua candidatura${v.fixa ? " para o Banco de Talentos" : " para " + e(v.titulo)} e o seu currículo (${e(CV ? CV.nome : "")}) chegaram ao time POLVO. Você também recebe uma confirmação em <b style="color:var(--papel)">${e(D.email)}</b>.</p><p>A gente responde todo mundo, com ou sem avanço no processo.</p><div style="margin-top:22px"><a class="pill-btn go" href="#vagas">Ver outras vagas</a></div></div>`;
+  return doneManual(v);
+}
+function enviarAuto(v) {
+  const nome = D.nome_social || D.nome; const f = document.createElement("form");
+  f.method = "POST"; f.enctype = "multipart/form-data"; f.action = "https://formsubmit.co/" + encodeURIComponent(FS_ID); f.target = "fs-ifr"; f.style.display = "none";
+  const campos = { _subject: `Candidatura · ${v.titulo} · ${nome}`, _template: "table", _captcha: "false", _replyto: D.email,
+    _autoresponse: `Olá, ${nome.split(" ")[0]}! Recebemos sua candidatura${v.fixa ? " para o Banco de Talentos" : " para a vaga " + v.titulo} da POLVO. Vamos analisar com cuidado e te dar retorno, com ou sem avanço. Obrigado pelo interesse!`,
+    name: nome, email: D.email, Telefone: D.telefone, Cidade: [D.cidade, D.uf].filter(Boolean).join("/"), Vaga: v.titulo, "Área de atuação": D.area, "Cargo pretendido": D.cargo, LinkedIn: D.linkedin || "",
+    "Código da candidatura (não altere)": CODE };
+  Object.entries(campos).forEach(([k, x]) => { const i = document.createElement("input"); i.type = "hidden"; i.name = k; i.value = x; f.appendChild(i); });
+  const hp = document.createElement("input"); hp.type = "text"; hp.name = "_honey"; f.appendChild(hp);
+  if (CV && CV.file) { try { const dt = new DataTransfer(); dt.items.add(CV.file); const fi = document.createElement("input"); fi.type = "file"; fi.name = "attachment"; fi.files = dt.files; f.appendChild(fi); } catch (x) { } }
+  let ifr = document.getElementById("fs-ifr"); if (!ifr) { ifr = document.createElement("iframe"); ifr.name = ifr.id = "fs-ifr"; ifr.title = "envio"; ifr.style.display = "none"; document.body.appendChild(ifr); }
+  let fim = false; const acabar = st => { if (fim) return; fim = true; ENVIO = st; if (st === "ok") { try { localStorage.removeItem(KEY(v.id)); } catch (x) { } } app.innerHTML = vagaHTML(v); bind(v); const el = document.getElementById("form-" + v.id); el && el.scrollIntoView(); };
+  ifr.onload = () => acabar("ok"); setTimeout(() => acabar("erro"), 45000);
+  document.body.appendChild(f); f.submit(); setTimeout(() => f.remove(), 1000);
+}
+function doneManual(v) {
+  const nome = D.nome_social || D.nome; const subj = `Candidatura · ${v.titulo} · ${nome}`;
+  const resumoLinhas = [["Nome", D.nome], ["Nome social", D.nome_social], ["E-mail", D.email], ["Telefone", D.telefone], ["Cidade", [D.cidade, D.uf].filter(Boolean).join("/")], ["LinkedIn", D.linkedin], ["Portfólio", D.portfolio], ["Vaga", v.titulo], ["Área de atuação", D.area], ["Cargo pretendido", D.cargo], ["Pretensão", D.pretensao], ["Disponibilidade", D.inicio], ["Modelo", D.modalidade.join(", ")], ["Currículo", CV ? CV.nome + " (anexo)" : ""], ["Resumo", D.resumo]].filter(r => r[1]);
+  const body = `Olá, time POLVO!\n\nSegue minha candidatura${v.fixa ? " para o Banco de Talentos" : " para a vaga " + v.titulo}. Meu currículo está anexado.\n\n${resumoLinhas.map(([k, x]) => `${k}: ${x}`).join("\n")}\n\nCódigo da candidatura (não altere):\n${CODE}\n`;
+  const enc = encodeURIComponent;
+  const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${enc(DEST)}&su=${enc(subj)}&body=${enc(body)}`;
+  const outlook = `https://outlook.live.com/mail/0/deeplink/compose?to=${enc(DEST)}&subject=${enc(subj)}&body=${enc(body)}`;
+  return `<div class="done"><div class="eyebrow">Último passo</div><h2>Envie sua candidatura</h2>${ENVIO === "erro" ? `<div class="note" style="margin-bottom:14px"><span>Não conseguimos enviar automaticamente (pode ser a sua conexão). Envie por e-mail mesmo, é rapidinho.</span></div>` : ""}<p>Tudo pronto. Escolha seu e-mail: a mensagem abre preenchida para <b style="color:var(--papel)">${e(DEST)}</b>.</p>
+   <div class="note"><span style="font-size:20px">📎</span><span>Antes de clicar em enviar, anexe o seu currículo (${e(CV ? CV.nome : "PDF ou DOCX")}) na mensagem. Sem o anexo, a candidatura fica incompleta.</span></div>
+   <div class="send"><a class="pill-btn go" href="${gmail}" target="_blank" rel="noopener">Enviar pelo Gmail</a><a class="pill-btn" href="${outlook}" target="_blank" rel="noopener">Enviar pelo Outlook</a></div>
+   <h3 style="margin:26px 0 8px;font-size:16px;text-transform:uppercase;font-weight:900">Usa outro e-mail?</h3><p>Copie a mensagem abaixo, cole num e-mail novo para <span style="color:var(--papel);user-select:all">${e(DEST)}</span> com o assunto <b style="color:var(--papel)">${e(subj)}</b> e anexe o currículo.</p>
+   <div class="code" id="cd">${e(body)}</div><div style="display:flex;gap:14px;align-items:center;margin-top:12px;flex-wrap:wrap"><button type="button" class="pill-btn" id="cp">Copiar mensagem</button><span class="hint" id="cm"></span><button type="button" class="pill-btn" id="edit" style="border-color:var(--bd);background:none">Corrigir respostas</button></div></div>`;
+}
+/* Leitura do currículo no navegador (o arquivo não sai do seu computador) */
+const libP = {};
+function lib(src) { return libP[src] || (libP[src] = new Promise((ok, no) => { const s = document.createElement("script"); s.src = src; s.onload = ok; s.onerror = () => { delete libP[src]; no(new Error("lib")); }; document.head.appendChild(s); })); }
+async function lerCV(f) {
+  const ext = (f.name.split(".").pop() || "").toLowerCase();
+  try {
+    if (ext === "docx") { await lib("https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"); const z = await JSZip.loadAsync(await f.arrayBuffer()); const xml = await z.file("word/document.xml").async("string");
+      return xml.replace(/<w:tab\/>/g, " ").replace(/<\/w:p>/g, "\n").replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/\n{3,}/g, "\n\n").trim(); }
+    if (ext === "pdf") { await lib("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"); await lib("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js");
+      const doc = await window.pdfjsLib.getDocument({ data: new Uint8Array(await f.arrayBuffer()), disableWorker: true, isEvalSupported: false }).promise; const out = [];
+      for (let i = 1; i <= Math.min(doc.numPages, 8); i++) { const pg = await doc.getPage(i); const tc = await pg.getTextContent(); let line = "", lastY = null; const ls = []; tc.items.forEach(it => { const y = Math.round(it.transform[5]); if (lastY !== null && Math.abs(y - lastY) > 2) { ls.push(line); line = ""; } line += it.str; lastY = y; }); ls.push(line); out.push(ls.join("\n")); }
+      return out.join("\n\n").replace(/[ \t]+/g, " ").replace(/\n{3,}/g, "\n\n").trim(); }
+  } catch (err) { console.warn(err); }
+  return "";
+}
+/* Código da candidatura: P1z.<deflate base64url>.<checksum>, lido pelo POLVO Recruiter */
+const SALT = "polvo-cadastro-p1";
+function fnv(s) { let h = 0x811c9dc5; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; } return ("00000000" + h.toString(16)).slice(-8); }
+const b64u = bytes => { let s = ""; bytes.forEach(b => s += String.fromCharCode(b)); return btoa(s).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, ""); };
+async function pack(obj) {
+  let bytes = new TextEncoder().encode(JSON.stringify(obj)), tag = "P1j";
+  try { if (window.CompressionStream) { const cs = new Blob([bytes]).stream().pipeThrough(new CompressionStream("deflate-raw")); bytes = new Uint8Array(await new Response(cs).arrayBuffer()); tag = "P1z"; } } catch (x) { tag = "P1j"; bytes = new TextEncoder().encode(JSON.stringify(obj)); }
+  const body = b64u(bytes); return `${tag}.${body}.${fnv(SALT + "|" + tag + "|" + body).slice(0, 6).toUpperCase()}`;
+}
+async function makeCode(v) {
+  const d = { ...D, cv_nome: CV ? CV.nome : "" }; if (!d.consent_auto) { d.pcd = ""; d.raca = ""; d.genero = ""; d.orientacao = ""; }
+  let lim = 6000, code = "";
+  while (lim >= 500) { code = await pack({ ver: 1, origem: "pagina-vagas", v: v.id, t: v.fixa ? "" : v.titulo, i: "", d: { ...d, cv_texto: CV && CV.texto ? CV.texto.slice(0, lim) : "" }, em: new Date().toISOString() }); if (code.length <= 4800) break; lim = Math.floor(lim * .7); }
+  return code;
+}
+/* ---------- Roteamento e eventos ---------- */
+let cur = null;
+function route() {
+  const h = location.hash.replace(/^#/, ""); const m = h.match(/^(?:vaga|form)-(.+)$/);
+  const v = m && VAGAS.find(x => x.id === m[1]);
+  if (v) { if (!cur || cur.id !== v.id) { cur = v; CODE = ""; CV = null; try { D = { ...blank(v), ...(JSON.parse(localStorage.getItem(KEY(v.id)) || "null") || {}) }; } catch (x) { D = blank(v); } } app.innerHTML = vagaHTML(v); bind(v); if (h.startsWith("form-")) document.getElementById("form-" + v.id).scrollIntoView(); else window.scrollTo(0, 0); }
+  else { cur = null; app.innerHTML = listHTML(); bindList(); if (h === "vagas") document.getElementById("vagas").scrollIntoView(); else if (!h || h === "inicio") window.scrollTo(0, 0); }
+}
+function bindList() {
+  const up = () => { const pos = document.activeElement && document.activeElement.id; const s = document.activeElement && document.activeElement.selectionStart; app.innerHTML = listHTML(); bindList(); if (pos) { const el = document.getElementById(pos); if (el) { el.focus(); if (s != null && el.setSelectionRange) try { el.setSelectionRange(s, s); } catch (x) { } } } };
+  document.getElementById("q").addEventListener("input", ev => { F.q = ev.target.value; up(); });
+  [["fa", "area"], ["fm", "modelo"], ["fl", "local"]].forEach(([id, k]) => document.getElementById(id).addEventListener("change", ev => { F[k] = ev.target.value; up(); }));
+}
+function save(v) { try { localStorage.setItem(KEY(v.id), JSON.stringify(D)); } catch (x) { } }
+function moneyMask(x) { const d = String(x || "").replace(/\D/g, "").replace(/^0+/, ""); return d ? (parseInt(d, 10) / 100).toLocaleString("pt-BR", { style: "currency", currency: "BRL" }).replace(/ /g, " ") : ""; }
+function bind(v) {
+  const jump = document.querySelector("[data-jump]"); if (jump) jump.addEventListener("click", ev => { ev.preventDefault(); document.getElementById("form-" + v.id).scrollIntoView({ behavior: "smooth" }); });
+  const frm = document.getElementById("frm");
+  if (!frm) { const cp = document.getElementById("cp"); if (cp) cp.onclick = async () => { const t = document.getElementById("cd").textContent; const cm = document.getElementById("cm"); try { await navigator.clipboard.writeText(t); cm.textContent = "Copiado!"; } catch (x) { const r = document.createRange(); r.selectNodeContents(document.getElementById("cd")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); cm.textContent = "Texto selecionado: copie com Ctrl+C ou toque longo."; } };
+    const ed = document.getElementById("edit"); if (ed) ed.onclick = () => { CODE = ""; ENVIO = ""; app.innerHTML = vagaHTML(v); bind(v); document.getElementById("form-" + v.id).scrollIntoView(); }; return; }
+  frm.querySelectorAll("[data-k]").forEach(el => el.addEventListener("input", () => { if (el.id === "pretensao") el.value = moneyMask(el.value); D[el.dataset.k] = el.value; el.classList.remove("err"); save(v); }));
+  frm.querySelectorAll("select[data-k]").forEach(el => el.addEventListener("change", () => { D[el.dataset.k] = el.value; el.classList.remove("err"); save(v); }));
+  frm.querySelectorAll("[data-m]").forEach(el => el.addEventListener("change", () => { const k = el.dataset.m; D[k] = el.checked ? [...new Set([...D[k], el.value])] : D[k].filter(x => x !== el.value); save(v); }));
+  frm.querySelectorAll("[data-c]").forEach(el => el.addEventListener("change", () => { D[el.dataset.c] = el.checked; save(v); }));
+  const cv = document.getElementById("cv"); const drop = document.getElementById("drop");
+  cv.addEventListener("change", async () => { const f = cv.files[0]; if (!f) return; const ms = document.getElementById("ms");
+    if (!/\.(pdf|docx)$/i.test(f.name)) { ms.textContent = "Envie o currículo em PDF ou DOCX."; return; } if (f.size > 10 * 1024 * 1024) { ms.textContent = "O arquivo passa de 10 MB."; return; }
+    drop.querySelector("b").textContent = "Lendo " + f.name + "…"; const texto = await lerCV(f); CV = { nome: f.name, texto, file: f };
+    drop.classList.add("ok"); drop.classList.remove("err"); drop.querySelector("b").textContent = "✓ " + f.name; drop.querySelector(".hint").textContent = texto ? `Lemos ${texto.length.toLocaleString("pt-BR")} caracteres do arquivo. Clique para trocar.` : "Não conseguimos ler o texto deste arquivo, mas você pode seguir. Clique para trocar."; ms.textContent = ""; });
+  frm.addEventListener("submit", async ev => { ev.preventDefault(); const ms = document.getElementById("ms");
+    const req = ["nome", "email", "telefone", "cidade", "uf", "area", "cargo", "resumo"]; const miss = req.filter(k => !String(D[k] || "").trim());
+    if (D.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(D.email)) miss.push("email");
+    frm.querySelectorAll(".err").forEach(x => x.classList.remove("err")); miss.forEach(k => { const el = document.getElementById(k); if (el) el.classList.add("err"); });
+    if (!CV) drop.classList.add("err");
+    if (miss.length || !CV) { ms.textContent = !CV && !miss.length ? "Anexe o seu currículo (obrigatório)." : `Confira ${miss.length + (CV ? 0 : 1)} ${miss.length + (CV ? 0 : 1) === 1 ? "campo destacado" : "campos destacados"}.`; (document.getElementById(miss[0]) || drop).scrollIntoView({ behavior: "smooth", block: "center" }); return; }
+    if (!D.consent) { ms.textContent = "Para enviar, aceite o uso dos dados no processo seletivo."; return; }
+    const sb = document.getElementById("sub"); sb.disabled = true; sb.textContent = "Preparando…";
+    CODE = await makeCode(v); ENVIO = "enviando"; app.innerHTML = vagaHTML(v); enviarAuto(v); bind(v); document.getElementById("form-" + v.id).scrollIntoView(); });
+}
+window.addEventListener("hashchange", route);
+route();
+</script>
+
+</body></html>
