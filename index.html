@@ -38,6 +38,9 @@ nav.links a.pill-btn.go{color:var(--tinta)}
 .eyebrow::before{content:"";width:22px;height:3px;border-radius:2px;background:var(--lar)}
 h1{font-size:clamp(36px,6vw,76px);line-height:1;font-weight:900;letter-spacing:-.025em;text-transform:uppercase;margin:0 0 20px;max-width:15ch;text-wrap:balance;color:var(--tinta)}
 h1 em{font-style:normal;color:var(--lavm)}
+.sub-h{font-size:clamp(19px,2vw,24px);font-weight:700;color:var(--tinta);margin:0 0 16px;max-width:52ch;text-wrap:balance}
+.sub-h a{color:var(--lavd);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.sub-h b{font-weight:900;color:var(--lavd)}
 .lead{font-size:clamp(17px,1.5vw,19px);color:var(--nevoa);max-width:58ch;margin:0 0 30px}
 .search{display:grid;grid-template-columns:minmax(0,2fr) repeat(3,minmax(0,1fr));gap:8px;background:var(--bg);border:1px solid var(--bd);border-radius:20px;padding:8px;max-width:980px;box-shadow:0 10px 30px -18px rgba(19,17,27,.25)}
 .search input,.search select{width:100%;padding:13px 15px;border-radius:14px;border:1px solid transparent;background:var(--soft);color:var(--tinta);font:inherit;font-size:15px}
@@ -136,7 +139,7 @@ const DEST = "polvorh.talentos@gmail.com";
 const FS_ID = DEST;
 let ENVIO = "";
 const EMPRESA = "POLVO";
-const SOBRE = "A POLVO é uma consultoria de carreira que abre a caixa-preta do RH. A gente une recrutamento, desenvolvimento e dados para conectar pessoas a empresas de forma humana, transparente e sem enrolação.";
+const SOBRE = "A POLVO é uma consultoria de carreira que conecta profissionais a vagas em empresas que atuam de forma inclusiva. A gente une recrutamento, desenvolvimento e dados para aproximar cada pessoa de um lugar onde ela possa ser quem é e crescer, com um processo humano, transparente e sem enrolação.";
 const VAGAS = [
   { id: "teste-analista-financeiro-pl", titulo: "Analista Financeiro Pleno", area: "Financeiro", senioridade: "Pleno", local: "São Paulo, SP", modelo: "Híbrido", regime: "CLT", faixa: "R$ 7.000 a R$ 9.500",
     resumo: "Responder pela rotina de contas a pagar e a receber, conciliações bancárias e apoio ao fechamento mensal de uma operação com vários CNPJs.",
@@ -168,6 +171,7 @@ function listHTML() {
   const abertas = VAGAS.filter(v => !v.fixa).length;
   return `<section class="hero" id="inicio"><div class="stripes"></div><div class="in-w"><div class="eyebrow">Carreiras POLVO</div>
    <h1>Vem fazer o RH <em>sem crachá</em> com a gente</h1>
+   <p class="sub-h">Vem fazer parte do <a href="#vaga-banco-de-talentos">banco de talentos da POLVO</a> e se torne um(a) candidato(a) <b>Polver</b>.</p>
    <p class="lead">${e(SOBRE)} Veja as vagas abertas ou entre no nosso Banco de Talentos.</p>
    <div class="search" role="search"><input id="q" placeholder="Buscar por cargo, área ou palavra-chave" value="${e(F.q)}" aria-label="Buscar vagas">
     <select id="fa" aria-label="Área">${opt([...new Set(VAGAS.filter(v => !v.fixa).map(v => v.area))], F.area, "Todas as áreas")}</select>
