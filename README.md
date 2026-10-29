@@ -10,7 +10,7 @@ Página de vagas e banco de talentos da POLVO Consultoria de Carreira, publicada
 
 ## Atualizar as vagas
 
-As vagas ficam na constante `VAGAS` dentro de `index.html`. Edite e faça commit: o GitHub Pages republica em cerca de 1 minuto.
+As vagas vêm do arquivo `vagas.json`, gerado pelo POLVO Recruiter (tela Vagas → **Enviar para o site**). O botão copia o conteúdo novo e abre este arquivo no editor do GitHub: cole, clique em **Commit changes** e o GitHub Pages republica em cerca de 1 minuto. O Banco de Talentos fica sempre aberto e está dentro do `index.html`.
 
 ## Ativação (uma vez só)
 

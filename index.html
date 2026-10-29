@@ -139,7 +139,7 @@ const FS_ID = DEST;
 let ENVIO = "";
 const EMPRESA = "POLVO";
 const SOBRE = "A POLVO é uma consultoria de carreira que conecta profissionais a vagas em empresas que atuam de forma inclusiva. A gente une recrutamento, desenvolvimento e dados para aproximar cada pessoa de um lugar onde ela possa ser quem é e crescer, com um processo humano, transparente e sem enrolação.";
-const VAGAS = [
+let VAGAS = [
   { id: "teste-analista-financeiro-pl", titulo: "Analista Financeiro Pleno", area: "Financeiro", senioridade: "Pleno", local: "São Paulo, SP", modelo: "Híbrido", regime: "CLT", faixa: "R$ 7.000 a R$ 9.500",
     resumo: "Responder pela rotina de contas a pagar e a receber, conciliações bancárias e apoio ao fechamento mensal de uma operação com vários CNPJs.",
     descricao: ["Você vai responder pela rotina de contas a pagar e a receber, pelas conciliações bancárias e pelo apoio ao fechamento mensal de uma operação com vários CNPJs.", "É uma posição para quem gosta de organização, de números que fecham e de melhorar processos no dia a dia."],
@@ -333,7 +333,20 @@ function bind(v) {
     CODE = await makeCode(v); ENVIO = "enviando"; app.innerHTML = vagaHTML(v); enviarAuto(v); bind(v); document.getElementById("form-" + v.id).scrollIntoView(); });
 }
 window.addEventListener("hashchange", route);
-route();
+/* As vagas vêm do vagas.json que o POLVO Recruiter envia; se não houver, ficam as vagas acima */
+const ETAPAS_SITE = ["Candidatura e triagem", "Entrevista com o RH", "Entrevista com a gestão", "Proposta"];
+const txt = (x, n = 300) => String(x ?? "").slice(0, n);
+const arr = (x, n = 40) => (Array.isArray(x) ? x : []).map(y => txt(y, 600)).filter(Boolean).slice(0, n);
+function normVaga(x) { const id = txt(x.id, 120).replace(/[^a-z0-9-]/gi, ""); if (!id || !x.titulo) return null;
+  return { id, titulo: txt(x.titulo, 140), area: txt(x.area, 80), senioridade: txt(x.senioridade, 60), local: txt(x.local, 100), modelo: txt(x.modelo, 60), regime: txt(x.regime, 60), faixa: txt(x.faixa, 80), resumo: txt(x.resumo, 400),
+    descricao: arr(x.descricao, 12), atividades: arr(x.atividades), requisitos: arr(x.requisitos), beneficios: arr(x.beneficios), etapas: arr(x.etapas, 10).length ? arr(x.etapas, 10) : ETAPAS_SITE }; }
+let rotou = false; const rotear = () => { if (!rotou) { rotou = true; route(); } };
+setTimeout(rotear, 2500);
+fetch("vagas.json?t=" + Date.now(), { cache: "no-store" }).then(r => r.ok ? r.json() : null).then(j => {
+  if (!j || !Array.isArray(j.vagas)) return; const banco = VAGAS.find(v => v.fixa);
+  const vs = j.vagas.map(normVaga).filter(v => v && v.id !== (banco && banco.id)); VAGAS = [...vs, ...(banco ? [banco] : [])];
+  if (rotou && !cur) route();
+}).catch(() => { }).finally(rotear);
 </script>
 
 </body></html>
