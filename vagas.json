@@ -1,5 +1,69 @@
 {
   "empresa": "POLVO",
-  "atualizado_em": "2026-10-29T00:27:42Z",
-  "vagas": []
+  "atualizado_em": "2026-10-29T00:45:21.699Z",
+  "vagas": [
+    {
+      "id": "analista-de-social-media",
+      "titulo": "Analista de Social Media",
+      "area": "Criação",
+      "senioridade": "Pleno",
+      "local": "",
+      "modelo": "",
+      "regime": "",
+      "faixa": "R$ 3.700",
+      "resumo": "A pessoa Analista de Social Media contribuirá para a presença digital da organização, transformando iniciativas, projetos e mensagens institucionais em conteúdos relevantes, acessíveis e alinhados à identidade da marca.",
+      "descricao": [
+        "A pessoa Analista de Social Media contribuirá para a presença digital da organização, transformando iniciativas, projetos e mensagens institucionais em conteúdos relevantes, acessíveis e alinhados à identidade da marca.",
+        "A posição combina planejamento e execução: organiza o calendário editorial, desenvolve pautas, roteiros e textos, cria peças visuais, edita vídeos, acompanha as interações com o público e analisa o desempenho dos conteúdos. O objetivo é manter uma comunicação consistente nos canais digitais, fortalecer o relacionamento com a comunidade e gerar aprendizados que aprimorem a atuação da área de Comunicação.",
+        "Planejamento e calendário editorial",
+        "• Planejar, organizar e atualizar o calendário editorial das redes sociais, considerando objetivos de comunicação, campanhas, projetos, eventos e prioridades institucionais.",
+        "• Propor pautas, formatos e abordagens adequados aos diferentes canais e públicos, alinhando as entregas com a Coordenação de Comunicação.",
+        "• Organizar prazos, etapas de produção e necessidades de revisão para garantir consistência e previsibilidade nas publicações.",
+        "Redação e desenvolvimento de conteúdo",
+        "• Produzir legendas, textos, roteiros curtos, chamadas e demais conteúdos para os canais digitais, respeitando o tom de voz e a linguagem da Empreende Aí.",
+        "• Adaptar mensagens e formatos de acordo com o canal, o público e o objetivo de cada publicação.",
+        "• Revisar os conteúdos quanto à clareza, ortografia, coerência, acessibilidade e alinhamento institucional.",
+        "Criação visual e edição de vídeo",
+        "• Criar peças para redes sociais, incluindo posts estáticos, carrosséis, stories, capas e outros formatos necessários.",
+        "• Editar vídeos curtos para formatos como Reels, Shorts e TikTok, incluindo cortes, legendas e ajustes básicos de ritmo e apresentação.",
+        "• Produzir ou adaptar materiais visuais para campanhas, eventos, apresentações institucionais e outras demandas da área.",
+        "• Aplicar os elementos da identidade visual e contribuir para a organização e evolução de templates e materiais reutilizáveis.",
+        "Publicação e gestão de comunidade",
+        "• Preparar, agendar e publicar conteúdos nos canais definidos, conferindo textos, peças, links, marcações e datas antes da publicação.",
+        "• Monitorar comentários, mensagens diretas e interações no Instagram e no WhatsApp, mantendo comunicação respeitosa e alinhada à marca.",
+        "• Identificar dúvidas ou solicitações que precisem de encaminhamento e direcioná-las às pessoas ou áreas responsáveis.",
+        "Monitoramento e análise de resultados",
+        "• Acompanhar indicadores como alcance, impressões, engajamento, visualizações, crescimento de audiência e desempenho por formato, conforme disponibilidade dos dados.",
+        "• Consolidar informações em relatórios periódicos, destacando resultados, aprendizados e oportunidades de melhoria.",
+        "• Utilizar os dados para sugerir ajustes em pautas, formatos, frequência e abordagem dos conteúdos.",
+        "Pesquisa e colaboração com a equipe",
+        "• Pesquisar tendências, formatos, referências e conversas relevantes para os públicos da Empreende Aí, avaliando sua pertinência antes de incorporá-los à comunicação.",
+        "• Coletar informações com as áreas envolvidas para transformar projetos, ações e histórias em conteúdos precisos e interessantes.",
+        "• Participar de alinhamentos e contribuir com ideias para campanhas e iniciativas integradas de comunicação.",
+        "Formação superior: Ensino superior completo ou em andamento em Design, Publicidade e Propaganda, Comunicação Social ou áreas correlatas."
+      ],
+      "atividades": [],
+      "requisitos": [
+        "Conhecimentos técnicos",
+        "• Planejamento de conteúdo e organização de calendário editorial.",
+        "• Redação para redes sociais, incluindo legendas, chamadas e roteiros curtos.",
+        "• Ferramentas de design, como Canva e/ou Adobe Illustrator e Photoshop.",
+        "• Edição básica de vídeos em ferramentas como CapCut, Premiere ou similares.",
+        "• Uso de ferramentas das redes para publicação, agendamento e acompanhamento de resultados.",
+        "• Leitura de métricas como alcance, engajamento, visualizações e crescimento de audiência.",
+        "• Atenção à identidade visual, hierarquia de informação, ortografia e consistência de marca.",
+        "Diferenciais desejáveis",
+        "• Experiência com comunicação de projetos de impacto social, educação, empreendedorismo ou iniciativas voltadas às periferias.",
+        "• Conhecimento de acessibilidade digital, legendagem de vídeos e boas práticas para tornar conteúdos mais acessíveis.",
+        "• Experiência na produção de conteúdos para campanhas, eventos ou ações institucionais."
+      ],
+      "beneficios": [],
+      "etapas": [
+        "Candidatura e triagem",
+        "Entrevista com o RH",
+        "Entrevista com a gestão",
+        "Proposta"
+      ]
+    }
+  ]
 }

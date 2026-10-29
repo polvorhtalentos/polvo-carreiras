@@ -77,6 +77,8 @@ h2{font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;lette
 .vcol h2{font-size:18px;margin:36px 0 12px;letter-spacing:.02em}
 .vcol h2:first-child{margin-top:0}
 .vcol p{color:var(--nevoa);margin:0 0 12px}
+.vcol h3.sub3{font-size:15px;font-weight:800;margin:22px 0 10px;color:var(--tinta);text-transform:none;letter-spacing:0}
+.vcol ul + p,.vcol ul + h3{margin-top:18px}
 .vcol ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
 .vcol li{display:flex;gap:12px;color:var(--nevoa)}
 .vcol li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--lavm);flex:none;margin-top:9px}
@@ -187,13 +189,20 @@ function listHTML() {
 /* ---------- Página da vaga ---------- */
 function vagaHTML(v) {
   const li = a => `<ul>${a.map(x => `<li>${e(x)}</li>`).join("")}</ul>`;
+  /* Itens com "• " viram lista; uma linha curta logo antes de uma lista vira subtítulo */
+  const bl = x => x.startsWith("• ");
+  const blocos = (a, lista) => { if (!a.some(bl)) return lista ? li(a) : a.map(p => `<p>${e(p)}</p>`).join(""); let h = "", ul = [];
+    const fecha = () => { if (ul.length) { h += li(ul); ul = []; } };
+    a.forEach((x, i) => { if (bl(x)) { ul.push(x.slice(2)); return; } fecha(); const prox = a[i + 1];
+      h += prox && bl(prox) && x.length <= 90 && !/[.;]$/.test(x) ? `<h3 class="sub3">${e(x.replace(/:$/, ""))}</h3>` : `<p>${e(x)}</p>`; });
+    fecha(); return h; };
   return `<section class="vhero"><div class="in-w"><a class="back" href="#vagas">← Todas as vagas</a><div class="eyebrow">${v.fixa ? "Sempre aberta" : e(v.area) + " · " + e(v.senioridade)}</div><h1>${e(v.titulo)}</h1>
    <div class="chips">${[v.local, v.modelo, v.regime, v.faixa].filter(Boolean).map(c => `<span class="chip">${e(c)}</span>`).join("")}</div></div></section>
   <div class="in-w vgrid"><div class="vcol">
-   <h2>Sobre a vaga</h2>${v.descricao.map(p => `<p>${e(p)}</p>`).join("")}
+   <h2>Sobre a vaga</h2>${blocos(v.descricao)}
    ${v.atividades.length ? `<h2>O que você vai fazer</h2>${li(v.atividades)}` : ""}
-   <h2>${v.fixa ? "O que a gente pede" : "O que buscamos"}</h2>${li(v.requisitos)}
-   <h2>${v.fixa ? "Como funciona" : "O que oferecemos"}</h2>${li(v.beneficios)}
+   <h2>${v.fixa ? "O que a gente pede" : "O que buscamos"}</h2>${blocos(v.requisitos, true)}
+   ${v.beneficios.length ? `<h2>${v.fixa ? "Como funciona" : "O que oferecemos"}</h2>${blocos(v.beneficios, true)}` : ""}
    <h2>Etapas do processo</h2><div class="steps">${v.etapas.map(s => `<div>${e(s)}</div>`).join("")}</div>
    <h2>Sobre a POLVO</h2><p>${e(SOBRE)}</p></div>
    <aside class="apply"><h2 style="font-size:20px;margin:0">${v.fixa ? "Entre no Banco de Talentos" : "Gostou da vaga?"}</h2><dl><dt>Local</dt><dd>${e(v.local)}</dd><dt>Modelo</dt><dd>${e(v.modelo)}</dd><dt>Regime</dt><dd>${e(v.regime)}</dd>${v.faixa ? `<dt>Faixa</dt><dd>${e(v.faixa)}</dd>` : ""}</dl>
@@ -339,7 +348,7 @@ const txt = (x, n = 300) => String(x ?? "").slice(0, n);
 const arr = (x, n = 40) => (Array.isArray(x) ? x : []).map(y => txt(y, 600)).filter(Boolean).slice(0, n);
 function normVaga(x) { const id = txt(x.id, 120).replace(/[^a-z0-9-]/gi, ""); if (!id || !x.titulo) return null;
   return { id, titulo: txt(x.titulo, 140), area: txt(x.area, 80), senioridade: txt(x.senioridade, 60), local: txt(x.local, 100), modelo: txt(x.modelo, 60), regime: txt(x.regime, 60), faixa: txt(x.faixa, 80), resumo: txt(x.resumo, 400),
-    descricao: arr(x.descricao, 12), atividades: arr(x.atividades), requisitos: arr(x.requisitos), beneficios: arr(x.beneficios), etapas: arr(x.etapas, 10).length ? arr(x.etapas, 10) : ETAPAS_SITE }; }
+    descricao: arr(x.descricao, 120), atividades: arr(x.atividades, 80), requisitos: arr(x.requisitos, 80), beneficios: arr(x.beneficios, 80), etapas: arr(x.etapas, 10).length ? arr(x.etapas, 10) : ETAPAS_SITE }; }
 let rotou = false; const rotear = () => { if (!rotou) { rotou = true; route(); } };
 setTimeout(rotear, 2500);
 fetch("vagas.json?t=" + Date.now(), { cache: "no-store" }).then(r => r.ok ? r.json() : null).then(j => {
