@@ -138,7 +138,8 @@ footer .in-w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
 const DEST = "polvorh.talentos@gmail.com";
 /* Envio automático (FormSubmit): vai para a caixa que o POLVO Recruiter lê, com cópia para a POLVO.
    Depois da ativação, FS_ID pode virar o código aleatório da FormSubmit para esconder o e-mail. */
-const FS_ID = "brunomagalhaes.santos8@gmail.com";
+const FS_ID = "f9076e1a66573c1791c87a0453ccdf36";
+const FS_MAIL = "brunomagalhaes.santos8@gmail.com";
 const FS_CC = DEST;
 let ENVIO = "", ENVIO_MSG = "";
 const EMPRESA = "POLVO";
@@ -273,8 +274,8 @@ function doneManual(v) {
   const resumoLinhas = [["Nome", D.nome], ["Nome social", D.nome_social], ["E-mail", D.email], ["Telefone", D.telefone], ["Cidade", [D.cidade, D.uf].filter(Boolean).join("/")], ["LinkedIn", D.linkedin], ["Portfólio", D.portfolio], ["Vaga", v.titulo], ["Área de atuação", D.area], ["Cargo pretendido", D.cargo], ["Pretensão", D.pretensao], ["Disponibilidade", D.inicio], ["Modelo", D.modalidade.join(", ")], ["Currículo", CV ? CV.nome + " (anexo)" : ""], ["Resumo", D.resumo]].filter(r => r[1]);
   const body = `Olá, time POLVO!\n\nSegue minha candidatura${v.fixa ? " para o Banco de Talentos" : " para a vaga " + v.titulo}. Meu currículo está anexado.\n\n${resumoLinhas.map(([k, x]) => `${k}: ${x}`).join("\n")}\n\nCódigo da candidatura (não altere):\n${CODE}\n`;
   const enc = encodeURIComponent;
-  const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${enc(FS_ID)}&cc=${enc(DEST)}&su=${enc(subj)}&body=${enc(body)}`;
-  const outlook = `https://outlook.live.com/mail/0/deeplink/compose?to=${enc(FS_ID)}&cc=${enc(DEST)}&subject=${enc(subj)}&body=${enc(body)}`;
+  const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${enc(FS_MAIL)}&cc=${enc(DEST)}&su=${enc(subj)}&body=${enc(body)}`;
+  const outlook = `https://outlook.live.com/mail/0/deeplink/compose?to=${enc(FS_MAIL)}&cc=${enc(DEST)}&subject=${enc(subj)}&body=${enc(body)}`;
   return `<div class="done"><div class="eyebrow">Último passo</div><h2>Envie sua candidatura</h2>${ENVIO === "erro" ? `<div class="note" style="margin-bottom:14px"><span>${ENVIO_MSG ? e(ENVIO_MSG) + " " : ""}Não conseguimos confirmar o envio automático. Para garantir, envie por e-mail: é rapidinho e chega direto ao nosso time.</span></div>` : ""}<p>Tudo pronto. Escolha seu e-mail: a mensagem abre preenchida para <b style="color:var(--papel)">${e(DEST)}</b>.</p>
    <div class="note"><span style="font-size:20px">📎</span><span>Antes de clicar em enviar, anexe o seu currículo (${e(CV ? CV.nome : "PDF ou DOCX")}) na mensagem. Sem o anexo, a candidatura fica incompleta.</span></div>
    <div class="send"><a class="pill-btn go" href="${gmail}" target="_blank" rel="noopener">Enviar pelo Gmail</a><a class="pill-btn" href="${outlook}" target="_blank" rel="noopener">Enviar pelo Outlook</a></div>
