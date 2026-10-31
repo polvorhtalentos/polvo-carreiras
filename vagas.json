@@ -1,6 +1,6 @@
 {
   "empresa": "POLVO",
-  "atualizado_em": "2026-10-29T00:45:21.699Z",
+  "atualizado_em": "2026-10-31T16:17:56.485Z",
   "vagas": [
     {
       "id": "analista-de-social-media",
@@ -57,6 +57,27 @@
         "• Conhecimento de acessibilidade digital, legendagem de vídeos e boas práticas para tornar conteúdos mais acessíveis.",
         "• Experiência na produção de conteúdos para campanhas, eventos ou ações institucionais."
       ],
+      "beneficios": [],
+      "etapas": [
+        "Candidatura e triagem",
+        "Entrevista com o RH",
+        "Entrevista com a gestão",
+        "Proposta"
+      ]
+    },
+    {
+      "id": "banco-de-talentos-vagas-afitmativas-para-pessoas-pretas-indi",
+      "titulo": "Banco de Talentos - Vagas afitmativas para pessoas pretas, indígenas, trans e PCd",
+      "area": "",
+      "senioridade": "",
+      "local": "",
+      "modelo": "",
+      "regime": "",
+      "faixa": "",
+      "resumo": "",
+      "descricao": [],
+      "atividades": [],
+      "requisitos": [],
       "beneficios": [],
       "etapas": [
         "Candidatura e triagem",
