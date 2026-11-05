@@ -214,7 +214,7 @@ function vagaHTML(v) {
 /* ---------- Formulário ---------- */
 let D = null, CV = null, CODE = "";
 const KEY = id => "polvo-vagas-" + id;
-function blank(v) { return { nome: "", nome_social: "", email: "", telefone: "", cidade: "", uf: "", linkedin: "", portfolio: "", area: v.fixa ? "" : v.area, cargo: v.fixa ? "" : v.titulo, resumo: "", pretensao: "", inicio: "", modalidade: [], fonte: "", pcd: "", adaptacao: "", raca: "", genero: "", orientacao: "", consent_auto: false, consent: false }; }
+function blank(v) { return { respostas: {}, nome: "", nome_social: "", email: "", telefone: "", cidade: "", uf: "", linkedin: "", portfolio: "", area: v.fixa ? "" : v.area, cargo: v.fixa ? "" : v.titulo, resumo: "", pretensao: "", inicio: "", modalidade: [], fonte: "", pcd: "", adaptacao: "", raca: "", genero: "", orientacao: "", consent_auto: false, consent: false }; }
 function formHTML(v) {
   if (CODE) return doneHTML(v);
   const inp = (k, l, o = {}) => `<label class="f ${o.wide ? "wide" : ""}"><span>${l}${o.req ? ' <span class="req">*</span>' : ""}</span><input class="in" id="${k}" data-k="${k}" value="${e(D[k])}" type="${o.type || "text"}" ${o.ph ? `placeholder="${e(o.ph)}"` : ""} ${o.auto ? `autocomplete="${o.auto}"` : ""} ${o.im ? `inputmode="${o.im}"` : ""}>${o.hint ? `<span class="hint">${o.hint}</span>` : ""}</label>`;
@@ -233,6 +233,9 @@ function formHTML(v) {
    <div class="f wide" style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:700;color:var(--tinta)">Currículo <span class="req" style="display:contents">*</span>
     <div class="drop ${CV ? "ok" : ""}" id="drop"><input type="file" id="cv" accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" aria-label="Enviar currículo"><b>${CV ? "✓ " + e(CV.nome) : "Clique ou arraste seu currículo aqui"}</b><span class="hint">${CV ? (CV.texto ? `Lemos ${CV.texto.length.toLocaleString("pt-BR")} caracteres do arquivo. Clique para trocar.` : "Não conseguimos ler o texto deste arquivo, mas você pode seguir. Clique para trocar.") : "PDF ou DOCX, até 10 MB"}</span></div></div>
    ${sel("fonte", "Como você soube da vaga?", ["LinkedIn", "Instagram", "Indicação", "Site de vagas", "Site da POLVO", "Outro"], { wide: 1 })}</div></fieldset>
+  ${(v.perguntas || []).length ? `<fieldset><legend>Perguntas da vaga</legend><div class="fg">${v.perguntas.map(q => { const val = (D.respostas || {})[q.id] || ""; const lb = `<span>${e(q.texto)} <span class="req">*</span></span>`;
+    return q.tipo === "sim_nao" ? `<label class="f wide">${lb}<select class="in" id="q-${q.id}" data-q="${q.id}"><option value="">Selecione</option>${["Sim", "Não"].map(o => `<option${val === o ? " selected" : ""}>${o}</option>`).join("")}</select></label>`
+      : `<label class="f wide">${lb}<input class="in" id="q-${q.id}" data-q="${q.id}" value="${e(val)}" ${q.tipo === "numero" ? 'inputmode="numeric"' : ""}></label>`; }).join("")}</div></fieldset>` : ""}
   <fieldset><legend>Autodeclaração (opcional)</legend><p style="color:var(--nevoa);margin:0 0 16px;font-size:14px">A POLVO trabalha com vagas afirmativas. Estas informações são voluntárias, usadas só para direcionar você a essas vagas e para indicadores de diversidade. Elas não entram na avaliação das demais vagas.</p><div class="fg">
    ${sel("raca", "Raça ou cor (IBGE)", ["Branca", "Preta", "Parda", "Amarela", "Indígena", "Prefiro não informar"])}${sel("genero", "Identidade de gênero", ["Mulher cis", "Homem cis", "Mulher trans", "Homem trans", "Pessoa não binária", "Outra", "Prefiro não informar"])}
    ${sel("orientacao", "Orientação sexual", ["Heterossexual", "Lésbica", "Gay", "Bissexual", "Pansexual", "Assexual", "Outra", "Prefiro não informar"])}${sel("pcd", "Pessoa com deficiência?", ["Sim", "Não", "Prefiro não informar"])}
@@ -306,7 +309,7 @@ async function pack(obj) {
   const body = b64u(bytes); return `${tag}.${body}.${fnv(SALT + "|" + tag + "|" + body).slice(0, 6).toUpperCase()}`;
 }
 async function makeCode(v) {
-  const d = { ...D, cv_nome: CV ? CV.nome : "" }; if (!d.consent_auto) { d.pcd = ""; d.raca = ""; d.genero = ""; d.orientacao = ""; }
+  const d = { ...D, cv_nome: CV ? CV.nome : "", respostas_lista: (v.perguntas || []).map(q => ({ id: q.id, pergunta: q.texto, resposta: (D.respostas || {})[q.id] || "" })) }; if (!d.consent_auto) { d.pcd = ""; d.raca = ""; d.genero = ""; d.orientacao = ""; }
   let lim = 6000, code = "";
   while (lim >= 500) { code = await pack({ ver: 1, origem: "pagina-vagas", v: v.id, t: v.fixa ? "" : v.titulo, i: "", d: { ...d, cv_texto: CV && CV.texto ? CV.texto.slice(0, lim) : "" }, em: new Date().toISOString() }); if (code.length <= 4800) break; lim = Math.floor(lim * .7); }
   return code;
@@ -332,6 +335,7 @@ function bind(v) {
   if (!frm) { const cp = document.getElementById("cp"); if (cp) cp.onclick = async () => { const t = document.getElementById("cd").textContent; const cm = document.getElementById("cm"); try { await navigator.clipboard.writeText(t); cm.textContent = "Copiado!"; } catch (x) { const r = document.createRange(); r.selectNodeContents(document.getElementById("cd")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); cm.textContent = "Texto selecionado: copie com Ctrl+C ou toque longo."; } };
     const ed = document.getElementById("edit"); if (ed) ed.onclick = () => { CODE = ""; ENVIO = ""; app.innerHTML = vagaHTML(v); bind(v); document.getElementById("form-" + v.id).scrollIntoView(); }; return; }
   frm.querySelectorAll("[data-k]").forEach(el => el.addEventListener("input", () => { if (el.id === "pretensao") el.value = moneyMask(el.value); D[el.dataset.k] = el.value; el.classList.remove("err"); save(v); }));
+  frm.querySelectorAll("[data-q]").forEach(el => el.addEventListener(el.tagName === "SELECT" ? "change" : "input", () => { D.respostas = D.respostas || {}; D.respostas[el.dataset.q] = el.value; el.classList.remove("err"); save(v); }));
   frm.querySelectorAll("select[data-k]").forEach(el => el.addEventListener("change", () => { D[el.dataset.k] = el.value; el.classList.remove("err"); save(v); }));
   frm.querySelectorAll("[data-m]").forEach(el => el.addEventListener("change", () => { const k = el.dataset.m; D[k] = el.checked ? [...new Set([...D[k], el.value])] : D[k].filter(x => x !== el.value); save(v); }));
   frm.querySelectorAll("[data-c]").forEach(el => el.addEventListener("change", () => { D[el.dataset.c] = el.checked; save(v); }));
@@ -341,7 +345,7 @@ function bind(v) {
     drop.querySelector("b").textContent = "Lendo " + f.name + "…"; const texto = await lerCV(f); CV = { nome: f.name, texto, file: f };
     drop.classList.add("ok"); drop.classList.remove("err"); drop.querySelector("b").textContent = "✓ " + f.name; drop.querySelector(".hint").textContent = texto ? `Lemos ${texto.length.toLocaleString("pt-BR")} caracteres do arquivo. Clique para trocar.` : "Não conseguimos ler o texto deste arquivo, mas você pode seguir. Clique para trocar."; ms.textContent = ""; });
   frm.addEventListener("submit", async ev => { ev.preventDefault(); const ms = document.getElementById("ms");
-    const req = ["nome", "email", "telefone", "cidade", "uf", "area", "cargo", "resumo"]; const miss = req.filter(k => !String(D[k] || "").trim());
+    const req = ["nome", "email", "telefone", "cidade", "uf", "area", "cargo", "resumo"]; const miss = req.filter(k => !String(D[k] || "").trim()); (v.perguntas || []).forEach(q => { if (!String((D.respostas || {})[q.id] || "").trim()) miss.push("q-" + q.id); });
     if (D.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(D.email)) miss.push("email");
     frm.querySelectorAll(".err").forEach(x => x.classList.remove("err")); miss.forEach(k => { const el = document.getElementById(k); if (el) el.classList.add("err"); });
     if (!CV) drop.classList.add("err");
@@ -357,7 +361,8 @@ const txt = (x, n = 300) => String(x ?? "").slice(0, n);
 const arr = (x, n = 40) => (Array.isArray(x) ? x : []).map(y => txt(y, 600)).filter(Boolean).slice(0, n);
 function normVaga(x) { const id = txt(x.id, 120).replace(/[^a-z0-9-]/gi, ""); if (!id || !x.titulo) return null;
   return { id, titulo: txt(x.titulo, 140), area: txt(x.area, 80), senioridade: txt(x.senioridade, 60), local: txt(x.local, 100), modelo: txt(x.modelo, 60), regime: txt(x.regime, 60), faixa: txt(x.faixa, 80), resumo: txt(x.resumo, 400),
-    descricao: arr(x.descricao, 120), atividades: arr(x.atividades, 80), requisitos: arr(x.requisitos, 80), beneficios: arr(x.beneficios, 80), etapas: arr(x.etapas, 10).length ? arr(x.etapas, 10) : ETAPAS_SITE }; }
+    descricao: arr(x.descricao, 120), atividades: arr(x.atividades, 80), requisitos: arr(x.requisitos, 80), beneficios: arr(x.beneficios, 80), etapas: arr(x.etapas, 10).length ? arr(x.etapas, 10) : ETAPAS_SITE,
+    perguntas: (Array.isArray(x.perguntas) ? x.perguntas : []).map(q => ({ id: txt(q && q.id, 20).replace(/[^a-z0-9]/gi, ""), texto: txt(q && q.texto, 160), tipo: ["sim_nao", "numero", "texto"].includes(q && q.tipo) ? q.tipo : "texto" })).filter(q => q.id && q.texto).slice(0, 8) }; }
 let rotou = false; const rotear = () => { if (!rotou) { rotou = true; route(); } };
 setTimeout(rotear, 2500);
 fetch("vagas.json?t=" + Date.now(), { cache: "no-store" }).then(r => r.ok ? r.json() : null).then(j => {
