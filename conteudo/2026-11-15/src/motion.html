@@ -86,8 +86,8 @@ T.motion.forEach((m,i)=>{
   } else if(m.type==='cta'){
     parts=[add(`<div class="t m" style="color:var(--lav)">${m.question}</div>`,0.15,'up'),
       add(`<div class="card hi" style="margin-top:60px;font-size:48px">SALVA PRA SUA PRÓXIMA VAGA.</div>`,1.3,'up'),
-      add(`<div style="margin-top:50px"><span class="pill">@ORHSEMCRACHA</span></div>`,2.0,'up','chime',{k:2}),
-      add(`<div style="margin-top:40px;font-weight:800;font-size:34px;color:var(--cinza);letter-spacing:.04em">BRUNO MAGALHÃES · O RH SEM CRACHÁ</div>`,2.5,'up')];
+      add(`<div style="margin-top:50px"><span class="pill">POLVO RH</span></div>`,2.0,'up','chime',{k:2}),
+      add(`<div style="margin-top:40px;font-weight:800;font-size:34px;color:var(--cinza);letter-spacing:.04em">BRUNO MAGALHÃES · POLVO RH</div>`,2.5,'up')];
     D=2.5+0.5+4.2;
   }
   parts.forEach(p=>{ if(p.wrap){el.appendChild(p.wrap);p.children.forEach(c=>{p.wrap.appendChild(c.n);an.push(c)})} else {el.appendChild(p.n);an.push(p)} });

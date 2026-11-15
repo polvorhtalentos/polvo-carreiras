@@ -90,7 +90,7 @@ function slide(s,i){
   if(s.type==='cover'||s.type==='photo'){
     return `<div class="photo" style="background-image:url(${s.img});background-position:${s.pos}"></div><div class="shade"></div><div class="shade top"></div>
     ${cnt}<div class="bottomtxt">${s.label?`<div class="label">${s.label}</div>`:''}${h1(s.title)}${s.sub?`<div class="sub">${s.sub}</div>`:''}
-    ${s.type==='cover'?'<div style="margin-top:34px"><span class="pill">ARRASTA PRO LADO →</span></div>':''}</div>${logo()}<div class="handle">@ORHSEMCRACHA</div>`;
+    ${s.type==='cover'?'<div style="margin-top:34px"><span class="pill">ARRASTA PRO LADO →</span></div>':''}</div>${logo()}<div class="handle">POLVO RH</div>`;
   }
   let inner='';
   if(s.type==='text'){
@@ -119,7 +119,7 @@ function slide(s,i){
       <div style="font-weight:900;font-size:${T.di?52:60}px;line-height:1.08;letter-spacing:-.02em;color:var(--lav);margin-top:${T.di?36:56}px">${s.question}</div>
       <div style="flex:1"></div>${T.di?pacto():''}<div style="margin-top:${T.di?26:0}px"><span class="pill">SALVA E MANDA PRA QUEM PRECISA</span></div>`;
   }
-  return `${bg()}${cnt}<div class="content">${inner}</div>${logo()}<div class="handle">@ORHSEMCRACHA</div>`;
+  return `${bg()}${cnt}<div class="content">${inner}</div>${logo()}<div class="handle">POLVO RH</div>`;
 }
 function info(){
   const I=T.info;const n=I.items.length;
@@ -130,7 +130,7 @@ function info(){
    <div style="flex:1;min-height:20px"></div>
    <div class="card hi" style="padding:22px 32px"><div class="body" style="font-size:34px">${I.tip}</div></div>
    <div class="src" style="margin-top:16px;font-size:26px">PAUTA: ${T.fonte.toUpperCase()}</div>
-  </div>${logo()}<div class="handle">@ORHSEMCRACHA</div>`;
+  </div>${logo()}<div class="handle">POLVO RH</div>`;
 }
 c.innerHTML= kind==='i'?info():slide(T.carousel[si-1],si);
 // overflow check
