@@ -83,12 +83,29 @@ for ev in meta['events']:
             tt += 0.05+0.12*(tt/d)**2; k += 1
         put(sfx, tone(CEG[2], 0.8, 0.002, 0.75, (1, .3, .1))*0.12, t0+d)
 
-# ducking suave
+# narração (opcional): argv[3] = pasta com seg01.wav, seg02.wav... (mono 44,1 kHz)
+voice = np.zeros(N); vmask = np.zeros(N)
+if len(sys.argv) > 3 and meta.get('voice'):
+    import os
+    for i, t0 in enumerate(meta['voice']):
+        f = os.path.join(sys.argv[3], f'seg{i+1:02d}.wav')
+        if not os.path.exists(f): continue
+        with wave.open(f) as w:
+            v = np.frombuffer(w.readframes(w.getnframes()), np.int16).astype(float)/32768
+        a0 = int(t0*SR); a1 = min(N, a0+len(v)); voice[a0:a1] += v[:a1-a0]; vmask[a0:a1] = 1
+# ducking: suave nos efeitos, forte (-14 dB) sob a voz
 k = int(0.15*SR); dk = np.convolve(duck, np.ones(k)/k, 'same'); g = 1-0.45*np.clip(dk, 0, 1)
+kv = int(0.35*SR); vm = np.convolve(vmask, np.ones(kv)/kv, 'same'); g *= 1-0.8*np.clip(vm, 0, 1)
 music *= g[:, None]
+if vmask.any(): sfx *= (1-0.45*np.clip(vm, 0, 1))[:, None]
 wet = np.stack([fft_conv(sfx[:, c]+music[:, c]*0.6, IR) for c in range(2)], 1)
-mix = music + sfx + wet*0.18
-mix /= max(1e-9, np.abs(mix).max())/0.85
+bed = music + sfx + wet*0.18
+if vmask.any():
+    bed *= 0.35/max(1e-9, np.abs(bed).max())   # trilha bem abaixo da voz
+    mix = bed + voice[:, None]*0.9
+else:
+    mix = bed
+mix /= max(1e-9, np.abs(mix).max())/0.89
 pcm = (mix*32767).astype(np.int16)
 with wave.open(sys.argv[2], 'wb') as w:
     w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes(pcm.tobytes())

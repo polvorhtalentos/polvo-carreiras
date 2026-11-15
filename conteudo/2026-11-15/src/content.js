@@ -360,7 +360,7 @@ Bruno Magalhães | HR Business Partner | R&S, D&I, DHO e People Analytics`
   },
   motion: [
     { type: 'big', title: 'DIVERSIDADE NÃO PRECISA DE AUTORIZAÇÃO.', sub: 'É DECISÃO DE NEGÓCIO.' },
-    { type: 'compare', title: 'CAMPANHA x ESTRATÉGIA', left: ['CAMPANHA', 'SOME QUANDO', 'O VENTO MUDA'], right: ['ESTRATÉGIA', 'TEM META', 'E ORÇAMENTO'], verdict: 'SÓ UMA SOBREVIVE A CRISE.' },
+    { type: 'compare', title: 'CAMPANHA x ESTRATÉGIA', left: ['CAMPANHA', 'SOME QUANDO', 'O VENTO MUDA'], right: ['ESTRATÉGIA', 'TEM META', 'E ORÇAMENTO'], verdict: 'SÓ UMA SOBREVIVE À CRISE.' },
     { type: 'list', title: '3 NÚMEROS QUE NÃO MENTEM', items: ['QUEM ENTRA', 'QUEM CRESCE', 'QUEM FICA'] },
     { type: 'big', title: 'SE NÃO MEDE, É CAMPANHA.', sub: '' },
     { type: 'cta', question: 'NA SUA EMPRESA, D&I É CAMPANHA OU ESTRATÉGIA?' }
