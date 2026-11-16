@@ -1,5 +1,5 @@
 const { chromium } = require('playwright');const path=require('path'),fs=require('fs');
-(async()=>{const t=process.argv[2];const FR=path.join(process.env.SCRATCH_DIR||'/tmp/claude-0/-home-user-polvo-carreiras/172f80cd-50c6-558f-a4aa-77ddf6039c6d/scratchpad','frames'+t+(process.argv[3]?'n':''));
+(async()=>{const t=process.argv[2];const FR=path.join(process.env.SCRATCH_DIR||'/tmp/polvo-motion','frames'+t+(process.argv[3]?'n':''));
 fs.mkdirSync(FR,{recursive:true});
 const b=await chromium.launch();const p=await b.newPage({viewport:{width:1080,height:1920}});
 const narr=process.argv[3]||'';
