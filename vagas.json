@@ -1,7 +1,61 @@
 {
   "empresa": "Grupo TAGG",
-  "atualizado_em": "2026-11-23T22:35:45.786Z",
+  "atualizado_em": "2026-11-23T22:50:43.718Z",
   "vagas": [
+    {
+      "id": "analista-de-dados",
+      "titulo": "Analista de Dados",
+      "area": "",
+      "senioridade": "Pleno",
+      "local": "",
+      "modelo": "Presencial",
+      "regime": "CLT",
+      "faixa": "R$ 5.500",
+      "resumo": "",
+      "descricao": [
+        "• Desenvolver e manter dashboards e relatórios gerenciais;",
+        "• Estruturar bases de dados e automatizar processos analíticos;",
+        "• Realizar análises estratégicas e operacionais de indicadores;",
+        "• Criar modelos de acompanhamento de performance e produtividade;",
+        "• Consolidar e validar grandes volumes de dados;",
+        "• Desenvolver KPIs e métricas de negócio;",
+        "• Apoiar áreas operacionais, comerciais e estratégicas com análises e insights;",
+        "• Elaborar apresentações executivas e reports para clientes e diretoria;",
+        "• Identificar oportunidades de melhoria através da análise de dados;",
+        "• Garantir integridade, qualidade e confiabilidade das informações;",
+        "• Realizar cruzamento de dados de diferentes fontes e sistemas;",
+        "• Automatizar relatórios e processos utilizando ferramentas de BI;",
+        "• Atuar em projetos de inteligência de dados e transformação digital;",
+        "• Apoiar definição de estratégias através de análises preditivas e diagnósticas;",
+        "• Treinar usuários e apoiar áreas na interpretação de indicadores."
+      ],
+      "atividades": [],
+      "requisitos": [
+        "o Experiência sólida em Business Intelligence e análise de dados;",
+        "o Vivência com construção de dashboards e automações;",
+        "o Experiência com análise estratégica e indicadores de negócio;",
+        "o Atuação anterior com grandes volumes de dados.",
+        "Conhecimentos Técnicos",
+        "• ",
+        "o Power BI avançado;",
+        "o Excel avançado;",
+        "o SQL intermediário/avançado;",
+        "o Modelagem de dados;",
+        "o ETL e tratamento de bases;",
+        "o Indicadores de performance (KPIs);",
+        "o Ferramentas de visualização de dados;",
+        "o Desejável conhecimento em Python ou linguagem analítica;",
+        "o Conhecimento em integração de dados e automações."
+      ],
+      "beneficios": [],
+      "etapas": [
+        "Candidatura e triagem",
+        "Entrevista com o RH",
+        "Entrevista com a gestão",
+        "Proposta"
+      ],
+      "perguntas": []
+    },
     {
       "id": "analista-de-trade-marketing",
       "titulo": "Analista de Trade Marketing",
