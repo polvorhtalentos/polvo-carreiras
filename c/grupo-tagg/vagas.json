@@ -1,0 +1,106 @@
+{
+  "empresa": "Grupo TAGG",
+  "atualizado_em": "2026-11-25T00:00:00.000Z",
+  "vagas": [
+    {
+      "id": "analista-de-dados",
+      "titulo": "Analista de Dados",
+      "area": "",
+      "senioridade": "Pleno",
+      "local": "",
+      "modelo": "Presencial",
+      "regime": "CLT",
+      "faixa": "R$ 5.500",
+      "resumo": "",
+      "descricao": [
+        "• Desenvolver e manter dashboards e relatórios gerenciais;",
+        "• Estruturar bases de dados e automatizar processos analíticos;",
+        "• Realizar análises estratégicas e operacionais de indicadores;",
+        "• Criar modelos de acompanhamento de performance e produtividade;",
+        "• Consolidar e validar grandes volumes de dados;",
+        "• Desenvolver KPIs e métricas de negócio;",
+        "• Apoiar áreas operacionais, comerciais e estratégicas com análises e insights;",
+        "• Elaborar apresentações executivas e reports para clientes e diretoria;",
+        "• Identificar oportunidades de melhoria através da análise de dados;",
+        "• Garantir integridade, qualidade e confiabilidade das informações;",
+        "• Realizar cruzamento de dados de diferentes fontes e sistemas;",
+        "• Automatizar relatórios e processos utilizando ferramentas de BI;",
+        "• Atuar em projetos de inteligência de dados e transformação digital;",
+        "• Apoiar definição de estratégias através de análises preditivas e diagnósticas;",
+        "• Treinar usuários e apoiar áreas na interpretação de indicadores."
+      ],
+      "atividades": [],
+      "requisitos": [
+        "• Experiência sólida em Business Intelligence e análise de dados;",
+        "• Vivência com construção de dashboards e automações;",
+        "• Experiência com análise estratégica e indicadores de negócio;",
+        "• Atuação anterior com grandes volumes de dados.",
+        "Conhecimentos Técnicos",
+        "• ",
+        "• Power BI avançado;",
+        "• Excel avançado;",
+        "• SQL intermediário/avançado;",
+        "• Modelagem de dados;",
+        "• ETL e tratamento de bases;",
+        "• Indicadores de performance (KPIs);",
+        "• Ferramentas de visualização de dados;",
+        "• Desejável conhecimento em Python ou linguagem analítica;",
+        "• Conhecimento em integração de dados e automações."
+      ],
+      "beneficios": [],
+      "etapas": [
+        "Candidatura e triagem",
+        "Entrevista com o RH",
+        "Entrevista com a gestão",
+        "Proposta"
+      ],
+      "perguntas": []
+    },
+    {
+      "id": "analista-de-trade-marketing",
+      "titulo": "Analista de Trade Marketing",
+      "area": "",
+      "senioridade": "Júnior",
+      "local": "",
+      "modelo": "Presencial",
+      "regime": "CLT",
+      "faixa": "R$ 2.500",
+      "resumo": "",
+      "descricao": [
+        "• Acompanhar operações de Trade Marketing e equipes de campo;",
+        "• Monitorar execução das ações no ponto de venda;",
+        "• Realizar controle e atualização de informações operacionais;",
+        "• Analisar dados e indicadores de performance;",
+        "• Elaborar relatórios operacionais e gerenciais;",
+        "• Apoiar na gestão de roteiros, escalas e cobertura de lojas;",
+        "• Acompanhar sistemas de coleta de dados e execução (Involves, Agile, Trade Force e similares);",
+        "• Realizar tratativas de ocorrências operacionais;",
+        "• Apoiar no controle de materiais de merchandising;",
+        "• Realizar interface entre equipe de campo, supervisão e cliente;",
+        "• Validar fotos, pesquisas e evidências de execução;",
+        "• Acompanhar metas qualitativas e quantitativas;",
+        "• Auxiliar em processos administrativos e operacionais da área;",
+        "• Garantir cumprimento dos prazos e padrões estabelecidos."
+      ],
+      "atividades": [],
+      "requisitos": [
+        "• Experiência anterior com rotinas administrativas ou operacionais;",
+        "• Desejável experiência em Trade Marketing, varejo ou operações de campo;",
+        "• Vivência com acompanhamento de indicadores será um diferencial.",
+        "Conhecimentos Técnicos",
+        "• Pacote Office intermediário, principalmente Excel;",
+        "• Sistemas operacionais e plataformas de gestão;",
+        "• Elaboração de relatórios;",
+        "• Noções de indicadores e KPIs"
+      ],
+      "beneficios": [],
+      "etapas": [
+        "Candidatura e triagem",
+        "Entrevista com o RH",
+        "Entrevista com a gestão",
+        "Proposta"
+      ],
+      "perguntas": []
+    }
+  ]
+}
