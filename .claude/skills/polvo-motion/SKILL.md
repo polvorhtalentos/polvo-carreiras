@@ -35,8 +35,9 @@ cd conteudo/AAAA-MM-DD/src && ./motion.sh <n>          # gera out/<n>-*/motion.m
 
 O `motion.sh` faz quatro coisas:
 - renderiza `motion.html?t=<n>` a 30 fps com o Playwright, usando a função `render(t)` determinística;
-- gera a trilha com `audio.py`: pad e arpejo a 100 bpm, pop nas entradas, whoosh nas trocas, sininho nos itens, ticks no contador;
-- aplica reverb discreto e ducking (a música abaixa quando um efeito toca);
+- gera a trilha com `audio.py` + `music_modern.py` (pedido do Bruno em 25/11: trilha moderna): pop eletrônico leve a 118 bpm, com kick suave, palmas, chimbal com swing, baixo sincopado, acordes com sidechain e pluck com eco. Por cima: pop nas entradas, whoosh nas trocas, sininho nos itens, ticks no contador. Graves contidos (cerca de 25% da energia abaixo de 120 Hz) pra soar bem no celular;
+- aplica reverb discreto e ducking (a música abaixa quando um efeito toca e cai cerca de 14 dB sob a voz);
+- pra trocar só a trilha de um vídeo pronto, gere o áudio com `audio.py <meta.json> mix.wav [pasta_voz]` e junte com `ffmpeg -i motion.mp4 -i mix.wav -map 0:v -map 1:a -c:v copy`;
 - codifica em H.264 + AAC com faststart.
 
 Rode até 4 vídeos em paralelo: o processador tem 4 núcleos e cada render leva cerca de 1,5 min.

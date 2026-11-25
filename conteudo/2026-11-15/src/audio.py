@@ -36,22 +36,12 @@ def put(buf, x, t, pan=0.0, g=1.0):
     if i >= N or j <= i: return
     x = x[:j-i]*g; buf[i:j, 0] += x*(1-pan)*0.5*2**.5; buf[i:j, 1] += x*(1+pan)*0.5*2**.5
 
-# ── música: pad + arpejo (100 bpm)
-beat = 60/100
-chords = [(57, 60, 64, 67), (53, 57, 60, 64), (55, 59, 62, 67), (52, 55, 60, 64)]  # Am7 Fmaj7 G Em
+# ── música: trilha moderna (music_modern.py, 118 bpm)
+import os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from music_modern import modern_music
+music[:] = modern_music(DUR, SR)[:N]
 m2f = lambda m: 440*2**((m-69)/12)
-bar = beat*4; t = 0.0; ci = 0
-while t < DUR:
-    ch = chords[ci % 4]
-    for m in ch:  # pad
-        f = m2f(m-12); n = int((bar+0.6)*SR); tt = np.arange(n)/SR
-        p = (np.sin(2*np.pi*f*tt)+0.5*np.sin(2*np.pi*f*1.003*tt)+0.25*np.sin(2*np.pi*f*2*tt))
-        e = np.minimum(1, tt/0.8)*np.minimum(1, (bar+0.6-tt)/0.8)
-        put(music, p*e*0.035, t, pan=(m % 5-2)*0.15)
-    arp = [ch[0]+12, ch[1]+12, ch[2]+12, ch[3]+12, ch[2]+12, ch[1]+12, ch[3]+12, ch[2]+24]
-    for k, m in enumerate(arp):  # colcheias
-        put(music, tone(m2f(m), 0.5, 0.004, 0.45, (1, .15, .05))*0.05, t+k*beat/2, pan=0.3 if k % 2 else -0.3)
-    t += bar; ci += 1
 fade = int(1.5*SR); music[:fade] *= np.linspace(0, 1, fade)[:, None]; music[-fade:] *= np.linspace(1, 0, fade)[:, None]
 
 # ── efeitos
