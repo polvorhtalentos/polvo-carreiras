@@ -1,6 +1,6 @@
 ---
 name: polvo-pauta-semanal
-description: Agente semanal da POLVO RH. Busca no e-mail os alertas da semana, apresenta os temas pro Bruno escolher, produz todas as mídias (LinkedIn, carrossel, post único, legenda, motion na prática, 3 capas de Reels), publica a página da pauta, pede aprovação e publica no Instagram (carrossel, Reels e stories). Use quando a tarefa agendada de sexta disparar ou quando o Bruno pedir "pauta da semana", "rodar o agente" ou "publicar no Instagram".
+description: Agente semanal da POLVO RH. Toda sexta lê no e-mail os alertas da semana, apresenta os temas pro Bruno escolher, produz todas as mídias (LinkedIn, carrossel, post único, legenda, motion na prática, 3 capas de Reels), publica a página da pauta, pede aprovação e agenda as publicações no Instagram (carrossel, Reels e stories) distribuídas estrategicamente pela semana seguinte. Use quando a tarefa agendada de sexta disparar ou quando o Bruno pedir "pauta da semana", "rodar o agente" ou "publicar no Instagram".
 ---
 
 # Agente semanal · Pauta POLVO RH
@@ -48,30 +48,41 @@ Crie `conteudo/AAAA-MM-DD/` (data de hoje) copiando `conteudo/2026-11-24/src` (o
 5. **Página da pauta:** gere `web/data.json` e `web/m/` (JPEGs, MP4, PNGs e capas, como em 24/11) e rode `python3 src/gen_page.py DD/MM/AAAA`. Publique um Artifact novo com `capabilities: {downloads: true}`. Se passar de 64 MB, divida a publicação em partes.
 6. **GitHub:** commit e push no branch da sessão.
 
-## 4. Aprovação (parada 2)
+## 4. Aprovação e agenda (parada 2)
 
-Mande o link da página e pergunte com `AskUserQuestion`:
-- quais temas estão aprovados pra publicar (`multiSelect`);
-- qual capa de Reels usar em cada um (1 tipográfica, 2 foto, 3 checklist). Alterne entre as semanas pra o perfil não ficar repetitivo;
-- se é pra publicar agora ou um tema por dia, às 12h10 de Brasília. No segundo caso, agende com `send_later` nesta mesma sessão.
+1. **Montar a proposta de agenda.** Ordene os temas por força (pauta mais quente e mais útil primeiro) e alterne as capas de Reels entre 1, 2 e 3:
+   ```bash
+   python3 ferramentas/instagram/agenda.py --dia AAAA-MM-DD --temas 3,1,5,2 --capas 2,1,3,2 --saida conteudo/AAAA-MM-DD/agenda.json
+   ```
+   Estratégia (o próprio script aplica): um tema por dia útil da **semana seguinte**, com os mais fortes de terça a quinta. No dia do tema, carrossel às 12h10 e story às 19h10. No dia seguinte, Reels às 18h40. No máximo 1 carrossel e 1 Reels por dia.
+2. **Pedir a aprovação.** Mande o link da página e a agenda proposta numa tabela (dia, horário, tema, formato, capa). Pergunte com `AskUserQuestion`:
+   - quais temas estão aprovados (`multiSelect`);
+   - se a agenda está boa ou se ele quer trocar a ordem dos temas ou a capa de algum.
+3. **Ajustes:** corrija, gere de novo só o que mudou, republique a página, refaça a agenda e pergunte de novo. Só o que ele aprovou entra na agenda.
 
-Pedidos de ajuste: corrija, gere de novo só o que mudou, republique a página e pergunte de novo. Só publique o que ele aprovou.
+## 5. Agendar e publicar no Instagram
 
-## 5. Publicar no Instagram
+Requisito: a credencial do Instagram salva no ambiente pra `graph.instagram.com` (Authorization: Bearer). Se faltar, chame `request_credential` (host `graph.instagram.com`) e explique o motivo. Nunca peça o token no chat.
 
-Requisito: a credencial do Instagram salva no ambiente pra `graph.instagram.com` (Authorization: Bearer). Se a chamada der 401/403 ou "no rule allows host", chame `request_credential` (host `graph.instagram.com`) e explique o motivo. Nunca peça o token no chat.
-
-Pra cada tema aprovado:
+**Logo depois da aprovação**, ainda na sexta, deixe tudo pronto e público:
 ```bash
-python3 ferramentas/instagram/ig_publish.py --dia AAAA-MM-DD --tema N --preparar   # gera os JPEGs
-git add -A && git commit -m "Mídias do Instagram, tema N" && git push               # deixa as mídias públicas
-python3 ferramentas/instagram/ig_publish.py --dia AAAA-MM-DD --tema N --dry-run    # confere as URLs públicas
-python3 ferramentas/instagram/ig_publish.py --dia AAAA-MM-DD --tema N --tipos carrossel,reels,stories --capa C
+for N in <temas aprovados>; do python3 ferramentas/instagram/ig_publish.py --dia AAAA-MM-DD --tema $N --preparar; done
+git add -A && git commit -m "Mídias do Instagram e agenda aprovada" && git push
+for N in <temas aprovados>; do python3 ferramentas/instagram/ig_publish.py --dia AAAA-MM-DD --tema $N --dry-run; done
 ```
-- O script registra o que publicou em `out/N-*/ig/publicado.json` e não repete.
-- **Stories:** a API não coloca figurinhas. Avise o Bruno pra colar a "Caixinha de perguntas" manualmente, se quiser.
-- **Se a API recusar o vídeo** pela URL do GitHub: diga isso ao Bruno, entregue o MP4 e a capa pela página e siga com o carrossel.
+
+**Depois, agende cada item da agenda nesta mesma sessão** com `send_later`, com `at` no formato `AAAA-MM-DDTHH:MM:00[America/Sao_Paulo]`, `initiation: human_request` e um nome como "Instagram · tema 3 · carrossel". A mensagem é:
+> Publicação agendada (agenda aprovada pelo Bruno em DD/MM): rode `python3 ferramentas/instagram/ig_publish.py --dia AAAA-MM-DD --tema N --tipos TIPO --capa C`, confira o resultado e registre o link. Se falhar, avise o Bruno com o motivo e entregue o arquivo pra postar à mão.
+
+Ao disparar cada aviso, publique **só aquele item**:
+- o script registra o que publicou em `out/N-*/ig/publicado.json` e não repete;
+- faça commit e push do registro e responda em uma linha com o link do post.
+
+Observações:
+- **Stories:** a API não coloca figurinhas. No aviso do story, lembre o Bruno de colar a "Caixinha de perguntas", se ele quiser.
+- **Se a API recusar o vídeo** pela URL do GitHub: avise o Bruno, entregue o MP4 e a capa pela página e mantenha os carrosséis agendados.
+- **Se o Bruno pedir pra pausar ou mudar a agenda:** apague os avisos pendentes com `delete_trigger` (a lista sai em `list_triggers`) e agende de novo.
 
 ## 6. Fechamento
 
-Responda com os links publicados (carrossel e Reels), o que ficou pendente, o link da página e o que o Bruno precisa fazer à mão (por exemplo, a caixinha nos stories). Faça commit e push do registro final.
+Na sexta, depois de agendar, responda com a agenda final (tabela), o link da página e o que o Bruno vai precisar fazer à mão (por exemplo, a caixinha nos stories). Ao longo da semana, cada publicação responde com o link do post. Depois da última, mande um resumo com todos os links.
