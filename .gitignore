@@ -1,1 +1,3 @@
 conteudo/**/*.zip
+conteudo/**/web/m/
+conteudo/**/web/data.json

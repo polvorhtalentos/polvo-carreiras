@@ -2,6 +2,10 @@
 Uso: python3 audio.py meta.json saida.wav"""
 import json, sys, wave
 import numpy as np
+def movavg(x, k):
+    c = np.cumsum(np.concatenate([np.zeros(k//2+1), x, np.zeros(k)]))
+    return (c[k:k+len(x)] - c[:len(x)])/k
+
 
 SR = 44100
 meta = json.load(open(sys.argv[1]))
@@ -94,8 +98,8 @@ if len(sys.argv) > 3 and meta.get('voice'):
             v = np.frombuffer(w.readframes(w.getnframes()), np.int16).astype(float)/32768
         a0 = int(t0*SR); a1 = min(N, a0+len(v)); voice[a0:a1] += v[:a1-a0]; vmask[a0:a1] = 1
 # ducking: suave nos efeitos, forte (-14 dB) sob a voz
-k = int(0.15*SR); dk = np.convolve(duck, np.ones(k)/k, 'same'); g = 1-0.45*np.clip(dk, 0, 1)
-kv = int(0.35*SR); vm = np.convolve(vmask, np.ones(kv)/kv, 'same'); g *= 1-0.8*np.clip(vm, 0, 1)
+k = int(0.15*SR); dk = movavg(duck, k); g = 1-0.45*np.clip(dk, 0, 1)
+kv = int(0.35*SR); vm = movavg(vmask, kv); g *= 1-0.8*np.clip(vm, 0, 1)
 music *= g[:, None]
 if vmask.any(): sfx *= (1-0.45*np.clip(vm, 0, 1))[:, None]
 wet = np.stack([fft_conv(sfx[:, c]+music[:, c]*0.6, IR) for c in range(2)], 1)
