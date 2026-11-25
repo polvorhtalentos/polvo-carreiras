@@ -136,6 +136,8 @@ footer .in-w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
 <script>
 "use strict";
 const DEST = "azevedo.mayara2112@gmail.com";
+const CLIENTE_ID = "pappo-consultoria-vver";
+const COPIA_POLVO = "polvorh.talentos@gmail.com";
 /* Envio automático (FormSubmit): tudo vai para o e-mail da POLVO, que o POLVO Recruiter lê.
    Depois da ativação, FS_ID pode virar o código aleatório da FormSubmit para esconder o e-mail. */
 const FS_ID = DEST;
@@ -244,7 +246,7 @@ function doneHTML(v) {
 }
 async function enviarAuto(v) {
   const nome = D.nome_social || D.nome;
-  const campos = { _subject: `Candidatura · ${v.titulo} · ${nome}`, _template: "table", _captcha: "false", _replyto: D.email,
+  const campos = { _cc: COPIA_POLVO, _subject: `Candidatura · ${v.titulo} · ${nome}`, _template: "table", _captcha: "false", _replyto: D.email,
     _autoresponse: `Olá, ${nome.split(" ")[0]}! Recebemos sua candidatura${v.fixa ? " para o Banco de Talentos" : " para a vaga " + v.titulo} da ${EMPRESA}. Vamos analisar com cuidado e te dar retorno, com ou sem avanço. Obrigado pelo interesse!`,
     name: nome, email: D.email, Telefone: D.telefone, Cidade: [D.cidade, D.uf].filter(Boolean).join("/"), Vaga: v.titulo, "Área de atuação": D.area, "Cargo pretendido": D.cargo, LinkedIn: D.linkedin || "",
     "Currículo": CV ? CV.nome + " (o arquivo chega num segundo e-mail)" : "", "Código da candidatura (não altere)": CODE, _honey: "" };
@@ -258,7 +260,7 @@ async function enviarAuto(v) {
   catch (x) { ENVIO_MSG = ""; }
   /* 2) O arquivo do currículo vai num segundo envio (a FormSubmit não aceita anexo no envio confirmado) */
   if (ok && CV && CV.file) { try { const f = document.createElement("form"); f.method = "POST"; f.enctype = "multipart/form-data"; f.action = "https://formsubmit.co/" + encodeURIComponent(FS_ID); f.target = "fs-ifr"; f.style.display = "none";
-      Object.entries({ _subject: `Currículo · ${v.titulo} · ${nome}`, _template: "table", _captcha: "false", name: nome, email: D.email, Vaga: v.titulo, "Código da candidatura (não altere)": CODE.slice(0, 40) + "…" }).forEach(([k, x]) => { const i = document.createElement("input"); i.type = "hidden"; i.name = k; i.value = x; f.appendChild(i); });
+      Object.entries({ _cc: COPIA_POLVO, _subject: `Currículo · ${v.titulo} · ${nome}`, _template: "table", _captcha: "false", name: nome, email: D.email, Vaga: v.titulo, "Código da candidatura (não altere)": CODE.slice(0, 40) + "…" }).forEach(([k, x]) => { const i = document.createElement("input"); i.type = "hidden"; i.name = k; i.value = x; f.appendChild(i); });
       const dt = new DataTransfer(); dt.items.add(CV.file); const fi = document.createElement("input"); fi.type = "file"; fi.name = "attachment"; fi.files = dt.files; f.appendChild(fi);
       let ifr = document.getElementById("fs-ifr"); if (!ifr) { ifr = document.createElement("iframe"); ifr.name = ifr.id = "fs-ifr"; ifr.title = "envio"; ifr.style.display = "none"; document.body.appendChild(ifr); }
       document.body.appendChild(f); f.submit(); setTimeout(() => f.remove(), 1500); } catch (x) { } }
@@ -304,7 +306,7 @@ async function pack(obj) {
 async function makeCode(v) {
   const d = { ...D, cv_nome: CV ? CV.nome : "", respostas_lista: (v.perguntas || []).map(q => ({ id: q.id, pergunta: q.texto, resposta: (D.respostas || {})[q.id] || "" })) }; if (!d.consent_auto) { d.pcd = ""; d.raca = ""; d.genero = ""; d.orientacao = ""; }
   let lim = 6000, code = "";
-  while (lim >= 500) { code = await pack({ ver: 1, origem: "pagina-vagas", v: v.id, t: v.fixa ? "" : v.titulo, i: "", d: { ...d, cv_texto: CV && CV.texto ? CV.texto.slice(0, lim) : "" }, em: new Date().toISOString() }); if (code.length <= 4800) break; lim = Math.floor(lim * .7); }
+  while (lim >= 500) { code = await pack({ ver: 1, origem: "pagina-vagas", c: CLIENTE_ID, v: v.id, t: v.fixa ? "" : v.titulo, i: "", d: { ...d, cv_texto: CV && CV.texto ? CV.texto.slice(0, lim) : "" }, em: new Date().toISOString() }); if (code.length <= 4800) break; lim = Math.floor(lim * .7); }
   return code;
 }
 /* ---------- Roteamento e eventos ---------- */
