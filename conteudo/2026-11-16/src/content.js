@@ -8,6 +8,7 @@ window.CAST = {
 };
 window.THEMES = [{
   id: 1, slug: 'lideranca-inclusiva-personagens', nome: 'Quem fala na sua reunião?', alerta: 'Liderança inclusiva',
+  capa: { img: 'img/capa-bg.png', pos: '50% 50%', dy: -360, label: 'LIDERANÇA INCLUSIVA', title: 'QUEM FALA NA SUA REUNIÃO?' },
   motion: [
     { type: 'story', label: 'LIDERANÇA INCLUSIVA', caption: 'TODO MUNDO ESTÁ NA REUNIÃO. MAS QUEM FALA?', len: 5.2,
       beats: [ { t: 1.6, who: 'all', act: 'wave' } ] },

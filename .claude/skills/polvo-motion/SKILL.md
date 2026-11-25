@@ -44,6 +44,14 @@ Rode até 4 vídeos em paralelo: o processador tem 4 núcleos e cada render leva
 
 Antes de codificar, confira quadros soltos: chame `node test_motion.js <n> 3 10 20` e olhe os PNGs.
 
+## 2b. Capa de Reels (sempre)
+
+Todo motion sai com a capa de Reels (pedido do Bruno em 25/11). O `motion.sh` já gera `out/<n>-*/capa-reels.png` com `shoot_capa.js` + `capa.html`.
+- **Tamanho da Meta:** 1080×1920 (9:16). No grid do perfil aparece só o recorte central 3:4 (1080×1440, y 240–1680). Logo, título e assinatura ficam dentro de x 90–990, y 330–1590.
+- **Conteúdo:** foto da capa do carrossel, rótulo laranja, título do tema, "BRUNO MAGALHÃES · POLVO RH", logo POL▼O e a pílula "REEL".
+- **Sem foto** (por exemplo, motion com personagens): defina `capa: {img, pos, dy, label, title}` no tema. `dy` sobe a imagem pra abrir espaço pro título.
+- Na página da pauta, a capa aparece no bloco "Stories e Reels", com download, e entra nos ZIPs.
+
 ## 3. Narração com a voz do Bruno
 
 1. **Roteiro falado** (`narration.js`): uma fala por cena, na ordem das cenas, em linguagem de conversa e na voz do Bruno ("eu oriento", "pra"). Números vão por extenso ("três vírgula oitenta e dois milhões").

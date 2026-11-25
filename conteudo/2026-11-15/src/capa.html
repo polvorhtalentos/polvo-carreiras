@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<link rel="stylesheet" href="fonts.css">
+<!-- Capa de Reels · 1080×1920 (9:16). O grid do perfil mostra o recorte central 3:4 (1080×1440, y 240–1680):
+     todo texto e logo ficam dentro de x 90–990, y 330–1590 (folga também pro recorte 4:5). -->
+<style>
+:root{--tinta:#13111B;--lav:#9C90D4;--lavd:#7D70B0;--lar:#F2A13A;--papel:#F9F8FB;--nevoa:#C4C0CE}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--tinta)}
+body{font-family:Montserrat,sans-serif;color:var(--papel);-webkit-font-smoothing:antialiased}
+#c{position:relative;width:1080px;height:1920px;overflow:hidden}
+.foto{position:absolute;inset:0;background-size:cover}
+.sombra{position:absolute;inset:0;background:linear-gradient(to top,rgba(19,17,27,1) 0%,rgba(19,17,27,.97) 26%,rgba(19,17,27,.55) 48%,rgba(19,17,27,.1) 66%,rgba(19,17,27,.6) 88%,rgba(19,17,27,.9) 100%)}
+.glow{position:absolute;left:-300px;top:-200px;width:1000px;height:1000px;background:radial-gradient(circle,rgba(125,112,176,.45),transparent 65%)}
+.listras{position:absolute;right:0;bottom:0;width:360px;height:360px;opacity:.5;background:repeating-linear-gradient(135deg,var(--lavd) 0 12px,transparent 12px 36px);-webkit-mask:linear-gradient(-45deg,#000 30%,transparent 62%)}
+.logo{position:absolute;left:90px;top:330px;font-weight:900;font-size:40px;letter-spacing:.35em;color:var(--lav);display:flex;align-items:baseline;line-height:1}
+.logo svg{height:.7em;width:.8em;margin-right:.35em;fill:currentColor}
+.pill{position:absolute;right:90px;top:322px;border-radius:60px;border:3px solid var(--lav);background:rgba(19,17,27,.55);padding:10px 26px;font-weight:800;font-size:28px;letter-spacing:.14em}
+.txt{position:absolute;left:90px;right:90px;bottom:330px}
+.label{font-weight:800;font-size:32px;letter-spacing:.22em;color:var(--lar);margin-bottom:28px}
+h1{font-weight:900;font-size:104px;line-height:1.03;letter-spacing:-.02em;text-wrap:balance}
+h1.m{font-size:92px} h1.p{font-size:82px}
+.assina{margin-top:34px;font-weight:800;font-size:30px;letter-spacing:.12em;color:var(--nevoa)}
+.guia{display:none}
+</style></head>
+<body><div id="c"></div>
+<script src="content.js"></script>
+<script>
+const q=new URLSearchParams(location.search);const T=THEMES.find(x=>x.id==q.get('t'));
+const cap=T.capa||{img:T.carousel[0].img,pos:T.carousel[0].pos,label:T.carousel[0].label,title:T.carousel[0].title};
+const cls=cap.title.length>48?'p':cap.title.length>32?'m':'';
+document.getElementById('c').innerHTML=(cap.img?`<div class="foto" style="background-image:url(${cap.img});background-position:${cap.pos||'50% 30%'};top:${cap.dy||0}px;bottom:${-(cap.dy||0)}px"></div>`:'<div class="glow"></div>')+
+ `<div class="sombra"></div><div class="listras"></div>
+  <div class="logo">POL<svg viewBox="0 0 100 88"><path d="M0 0H100L50 88Z"/></svg>O</div><div class="pill">REEL</div>
+  <div class="txt"><div class="label">${cap.label}</div><h1 class="${cls}">${cap.title}</h1><div class="assina">BRUNO MAGALHÃES · POLVO RH</div></div>`;
+document.fonts.ready.then(()=>{const t=document.querySelector('.txt');window.__ok=t.getBoundingClientRect().top>=330;window.__ready=true});
+</script></body></html>
