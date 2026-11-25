@@ -20,11 +20,14 @@ window.THEMES = [
   info: { label: 'IA NO RH', title: 'TESTE DE MATURIDADE EM 4 PERGUNTAS',
     items: [['USO', 'A IA ESTÁ NA ROTINA SEMANAL DO TIME?'], ['PROCESSO', 'EXISTE UM FLUXO ESCRITO DE USO?'], ['DADO', 'VOCÊ MEDE O ANTES E O DEPOIS?'], ['DECISÃO', 'ALGUMA DECISÃO MUDOU POR CAUSA DELA?']],
     tip: '4 RESPOSTAS SIM: FASE 3. MENOS QUE ISSO, AINDA É PILOTO.' },
+  // motion = como fazer na prática o conteúdo do carrossel
   motion: [
-    { type: 'big', title: 'SEU RH USA IA?', sub: 'TODO RH DIZ QUE SIM.' },
-    { type: 'big', title: 'LÍDERES DE RH SUPERESTIMAM A MATURIDADE EM IA.', sub: 'FONTE: RH PRA VOCÊ' },
-    { type: 'list', title: 'AS 3 FASES DA IA NO RH', items: ['EFICIÊNCIA', 'VISIBILIDADE', 'INTELIGÊNCIA'] },
-    { type: 'cta', question: 'EM QUE FASE ESTÁ O SEU RH?', save: 'RESPONDE AQUI NA CAIXINHA.' } ],
+    { type: 'big', title: 'COMO DESCOBRIR A FASE DA IA NO SEU RH', sub: 'EM 4 PASSOS, EM 30 MINUTOS.' },
+    { type: 'passo', n: 1, de: 4, title: 'LISTE AS DECISÕES DE PESSOAS DO MÊS', ex: 'CONTRATAÇÕES, PROMOÇÕES, DESLIGAMENTOS E AUMENTOS.' },
+    { type: 'passo', n: 2, de: 4, title: 'MARQUE ONDE TEVE DADO OU IA', ex: 'TRIAGEM COM IA? RELATÓRIO DE ROTATIVIDADE? ANOTE AO LADO.' },
+    { type: 'passo', n: 3, de: 4, title: 'CLASSIFIQUE A FASE', ex: 'SÓ TAREFA: EFICIÊNCIA. RELATÓRIO PRA DIRETORIA: VISIBILIDADE. MUDOU A DECISÃO: INTELIGÊNCIA.' },
+    { type: 'passo', n: 4, de: 4, title: 'ESCOLHA O PRÓXIMO DEGRAU', ex: 'UM PROCESSO SÓ, COM INDICADOR DE ANTES E DEPOIS.' },
+    { type: 'cta', question: 'EM QUE FASE DEU O SEU RH?', save: 'RESPONDE AQUI NA CAIXINHA.' } ],
   linkedin: {
     ganchos: ['Seu RH usa IA. Mas em que fase ele está de verdade?', 'Ter licença de IA não é ser maduro em IA.', 'Uma pesquisa mostrou que líderes de RH superestimam a própria maturidade em IA. Eu não me surpreendi.'],
     corpo: `Uma pesquisa citada pelo RH Pra Você mostrou que líderes de RH superestimam a maturidade em IA das próprias áreas.
@@ -79,11 +82,14 @@ Bruno Magalhães | HR Business Partner | R&S, D&I, DHO e People Analytics` },
   info: { label: 'CLIMA', title: 'O QUE SUSTENTA A ALEGRIA NO TRABALHO',
     items: [['LIDERANÇA', 'LÍDER QUE ESCUTA E DÁ RETORNO.'], ['SENTIDO', 'SABER POR QUE O TRABALHO IMPORTA.'], ['RECONHECIMENTO', 'ESFORÇO VISTO E DITO EM VOZ ALTA.'], ['BENEFÍCIOS', 'CUIDADO COM O BÁSICO.']],
     tip: 'BENEFÍCIO ATRAI. O DIA A DIA É QUE SEGURA.' },
+  // motion = como fazer na prática o conteúdo do carrossel
   motion: [
-    { type: 'count', value: 4, dec: 0, unit: 'º', caption: 'LUGAR DO BRASIL NO ÍNDICE GLOBAL DE ALEGRIA NO TRABALHO', hold: 2 },
-    { type: 'big', title: 'BENEFÍCIO AJUDA.', sub: 'MAS QUEM SEGURA O CLIMA É O DIA A DIA.' },
-    { type: 'list', title: 'O QUE SUSTENTA', items: ['LÍDER QUE ESCUTA', 'TRABALHO COM SENTIDO', 'RECONHECIMENTO'] },
-    { type: 'cta', question: 'O QUE MAIS TE DÁ ALEGRIA NO TRABALHO?', save: 'RESPONDE AQUI NA CAIXINHA.' } ],
+    { type: 'big', title: 'COMO OUVIR O CLIMA DO TIME SEM FORMULÁRIO', sub: 'EM 4 PASSOS.' },
+    { type: 'passo', n: 1, de: 4, title: 'MARQUE 15 MINUTOS COM CADA PESSOA', ex: 'CONVERSA INDIVIDUAL, FORA DA PAUTA DE TRABALHO.' },
+    { type: 'passo', n: 2, de: 4, title: 'FAÇA 3 PERGUNTAS ABERTAS', ex: 'O QUE TE FAZ QUERER VIR? O QUE TE CANSA? O QUE VOCÊ MUDARIA?' },
+    { type: 'passo', n: 3, de: 4, title: 'ANOTE PALAVRAS, NÃO NOMES', ex: 'AGRUPE POR TEMA E POR ÁREA. SIGILO SEMPRE.' },
+    { type: 'passo', n: 4, de: 4, title: 'DEVOLVA COM PRAZO', ex: '“OUVIMOS ISSO. VAMOS MUDAR AQUILO ATÉ MARÇO.”' },
+    { type: 'cta', question: 'QUAL PERGUNTA VOCÊ FARIA AO SEU TIME?', save: 'RESPONDE AQUI NA CAIXINHA.' } ],
   linkedin: {
     ganchos: ['Formulário de clima com pergunta genérica não mede clima. Mede paciência.', 'O Brasil é 4º lugar em alegria no trabalho. Mas alegria não se mede só com benefício.', 'Eu poderia ter mandado um formulário. Preferi sentar com cada pessoa.'],
     corpo: `O Brasil ocupa o 4º lugar num índice global de alegria no ambiente de trabalho, segundo a Você RH. Na mesma pesquisa, 48% dos gestores de RH dizem que auxílio-alimentação é importante pra produtividade.
@@ -136,11 +142,14 @@ Bruno Magalhães | HR Business Partner | R&S, D&I, DHO e People Analytics` },
   info: { label: 'PLANEJAMENTO 2027', title: 'DA TENDÊNCIA AO PLANO DO TIME',
     items: [['LEIA O CENÁRIO', 'O QUE MUDA NO NEGÓCIO EM 2027.'], ['MAPEIE A LACUNA', 'O QUE FALTA NO TIME.'], ['DECIDA O CAMINHO', 'DESENVOLVER, CONTRATAR OU AUTOMATIZAR.'], ['PONHA PRAZO', 'METAS DO 1º TRIMESTRE NO PDI.']],
     tip: 'PDI: PLANO DE DESENVOLVIMENTO INDIVIDUAL.' },
+  // motion = como fazer na prática o conteúdo do carrossel
   motion: [
-    { type: 'big', title: '2027 JÁ COMEÇOU.', sub: 'PELO MENOS NO PLANEJAMENTO.' },
-    { type: 'big', title: 'TENDÊNCIA SÓ VALE QUANDO VIRA PLANO.', sub: '' },
-    { type: 'list', title: 'DA TENDÊNCIA AO PLANO', items: ['LEIA O CENÁRIO', 'MAPEIE A LACUNA', 'DECIDA O CAMINHO', 'PONHA PRAZO'] },
-    { type: 'cta', question: 'QUE HABILIDADE VOCÊ VAI DESENVOLVER EM 2027?', save: 'RESPONDE AQUI NA CAIXINHA.' } ],
+    { type: 'big', title: 'COMO TRANSFORMAR TENDÊNCIA EM PLANO', sub: 'NUMA REUNIÃO DE 1 HORA EM DEZEMBRO.' },
+    { type: 'passo', n: 1, de: 4, title: 'ESCOLHA 3 MUDANÇAS DO SEU NEGÓCIO', ex: 'O QUE MUDA EM 2027: CLIENTE, TECNOLOGIA OU REGRA.' },
+    { type: 'passo', n: 2, de: 4, title: 'PERGUNTE QUE HABILIDADE CADA UMA PEDE', ex: 'UMA HABILIDADE POR MUDANÇA, ESCRITA NO QUADRO.' },
+    { type: 'passo', n: 3, de: 4, title: 'COMPARE COM O TIME DE HOJE', ex: 'TEM, TEM POUCO OU NÃO TEM. A LACUNA É O QUE NÃO TEM.' },
+    { type: 'passo', n: 4, de: 4, title: 'DECIDA E PONHA NO PDI', ex: 'DESENVOLVER, CONTRATAR OU AUTOMATIZAR. COM DATA NO 1º TRIMESTRE.' },
+    { type: 'cta', question: 'QUE HABILIDADE ENTRA NO SEU PDI?', save: 'RESPONDE AQUI NA CAIXINHA.' } ],
   linkedin: {
     ganchos: ['Todo dezembro tem lista de tendência. Pouca vira plano.', 'Tendência que não vira plano de competências é só conversa de fim de ano.', '2027 já começou. Pelo menos no planejamento.'],
     corpo: `A Ipsos vai debater no dia 1º de dezembro as tendências que podem influenciar o Brasil em 2027. O Mundo RH lembrou um ponto que eu acho central: pro RH, acompanhar esses movimentos ajuda no planejamento de competências.
@@ -194,11 +203,14 @@ Bruno Magalhães | HR Business Partner | R&S, D&I, DHO e People Analytics` },
   info: { label: 'LIDERANÇA E IA', title: 'DO TESTE AO HÁBITO: IA NO TIME',
     items: [['ESCOLHA', 'UMA TAREFA REPETITIVA DO TIME.'], ['DOCUMENTE', 'O PASSO A PASSO TESTADO JUNTO.'], ['COMBINE', 'O QUE A IA FAZ E QUEM REVISA.'], ['MEÇA', 'O TEMPO ANTES E DEPOIS.']],
     tip: 'QUEM REVISA O QUE A IA ENTREGA? COMBINE ISSO ANTES.' },
+  // motion = como fazer na prática o conteúdo do carrossel
   motion: [
-    { type: 'count', value: 4, dec: 0, unit: '%', caption: 'DOS LÍDERES USAM IA DE FORMA SISTEMÁTICA NO TIME', hold: 2 },
-    { type: 'big', title: 'SEM COMBINADO, A IA FICA NO TESTE.', sub: 'CADA UM USA DO SEU JEITO.' },
-    { type: 'list', title: 'DO TESTE AO HÁBITO', items: ['ESCOLHA UMA TAREFA', 'ESCREVA O PASSO A PASSO', 'COMBINE QUEM REVISA', 'MEÇA ANTES E DEPOIS'] },
-    { type: 'cta', question: 'NO SEU TIME, A IA É HÁBITO OU TESTE?', save: 'RESPONDE AQUI NA CAIXINHA.' } ],
+    { type: 'big', title: 'COMO TIRAR A IA DO TESTE NO SEU TIME', sub: 'EM 2 SEMANAS.' },
+    { type: 'passo', n: 1, de: 4, title: 'ESCOLHA UMA TAREFA QUE SE REPETE', ex: 'RESUMO DE REUNIÃO, RELATÓRIO SEMANAL OU TRIAGEM.' },
+    { type: 'passo', n: 2, de: 4, title: 'TESTE JUNTO, NUMA REUNIÃO', ex: 'TODO MUNDO VÊ O MESMO COMANDO E O MESMO RESULTADO.' },
+    { type: 'passo', n: 3, de: 4, title: 'ESCREVA O PASSO A PASSO', ex: 'UMA PÁGINA: O QUE A IA FAZ, QUEM REVISA, ONDE SALVA.' },
+    { type: 'passo', n: 4, de: 4, title: 'MEÇA EM 2 SEMANAS', ex: 'TEMPO ANTES X TEMPO DEPOIS. VALEU? VIRA ROTINA.' },
+    { type: 'cta', question: 'QUAL TAREFA VOCÊ ESCOLHERIA?', save: 'RESPONDE AQUI NA CAIXINHA.' } ],
   linkedin: {
     ganchos: ['Só 4% dos líderes usam IA de forma sistemática nas equipes. O resto ainda está no teste.', 'IA no time não é talento individual. É combinado coletivo.', 'Todo mundo no seu time usa IA. Mas cada um do seu jeito. Isso não é adoção.'],
     corpo: `Uma pesquisa citada pela IstoÉ Dinheiro mostrou que só 4% dos líderes relatam uso sistemático de IA nas equipes.
@@ -250,11 +262,14 @@ Bruno Magalhães | HR Business Partner | R&S, D&I, DHO e People Analytics` },
   info: { label: 'LIDERANÇA NEGRA', title: 'DO DESENVOLVIMENTO À LIDERANÇA',
     items: [['MAPEAR', 'QUEM TEM POTENCIAL E QUER CRESCER.'], ['FORMAR', 'TRILHA COM PRÁTICA, NÃO SÓ CURSO.'], ['PATROCINAR', 'LÍDER SÊNIOR QUE ABRE PORTAS.'], ['PROMOVER', 'CARGO-ALVO COM PRAZO.'], ['MEDIR', 'PROMOÇÕES E RENDA POR GRUPO.']],
     tip: 'FORMAÇÃO VIRA RENDA QUANDO VIRA PROMOÇÃO.' },
+  // motion = como fazer na prática o conteúdo do carrossel
   motion: [
-    { type: 'count', value: 20, dec: 0, ipre: '+', unit: '%', caption: 'DE RENDA MÉDIA COM A FORMAÇÃO DE LIDERANÇAS NEGRAS', hold: 2 },
-    { type: 'big', title: 'FORMAÇÃO VIRA ASCENSÃO.', sub: 'QUANDO TEM PLANO DE VERDADE.' },
-    { type: 'list', title: 'O QUE FUNCIONA', items: ['TRILHA COM PRÁTICA', 'MENTORIA E PATROCÍNIO', 'CARGO-ALVO COM PRAZO'] },
-    { type: 'cta', question: 'SUA EMPRESA FORMA LIDERANÇAS NEGRAS?', save: 'RESPONDE AQUI NA CAIXINHA.' } ],
+    { type: 'big', title: 'COMO MONTAR UM CAMINHO DE ASCENSÃO PRA LIDERANÇAS NEGRAS', sub: 'EM 4 PASSOS.' },
+    { type: 'passo', n: 1, de: 4, title: 'MAPEIE QUEM QUER CRESCER', ex: 'CONVERSA DE CARREIRA COM CRITÉRIO ESCRITO, NÃO SÓ INDICAÇÃO.' },
+    { type: 'passo', n: 2, de: 4, title: 'DEFINA UM CARGO-ALVO', ex: 'QUAL CADEIRA E EM QUANTO TEMPO.' },
+    { type: 'passo', n: 3, de: 4, title: 'LIGUE A UM PATROCINADOR', ex: 'UM LÍDER SÊNIOR QUE LEVA O NOME DA PESSOA PRA MESA.' },
+    { type: 'passo', n: 4, de: 4, title: 'ACOMPANHE A CADA 3 MESES', ex: 'PDI REVISADO E PROMOÇÕES MEDIDAS POR GRUPO.' },
+    { type: 'cta', question: 'SUA EMPRESA TEM ESSE CAMINHO?', save: 'RESPONDE AQUI NA CAIXINHA.' } ],
   linkedin: {
     ganchos: ['Formar lideranças negras eleva a renda média em 20%. O número importa. O caminho até ele importa mais.', 'Não tem ninguém que não possa ser desenvolvido. Mas tem muita gente que nunca foi convidada a se desenvolver.', 'Curso não promove ninguém. Plano promove.'],
     corpo: `Uma pesquisa divulgada pelo Paraíba Business aponta que a formação de lideranças negras eleva a renda média em 20%. E mostra que desenvolver profissionais negros amplia a progressão e o acesso a cargos de liderança.
@@ -306,11 +321,14 @@ Bruno Magalhães | HR Business Partner | R&S, D&I, DHO e People Analytics` },
   info: { label: 'DIVERSIDADE E INCLUSÃO', title: 'O FUNIL DA LIDERANÇA NEGRA',
     items: [['ENTRADA', 'QUEM É CONTRATADO, POR GRUPO.'], ['CRESCIMENTO', 'QUEM É PROMOVIDO, POR GRUPO.'], ['DECISÃO', 'QUEM CHEGA À LIDERANÇA.'], ['PERMANÊNCIA', 'QUEM FICA E QUEM SAI.']],
     tip: 'MEÇA CADA ETAPA POR GRUPO. O NÚMERO MOSTRA ONDE AGIR.' },
+  // motion = como fazer na prática o conteúdo do carrossel
   motion: [
-    { type: 'big', title: 'MAIS PESSOAS NEGRAS NA LIDERANÇA.', sub: 'EMPRESAS ESTÃO AMPLIANDO ESSA PRESENÇA.' },
-    { type: 'list', title: 'ONDE OLHAR', items: ['QUEM ENTRA', 'QUEM CRESCE', 'QUEM LIDERA', 'QUEM FICA'] },
-    { type: 'big', title: 'O NÚMERO MOSTRA ONDE AGIR.', sub: '' },
-    { type: 'cta', question: 'ONDE O FUNIL TRAVA NA SUA EMPRESA?', save: 'RESPONDE AQUI NA CAIXINHA.' } ],
+    { type: 'big', title: 'COMO ACHAR ONDE O FUNIL TRAVA', sub: 'COM UMA PLANILHA SIMPLES.' },
+    { type: 'passo', n: 1, de: 4, title: 'MONTE 4 COLUNAS', ex: 'CONTRATADOS, PROMOVIDOS, LÍDERES E DESLIGADOS.' },
+    { type: 'passo', n: 2, de: 4, title: 'SEPARE POR GRUPO', ex: 'RAÇA OU COR AUTODECLARADA, SEM EXPOR NINGUÉM.' },
+    { type: 'passo', n: 3, de: 4, title: 'COMPARE AS PROPORÇÕES', ex: 'O GRUPO DIMINUI DE UMA COLUNA PRA OUTRA? É ALI QUE TRAVA.' },
+    { type: 'passo', n: 4, de: 4, title: 'AJA NA ETAPA QUE TRAVA', ex: 'LISTA FINAL DIVERSA, CRITÉRIO DE PROMOÇÃO ESCRITO OU PLANO DE SUCESSÃO.' },
+    { type: 'cta', question: 'EM QUAL COLUNA O SEU FUNIL TRAVA?', save: 'RESPONDE AQUI NA CAIXINHA.' } ],
   linkedin: {
     ganchos: ['Diversidade na entrada é começo. Na cadeira de decisão é mudança.', 'Empresas estão ampliando a presença de pessoas negras na liderança. A pergunta é: onde o seu funil trava?', 'Contratar com diversidade e promover sem diversidade é só mudar o problema de lugar.'],
     corpo: `A Bahia Econômica mostrou empresas ampliando a presença de profissionais negros em cargos de liderança, com reconhecimento pela atuação em diversidade e inclusão.
@@ -361,11 +379,14 @@ Bruno Magalhães | HR Business Partner | R&S, D&I, DHO e People Analytics` },
   info: { label: 'CONSCIÊNCIA NEGRA', title: 'DIVERSIDADE O ANO TODO: 4 FRENTES',
     items: [['ENTRADA', 'TRAINEE E VAGAS AFIRMATIVAS.'], ['PERTENCIMENTO', 'GRUPO DE AFINIDADE ATIVO.'], ['ASCENSÃO', 'FORMAÇÃO DE LIDERANÇAS NEGRAS.'], ['REDE', 'PARCERIAS QUE ACELERAM A INCLUSÃO.']],
     tip: 'MEÇA QUEM ENTRA, QUEM CRESCE E QUEM FICA. O ANO INTEIRO.' },
+  // motion = como fazer na prática o conteúdo do carrossel
   motion: [
-    { type: 'count', value: 55, dec: 0, unit: '%', caption: 'DA POPULAÇÃO BRASILEIRA É NEGRA. A LIDERANÇA AINDA NÃO REFLETE ISSO.', hold: 2 },
-    { type: 'big', title: 'O MÊS ACABA.', sub: 'A AGENDA NÃO.' },
-    { type: 'list', title: 'O QUE FAZ ANDAR', items: ['GRUPO DE AFINIDADE', 'PROGRAMA DE TRAINEE', 'FORMAÇÃO DE LÍDERES', 'PARCERIAS'] },
-    { type: 'cta', question: 'O QUE SUA EMPRESA FAZ DEPOIS DE NOVEMBRO?', save: 'RESPONDE AQUI NA CAIXINHA.' } ],
+    { type: 'big', title: 'COMO MANTER A AGENDA RACIAL DEPOIS DE NOVEMBRO', sub: 'EM 4 PASSOS.' },
+    { type: 'passo', n: 1, de: 4, title: 'PONHA NO CALENDÁRIO DO ANO', ex: 'UMA AÇÃO POR TRIMESTRE, COM DONO E ORÇAMENTO.' },
+    { type: 'passo', n: 2, de: 4, title: 'APOIE O GRUPO DE AFINIDADE', ex: 'TEMPO NA AGENDA, VERBA E UM PATROCINADOR NA DIRETORIA.' },
+    { type: 'passo', n: 3, de: 4, title: 'REVISE AS DECISÕES DE PESSOAS', ex: 'QUEM CONTRATAMOS, PROMOVEMOS E INDICAMOS NESTE MÊS?' },
+    { type: 'passo', n: 4, de: 4, title: 'MEÇA E CONTE O RESULTADO', ex: 'QUEM ENTRA, QUEM CRESCE E QUEM FICA. TODO TRIMESTRE.' },
+    { type: 'cta', question: 'O QUE ENTRA NO SEU CALENDÁRIO?', save: 'RESPONDE AQUI NA CAIXINHA.' } ],
   linkedin: {
     ganchos: ['O Mês da Consciência Negra acaba. A agenda não pode acabar junto.', 'Pessoas negras são 55% da população brasileira. Olha a liderança da sua empresa e me diz se esse número aparece.', 'Diversidade que só aparece em novembro é campanha. A que aparece em março é estratégia.'],
     corpo: `O LinkedIn Notícias reuniu conversas do Mês da Consciência Negra. Uma delas me chamou atenção pela concretude.
@@ -416,10 +437,13 @@ Bruno Magalhães | HR Business Partner | R&S, D&I, DHO e People Analytics` },
   info: { label: 'CLIMA E TRABALHO', title: 'TRANSIÇÃO JUSTA: O QUE O RH PODE FAZER',
     items: [['MAPEAR', 'FUNÇÕES QUE MUDAM COM A TRANSIÇÃO.'], ['REQUALIFICAR', 'TRILHAS PRA QUEM JÁ ESTÁ NA CASA.'], ['RECRUTAR', 'HABILIDADES VERDES NAS NOVAS VAGAS.'], ['COMUNICAR', 'EXPLICAR AO TIME O QUE MUDA E POR QUÊ.']],
     tip: 'TRANSIÇÃO JUSTA: MUDAR O NEGÓCIO SEM DEIXAR PESSOAS PRA TRÁS.' },
+  // motion = como fazer na prática o conteúdo do carrossel
   motion: [
-    { type: 'big', title: 'COP31: SEM ACORDO.', sub: 'IMPASSE SOBRE COMBUSTÍVEIS FÓSSEIS E FINANCIAMENTO.' },
-    { type: 'big', title: 'E O QUE ISSO TEM A VER COM CARREIRA?', sub: '' },
-    { type: 'list', title: 'O CLIMA CHEGA NO TRABALHO', items: ['SETORES MUDAM DE MODELO', 'CARGOS SE TRANSFORMAM', 'NOVAS HABILIDADES'] },
+    { type: 'big', title: 'COMO PREPARAR O TIME PRA TRANSIÇÃO JUSTA', sub: 'EM 4 PASSOS.' },
+    { type: 'passo', n: 1, de: 4, title: 'LISTE AS FUNÇÕES MAIS EXPOSTAS', ex: 'ONDE ENERGIA, LOGÍSTICA OU MATÉRIA-PRIMA PESAM NO TRABALHO.' },
+    { type: 'passo', n: 2, de: 4, title: 'CONVERSE COM QUEM ESTÁ NELAS', ex: 'O QUE ELAS JÁ SABEM FAZER QUE SERVE PRO NOVO MODELO?' },
+    { type: 'passo', n: 3, de: 4, title: 'MONTE UMA TRILHA CURTA', ex: 'REQUALIFICAR ANTES DE SUBSTITUIR.' },
+    { type: 'passo', n: 4, de: 4, title: 'COMUNIQUE O PORQUÊ', ex: 'O QUE MUDA, QUANDO E COMO A EMPRESA VAI APOIAR.' },
     { type: 'cta', question: 'SUA EMPRESA JÁ FALA DE CLIMA COM O TIME?', save: 'RESPONDE AQUI NA CAIXINHA.' } ],
   linkedin: {
     ganchos: ['A COP31 terminou sem acordo. E isso tem mais a ver com RH do que parece.', 'Transição energética também é pauta de pessoas.', 'Quando o modelo de negócio muda, quem prepara as pessoas pra mudança?'],

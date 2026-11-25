@@ -46,13 +46,14 @@ def tema(t):
   </div>
 
   <div class="bloco">
-    <div class="bloco-head"><h3>Stories e Reels</h3><span class="tag">Motion 9:16 · capa de Reels</span></div>
+    <div class="bloco-head"><h3>Stories e Reels</h3><span class="tag">Motion na prática · 3 capas</span></div>
     <div class="story-wrap">
       <video src="m/t{n}-story.mp4" controls playsinline preload="metadata" poster="m/t{n}-c1.jpg"></video>
       <ul class="dicas">
         <li class="lista-dl"><button class="dl" type="button" data-acao="story" data-n="{n}">Baixar vídeo (.mp4)</button></li>
-        <li class="capa-item"><figure class="capa"><img src="m/t{n}-capa.jpg" alt="Capa do Reels" loading="lazy" width="1080" height="1920"><figcaption>Capa do Reels · 1080×1920. Título e logo dentro do recorte 3:4 que aparece no grid do perfil.</figcaption><button class="dl dl-mini" type="button" data-acao="capa" data-n="{n}">Baixar capa do Reels</button></figure></li>
-        <li>Nos stories, suba o vídeo inteiro. Nos Reels, use a capa abaixo em "Editar capa" &gt; "Adicionar da galeria".</li>
+        <li class="capa-item"><p class="capas-tit">3 capas de Reels pra escolher · 1080×1920. Texto e logo ficam no recorte 3:4 do grid.</p><div class="capas">{''.join(f'<figure class="capa"><img src="m/t{n}-capa-{v}.jpg" alt="Capa de Reels {v}" loading="lazy" width="1080" height="1920"><figcaption>{['Tipográfica','Com foto','Checklist'][v-1]}</figcaption><button class="dl dl-mini" type="button" data-acao="capa" data-n="{n}" data-v="{v}">Baixar capa {v}</button></figure>' for v in (1,2,3))}</div></li>
+        <li>O motion mostra como fazer na prática o que o carrossel ensina, em 4 passos.</li>
+        <li>Nos stories, suba o vídeo inteiro. Nos Reels, escolha uma das capas em "Editar capa" &gt; "Adicionar da galeria". Alterne entre elas pra o perfil não ficar repetitivo.</li>
         <li>Na última tela, cole a figurinha <b>Caixinha de perguntas</b> logo abaixo da pergunta.</li>
         <li>Texto dentro da área segura: nada fica escondido pela barra do app.</li>
       </ul>
@@ -131,8 +132,10 @@ body.pode-baixar .topo-dl {{ margin-bottom:22px }}
 .slide {{ margin:0; flex:0 0 min(78%, 300px); width:min(78%, 300px); display:flex; flex-direction:column; align-items:flex-start; scroll-snap-align:start }}
 .slide img {{ width:100%; height:auto; border-radius:12px; display:block }}
 .lista-dl, .capa-item {{ list-style:none; margin-left:-18px }}
-.capa {{ margin:6px 0 0; max-width:200px }}
-.capa img {{ width:100%; height:auto; border-radius:12px; display:block }}
+.capas {{ display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:12px; max-width:520px }}
+.capas-tit {{ margin:6px 0 8px; color:var(--nevoa); font-size:14px }}
+.capa {{ margin:0; min-width:0 }}
+.capa img {{ width:100%; height:auto; border-radius:10px; display:block }}
 .carrossel {{ display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:10px }}
 
 .dupla {{ display:grid; grid-template-columns:minmax(0, 300px) minmax(0, 1fr); gap:20px; margin-top:18px; align-items:start }}
@@ -208,7 +211,7 @@ async function poeTema(z, n, pasta, completo) {{
   if (completo) {{
     z.file(p + 'post-unico.png', await busca('m/png/t' + n + '-info.png'));
     z.file(p + 'stories-motion.mp4', await busca('m/t' + n + '-story.mp4'));
-    z.file(p + 'capa-reels.png', await busca('m/png/t' + n + '-capa.png'));
+    for (const v of [1, 2, 3]) z.file(p + 'capas-reels/capa-' + v + '.png', await busca('m/png/t' + n + '-capa-' + v + '.png'));
     z.file(p + 'linkedin.txt', txtLinkedIn(n));
   }}
 }}
@@ -216,7 +219,7 @@ const zipa = (z) => z.generateAsync({{ type: 'blob', compression: 'STORE' }});
 const ACOES = {{
   slide: (b) => ({{ nome: nomeArq(b.dataset.n, 'slide-0' + b.dataset.i + '.png'), dados: () => busca('m/png/t' + b.dataset.n + '-c' + b.dataset.i + '.png') }}),
   info: (b) => ({{ nome: nomeArq(b.dataset.n, 'post-unico.png'), dados: () => busca('m/png/t' + b.dataset.n + '-info.png') }}),
-  capa: (b) => ({{ nome: nomeArq(b.dataset.n, 'capa-reels.png'), dados: () => busca('m/png/t' + b.dataset.n + '-capa.png') }}),
+  capa: (b) => ({{ nome: nomeArq(b.dataset.n, 'capa-reels-' + b.dataset.v + '.png'), dados: () => busca('m/png/t' + b.dataset.n + '-capa-' + b.dataset.v + '.png') }}),
   story: (b) => ({{ nome: nomeArq(b.dataset.n, 'stories.mp4'), dados: () => busca('m/t' + b.dataset.n + '-story.mp4') }}),
   li: (b) => ({{ nome: nomeArq(b.dataset.n, 'linkedin.txt'), dados: async () => txtLinkedIn(b.dataset.n) }}),
   leg: (b) => ({{ nome: nomeArq(b.dataset.n, 'legenda-instagram.txt'), dados: async () => txtLegenda(b.dataset.n) }}),

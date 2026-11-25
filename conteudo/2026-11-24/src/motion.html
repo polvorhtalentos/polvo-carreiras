@@ -46,6 +46,9 @@ body{font-family:Montserrat,sans-serif;color:var(--papel);-webkit-font-smoothing
 .note{position:absolute;left:90px;top:1520px;font-weight:800;font-size:30px;letter-spacing:.06em;color:#A9A6B5}
 .conf{position:absolute;width:18px;height:28px;border-radius:4px;display:none;z-index:9}
 .story-t{font-weight:900;font-size:72px;line-height:1.05;letter-spacing:-.02em}
+.pnum{width:190px;height:190px;border-radius:50%;background:var(--lar);color:var(--tinta);font-weight:900;font-size:120px;display:flex;align-items:center;justify-content:center;margin-bottom:44px;line-height:1}
+.pex{margin-top:54px;flex-direction:column;align-items:flex-start;gap:14px;font-size:44px;line-height:1.18}
+.pex-l{font-size:28px;letter-spacing:.22em;color:var(--lar);font-weight:800}
 </style></head>
 <body><div id="v">
 <div class="glow" id="g1"></div><div class="glow" id="g2"></div><div class="grid"></div><div class="stripes"></div>
@@ -98,6 +101,12 @@ T.motion.forEach((m,i)=>{
     const V=add(`<div class="s" style="color:var(--lav);font-weight:900;font-size:56px;line-height:1.1;margin-top:50px">${m.verdict}</div>`,2.6,'up');
     parts.push({wrap:cmp,children:[L,R]},V);
     D=2.6+0.5+3.2;
+  } else if(m.type==='passo'){
+    parts=[add(`<div class="label" style="font-size:34px">PASSO ${m.n} DE ${m.de}</div>`,0.1,'up'),
+      add(`<div class="pnum">${m.n}</div>`,0.25,'up'),
+      add(`<div class="t m">${m.title}</div>`,0.5,'up'),
+      add(`<div class="card hi pex"><span class="pex-l">NA PRÁTICA</span><span>${m.ex}</span></div>`,1.4,'right','chime',{k:m.n-1})];
+    D=1.4+0.5+2.2+(words(m.title)+words(m.ex))*0.16;
   } else if(m.type==='story'){
     el.style.justifyContent='flex-start';el.style.paddingTop='20px';
     parts=[add(`<div class="label">${m.label}</div>`,0.1,'up'),add(`<div class="story-t">${m.caption}</div>`,0.25,'up')];

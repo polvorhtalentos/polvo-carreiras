@@ -11,6 +11,11 @@ O motor já está pronto em `conteudo/2026-11-15/src/`. Pra um novo dia, copie `
 
 ## 1. Roteiro das cenas (`content.js`, campo `motion` de cada tema)
 
+**Regra (25/11): o motion é a versão "como fazer na prática" do carrossel.** Ele não repete o carrossel. A estrutura é:
+1. `big` com o título "COMO [FAZER X]…" e o subtítulo "EM 4 PASSOS" (ou o prazo, por exemplo "EM 2 SEMANAS").
+2. Quatro cenas `passo` (`n`, `de`, `title`, `ex`). Cada uma tem uma ação curta e um exemplo concreto no cartão "NA PRÁTICA".
+3. `cta` com uma pergunta ligada à prática.
+
 Um vídeo tem 5 ou 6 cenas, com uma ideia por cena. O texto vai em CAIXA ALTA e curto. Tipos de cena:
 
 | tipo | campos | uso |
@@ -19,6 +24,7 @@ Um vídeo tem 5 ou 6 cenas, com uma ideia por cena. O texto vai em CAIXA ALTA e 
 | `big` | `title`, `sub` | frase de impacto |
 | `list` | `title`, `items[]` (até 5, curtos) | cartões entram pela direita com check e sininho |
 | `compare` | `title`, `left[3]`, `right[3]`, `verdict` | antes/depois, A x B |
+| `passo` | `n`, `de`, `title`, `ex` | um passo da prática: número grande, ação e cartão "NA PRÁTICA" com exemplo |
 | `cta` | `question` | fechamento: pergunta, "SALVA PRA SUA PRÓXIMA VAGA.", POLVO RH |
 
 Regras:
@@ -44,13 +50,19 @@ Rode até 4 vídeos em paralelo: o processador tem 4 núcleos e cada render leva
 
 Antes de codificar, confira quadros soltos: chame `node test_motion.js <n> 3 10 20` e olhe os PNGs.
 
-## 2b. Capa de Reels (sempre)
+## 2b. Capa de Reels (sempre, 3 variações)
 
-Todo motion sai com a capa de Reels (pedido do Bruno em 25/11). O `motion.sh` já gera `out/<n>-*/capa-reels.png` com `shoot_capa.js` + `capa.html`.
-- **Tamanho da Meta:** 1080×1920 (9:16). No grid do perfil aparece só o recorte central 3:4 (1080×1440, y 240–1680). Logo, título e assinatura ficam dentro de x 90–990, y 330–1590.
-- **Conteúdo:** foto da capa do carrossel, rótulo laranja, título do tema, "BRUNO MAGALHÃES · POLVO RH", logo POL▼O e a pílula "REEL".
-- **Sem foto** (por exemplo, motion com personagens): defina `capa: {img, pos, dy, label, title}` no tema. `dy` sobe a imagem pra abrir espaço pro título.
-- Na página da pauta, a capa aparece no bloco "Stories e Reels", com download, e entra nos ZIPs.
+Todo motion sai com **3 capas de Reels diferentes da capa do carrossel**, pra o perfil não ficar repetitivo (pedido do Bruno em 25/11). O `motion.sh` gera as três com `shoot_capa.js` + `capa.html`: `out/<n>-*/capa-reels-1.png`, `-2.png` e `-3.png`.
+
+| Variação | Visual | Texto |
+|---|---|---|
+| 1 · Tipográfica | Fundo Tinta com brilho e grade, sem foto | Número grande de passos + "PASSOS NA PRÁTICA" + título do motion |
+| 2 · Foto | A foto do slide de foto do carrossel (não a da capa), com enquadramento mais fechado | "PASSO A PASSO" + título do motion |
+| 3 · Checklist | Fundo lavanda, texto Tinta | Pergunta do fechamento + os passos numerados |
+
+- **Tamanho da Meta:** 1080×1920 (9:16). No grid do perfil aparece só o recorte central 3:4 (1080×1440). Todo texto fica dentro de x 90–990, y 330–1590. O script avisa se algo passar, e o checklist reduz a fonte sozinho.
+- **Sem foto** (por exemplo, motion com personagens): use `capa: {img, pos, dy, label, title}` no tema.
+- Na página da pauta, as 3 capas aparecem no bloco "Stories e Reels", com download de cada uma, e entram nos ZIPs.
 
 ## 3. Narração com a voz do Bruno
 
