@@ -16,7 +16,7 @@ Como funciona:
 import argparse, json, os, subprocess, sys, time, urllib.parse, urllib.request
 
 HOSTS = {'facebook': 'https://graph.facebook.com/v21.0', 'instagram': 'https://graph.instagram.com/v21.0'}
-API = HOSTS['facebook']
+API = HOSTS['instagram']
 REPO = 'polvorhtalentos/polvo-carreiras'
 RAIZ = subprocess.run(['git', 'rev-parse', '--show-toplevel'], capture_output=True, text=True).stdout.strip()
 
@@ -84,7 +84,7 @@ def main():
     ap.add_argument('--dia'); ap.add_argument('--tema', type=int)
     ap.add_argument('--tipos', default='carrossel,reels,stories'); ap.add_argument('--capa', type=int, default=1)
     ap.add_argument('--preparar', action='store_true'); ap.add_argument('--dry-run', action='store_true')
-    ap.add_argument('--plataforma', choices=['facebook', 'instagram'], default='facebook'); ap.add_argument('--testar', action='store_true')
+    ap.add_argument('--plataforma', choices=['facebook', 'instagram'], default='instagram'); ap.add_argument('--testar', action='store_true')
     a = ap.parse_args()
     global API; API = HOSTS[a.plataforma]
     if a.testar:
