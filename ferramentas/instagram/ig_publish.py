@@ -8,12 +8,15 @@ Como funciona:
   raw.githubusercontent.com no branch atual. Por isso, ANTES de publicar: `--preparar` gera os JPEGs,
   depois faça commit + push, e só então rode sem `--preparar`.
 - O token nunca passa por aqui: o proxy da sessão injeta "Authorization: Bearer <token>" nas chamadas
-  a graph.instagram.com (credencial salva no ambiente). Este script manda um valor fictício que o proxy troca.
+  a graph.facebook.com (credencial salva no ambiente; ou graph.instagram.com com --plataforma instagram).
+  Este script manda um valor fictício que o proxy troca.
+- --testar só mostra a conta do Instagram ligada ao token, sem publicar nada.
 - É idempotente: o que já foi publicado fica em out/<n>-<slug>/ig/publicado.json e não é repetido.
 """
 import argparse, json, os, subprocess, sys, time, urllib.parse, urllib.request
 
-API = 'https://graph.instagram.com/v21.0'
+HOSTS = {'facebook': 'https://graph.facebook.com/v21.0', 'instagram': 'https://graph.instagram.com/v21.0'}
+API = HOSTS['facebook']
 REPO = 'polvorhtalentos/polvo-carreiras'
 RAIZ = subprocess.run(['git', 'rev-parse', '--show-toplevel'], capture_output=True, text=True).stdout.strip()
 
@@ -46,6 +49,17 @@ def url_publica(caminho):
     rel = os.path.relpath(caminho, RAIZ)
     return f'https://raw.githubusercontent.com/{REPO}/{urllib.parse.quote(branch)}/{urllib.parse.quote(rel)}'
 
+def conta(plataforma):
+    if plataforma == 'instagram':
+        me = api('GET', '/me', fields='user_id,username'); return me['user_id'], me.get('username')
+    pags = api('GET', '/me/accounts', fields='name,instagram_business_account{id,username}').get('data', [])
+    for pg in pags:
+        ig = pg.get('instagram_business_account')
+        if ig: return ig['id'], f"@{ig.get('username')} (página {pg.get('name')})"
+    sys.exit('ERRO: o token não enxerga nenhuma conta do Instagram profissional ligada a uma página do Facebook. '
+             'Confira as permissões (instagram_basic, instagram_content_publish, pages_show_list, pages_read_engagement, business_management) '
+             'e se o Instagram está conectado à página.')
+
 def checa(url):
     try:
         with urllib.request.urlopen(urllib.request.Request(url, method='HEAD'), timeout=30) as r: return r.status == 200
@@ -67,10 +81,15 @@ def publica(ig_id, cid):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--dia', required=True); ap.add_argument('--tema', type=int, required=True)
+    ap.add_argument('--dia'); ap.add_argument('--tema', type=int)
     ap.add_argument('--tipos', default='carrossel,reels,stories'); ap.add_argument('--capa', type=int, default=1)
     ap.add_argument('--preparar', action='store_true'); ap.add_argument('--dry-run', action='store_true')
+    ap.add_argument('--plataforma', choices=['facebook', 'instagram'], default='facebook'); ap.add_argument('--testar', action='store_true')
     a = ap.parse_args()
+    global API; API = HOSTS[a.plataforma]
+    if a.testar:
+        ig_id, nome = conta(a.plataforma); print('Token OK. Conta do Instagram:', nome, '· id', ig_id); return
+    if not (a.dia and a.tema): sys.exit('Informe --dia e --tema.')
     t = tema(a.dia, a.tema)
     if a.preparar: return preparar(t)
     ig = os.path.join(t['dir'], 'ig'); log_p = os.path.join(ig, 'publicado.json')
@@ -82,8 +101,7 @@ def main():
     if faltando: sys.exit('ERRO: estas mídias não estão públicas ainda (faltou commit + push?):\n' + '\n'.join(faltando))
     if a.dry_run:
         print('OK: todas as mídias estão públicas.'); print('\n'.join(slides + [video, capa])); return
-    me = api('GET', '/me', fields='user_id,username'); ig_id = me['user_id']
-    print('Conta:', me.get('username'))
+    ig_id, nome = conta(a.plataforma); print('Conta:', nome)
     tipos = [x.strip() for x in a.tipos.split(',') if x.strip()]
     if 'carrossel' in tipos and 'carrossel' not in log:
         filhos = [api('POST', f'/{ig_id}/media', image_url=u, is_carousel_item='true')['id'] for u in slides]

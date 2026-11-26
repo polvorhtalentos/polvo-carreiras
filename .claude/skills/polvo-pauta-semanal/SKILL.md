@@ -62,7 +62,7 @@ Crie `conteudo/AAAA-MM-DD/` (data de hoje) copiando `conteudo/2026-11-24/src` (o
 
 ## 5. Agendar e publicar no Instagram
 
-Requisito: a credencial do Instagram salva no ambiente pra `graph.instagram.com` (Authorization: Bearer). Se faltar, chame `request_credential` (host `graph.instagram.com`) e explique o motivo. Nunca peça o token no chat.
+Requisito: a credencial da Meta salva no ambiente pra `graph.facebook.com` (Authorization: Bearer; token de longa duração do app no Graph API Explorer). Confira com `python3 ferramentas/instagram/ig_publish.py --testar`. Se faltar ou vencer (60 dias), chame `request_credential` (host `graph.facebook.com`) e explique o motivo. Nunca peça o token no chat.
 
 **Logo depois da aprovação**, ainda na sexta, deixe tudo pronto e público:
 ```bash
