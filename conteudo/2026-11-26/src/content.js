@@ -121,5 +121,66 @@ Seu time aprendeu IA ou só foi incentivado?
 
 #inteligenciaartificial #desenvolvimento #rh
 
+Bruno Magalhães | HR Business Partner | R&S, D&I, DHO e People Analytics` },
+
+/* ───────── 3 · PLANO DE CARREIRA 2027 (pauta enviada pelo Bruno) ───────── */
+{ id: 3, slug: 'plano-de-carreira-2027', nome: '5 passos pra carreira em 2027', pilar: 'Carreira', di: false,
+  alerta: 'Pauta do Bruno · Você RH', fonte: 'Você RH · 23/11/2026',
+  link: 'https://vocerh.abril.com.br/desenvolvimento/profissionais-de-rh-lideram-no-uso-de-mentoria-para-desenvolvimento-de-carreira/',
+  fato: 'Luciano Santos, autor de "Seja Egoísta com Sua Carreira", orienta 5 passos pra 2027: fazer um balanço profissional, definir onde quer chegar, identificar as competências que faltam, fortalecer a rede e conversar sobre as ambições tendo alternativas. Na mesma matéria, pesquisa da Unico Skill mostra que mentorias são 14,5% das matrículas de profissionais de RH (eram 2,9% em 2023), e um estudo canadense aponta que 83% de quem tem mentor diz que a relação ajudou a avançar na carreira.',
+  carousel: [
+    { type: 'cover', img: 'img/t3a.jpg', pos: '30% 100%', label: 'CARREIRA 2027', title: '5 PASSOS PRA PLANEJAR SUA CARREIRA EM 2027', sub: 'ANTES QUE VIRE PROMESSA DE JANEIRO' },
+    { type: 'text', label: 'O ALERTA', title: 'O RISCO É AS INTENÇÕES FICAREM NAS PROMESSAS DE JANEIRO',
+      body: 'LUCIANO SANTOS, AUTOR DE SEJA EGOÍSTA COM SUA CARREIRA, ORIENTA COMEÇAR AGORA, ANTES DA VIRADA DO ANO.', source: 'FONTE: VOCÊ RH · NOV/2026' },
+    { type: 'steps', label: 'O PLANO', title: 'OS 5 PASSOS',
+      items: ['FAÇA UM BALANÇO DO ANO', 'DEFINA ONDE QUER CHEGAR', 'MAPEIE AS COMPETÊNCIAS QUE FALTAM', 'FORTALEÇA SUA REDE', 'CONVERSE SOBRE SUAS AMBIÇÕES'] },
+    { type: 'pairs', label: 'O ACELERADOR', title: 'PONHA MENTORIA NO PLANO',
+      items: [['83%', 'DE QUEM TEM MENTOR DIZ QUE AVANÇOU NA CARREIRA'], ['5X', 'MAIS PROCURA DE RH POR MENTORIA DESDE 2023'], ['14,5%', 'DAS MATRÍCULAS DE RH JÁ SÃO MENTORIA']] },
+    { type: 'photo', img: 'img/t3b.jpg', pos: '60% 100%', title: 'QUEM QUER CRESCER PRECISA DIZER QUE QUER CRESCER.' },
+    { type: 'close', practice: 'RESERVE 1 HORA ESTA SEMANA PRO SEU BALANÇO: CONQUISTAS, FRUSTRAÇÕES E O QUE DEIXOU DE FAZER SENTIDO.', question: 'QUAL É O SEU PRIMEIRO PASSO PRA 2027?' } ],
+  info: { label: 'CARREIRA 2027', title: 'SEU PLANO DE CARREIRA PRA 2027',
+    items: [['BALANÇO', 'CONQUISTAS, FRUSTRAÇÕES E O QUE CANSOU.'], ['DESTINO', 'PROMOÇÃO, LIDERANÇA OU NOVA ÁREA?'], ['LACUNAS', 'CURSO, MENTORIA OU PROJETO NOVO.'], ['REDE', 'CONTATO ANTES DE PRECISAR.'], ['CONVERSA', 'AMBIÇÃO DITA E PLANO B PRONTO.']],
+    tip: '83% DE QUEM TEM MENTOR DIZ QUE AVANÇOU NA CARREIRA.' },
+  // motion = como fazer na prática o conteúdo do carrossel
+  motion: [
+    { type: 'big', title: 'COMO FAZER SEU PLANO DE CARREIRA PRA 2027', sub: 'EM 4 PASSOS, AINDA EM DEZEMBRO.' },
+    { type: 'passo', n: 1, de: 4, title: 'FAÇA O BALANÇO EM 3 COLUNAS', ex: 'O QUE DEU CERTO, O QUE FRUSTROU E O QUE DEIXOU DE FAZER SENTIDO.' },
+    { type: 'passo', n: 2, de: 4, title: 'ESCREVA UM OBJETIVO SÓ', ex: 'COM PRAZO. EX.: CHEGAR À COORDENAÇÃO ATÉ DEZEMBRO DE 2027.' },
+    { type: 'passo', n: 3, de: 4, title: 'LISTE 3 COMPETÊNCIAS QUE FALTAM', ex: 'PRA CADA UMA: UM CURSO, UMA MENTORIA OU UM PROJETO NOVO.' },
+    { type: 'passo', n: 4, de: 4, title: 'MARQUE A CONVERSA COM SUA LIDERANÇA', ex: 'CONTE SUA AMBIÇÃO E PERGUNTE QUE OPORTUNIDADES EXISTEM.' },
+    { type: 'cta', question: 'QUAL É O SEU OBJETIVO PRA 2027?', save: 'RESPONDE AQUI NA CAIXINHA.' } ],
+  linkedin: {
+    ganchos: ['Toda virada de ano tem promessa de carreira. Pouca vira plano.', 'Quem quer crescer precisa dizer que quer crescer. Parece óbvio, mas não é.', '83% de quem tem mentor diz que a relação ajudou a avançar na carreira. Você tem um?'],
+    corpo: `A Você RH trouxe 5 passos do Luciano Santos, autor de "Seja Egoísta com Sua Carreira", pra planejar 2027 antes que as intenções fiquem nas promessas de janeiro:
+
+1. Fazer um balanço do ano.
+2. Definir onde quer chegar.
+3. Identificar as competências que faltam.
+4. Fortalecer a rede.
+5. Conversar sobre as ambições e ter alternativas.
+
+Assino embaixo de todos. E vou mais longe no quinto, porque é o que eu mais vejo travar carreira de gente boa.
+
+Já ouvi muito "achei que meu gestor sabia que eu queria crescer". Mas cadê essa informação? Se a ambição não foi dita nem registrada, ela não entra na conversa de promoção. Quem quer crescer precisa dizer que quer crescer, e perguntar que oportunidades existem.
+
+A mesma matéria traz um dado que me chamou atenção: as mentorias já são 14,5% das matrículas de profissionais de RH numa plataforma de educação corporativa, contra 2,9% em 2023. E um estudo canadense mostra que 83% de quem tem mentor diz que a relação ajudou a avançar.
+
+Pra praticar ainda em dezembro: reserve 1 hora pro balanço, escreva um objetivo só, com prazo, e marque a conversa com sua liderança.
+
+Qual é o seu primeiro passo pra 2027?
+
+#Carreira #Mentoria #DesenvolvimentoHumano` },
+  caption: `5 passos pra planejar sua carreira em 2027, antes que vire promessa de janeiro.
+
+Segundo Luciano Santos, na Você RH: fazer um balanço do ano, definir onde quer chegar, mapear as competências que faltam, fortalecer a rede e conversar sobre suas ambições.
+
+E ponha mentoria no plano: 83% de quem tem mentor diz que a relação ajudou a avançar na carreira.
+
+Pra praticar esta semana: reserve 1 hora pro seu balanço. Conquistas, frustrações e o que deixou de fazer sentido.
+
+Qual é o seu primeiro passo pra 2027?
+
+#carreira #mentoria #planejamento
+
 Bruno Magalhães | HR Business Partner | R&S, D&I, DHO e People Analytics` }
 ];
