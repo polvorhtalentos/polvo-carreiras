@@ -83,6 +83,16 @@ Observações:
 - **Se a API recusar o vídeo** pela URL do GitHub: avise o Bruno, entregue o MP4 e a capa pela página e mantenha os carrosséis agendados.
 - **Se o Bruno pedir pra pausar ou mudar a agenda:** apague os avisos pendentes com `delete_trigger` (a lista sai em `list_triggers`) e agende de novo.
 
+## 5b. Modo manual (sem acesso à API)
+
+Use este modo quando o acesso à API da Meta não estiver disponível: credencial ausente, conta restrita pela Meta ou app sem portfólio empresarial. A agenda continua a mesma; só muda quem aperta "publicar".
+- Agende os mesmos horários com `send_later`. A mensagem de cada aviso pede pra entregar ao Bruno, com `SendUserFile`, os arquivos daquele item:
+  - **carrossel:** os 6 PNGs e a legenda;
+  - **Reels:** o MP4, a capa escolhida e a legenda;
+  - **story:** o MP4 e o lembrete da caixinha.
+- O aviso deve ser uma mensagem curta: "Hora de postar: tema N, carrossel. Arquivos abaixo; legenda pronta pra copiar."
+- Se o Bruno disser que a API voltou, rode `ig_publish.py --testar` e passe os itens que faltam pro modo automático.
+
 ## 6. Fechamento
 
 Na sexta, depois de agendar, responda com a agenda final (tabela), o link da página e o que o Bruno vai precisar fazer à mão (por exemplo, a caixinha nos stories). Ao longo da semana, cada publicação responde com o link do post. Depois da última, mande um resumo com todos os links.
