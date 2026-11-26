@@ -1,0 +1,42 @@
+{
+  "produzido_em": "2026-11-26",
+  "fuso": "America/Sao_Paulo",
+  "itens": [
+    {
+      "tema": 1,
+      "tipo": "carrossel",
+      "quando": "2026-12-01T12:10:00",
+      "capa": 2
+    },
+    {
+      "tema": 1,
+      "tipo": "stories",
+      "quando": "2026-12-01T19:10:00",
+      "capa": 2
+    },
+    {
+      "tema": 2,
+      "tipo": "carrossel",
+      "quando": "2026-12-02T12:10:00",
+      "capa": 1
+    },
+    {
+      "tema": 1,
+      "tipo": "reels",
+      "quando": "2026-12-02T18:40:00",
+      "capa": 2
+    },
+    {
+      "tema": 2,
+      "tipo": "stories",
+      "quando": "2026-12-02T19:10:00",
+      "capa": 1
+    },
+    {
+      "tema": 2,
+      "tipo": "reels",
+      "quando": "2026-12-03T18:40:00",
+      "capa": 1
+    }
+  ]
+}
