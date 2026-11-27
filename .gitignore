@@ -1,3 +1,6 @@
 conteudo/**/*.zip
 conteudo/**/web/m/
 conteudo/**/web/data.json
+conteudo/2026-11-27/depoimentos/fotos/
+conteudo/2026-11-27/depoimentos/out/*.png
+conteudo/2026-11-27/depoimentos/out/*.pdf

@@ -1,80 +1,90 @@
 <!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8">
 <link rel="stylesheet" href="fonts.css">
-<!-- Cards de depoimento POLVO RH.
-     ?f=li → LinkedIn 1080×1350 (carrossel e PDF) · ?f=st → Instagram stories 1080×1920 (texto entre y 260 e 1600)
+<!-- Cards de depoimento POLVO RH · versão clean (branco + lilás, pedido do Bruno em 27/11).
+     ?f=li → LinkedIn 1080×1350 · ?f=st → stories 1080×1920 (conteúdo entre y 260 e 1600)
      ?i=0 capa · 1..5 depoimentos · 6 chamada final -->
 <style>
-:root{--tinta:#13111B;--lav:#9C90D4;--lavd:#7D70B0;--lar:#F2A13A;--papel:#F9F8FB;--nevoa:#C4C0CE;--cinza:#A9A6B5;--sup:#2A2638;--borda:#3A3649}
+:root{--branco:#FFFFFF;--nevoa:#F6F4FC;--lilas-claro:#ECE8F8;--lilas:#9C90D4;--lilas-esc:#6E61A8;--tinta:#13111B;--texto2:#5F5A70;--linha:#DCD6F0}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Montserrat,sans-serif;color:var(--papel);background:var(--tinta);-webkit-font-smoothing:antialiased;overflow:hidden}
-#c{position:relative;overflow:hidden;background:var(--tinta)}
-.glow1{position:absolute;left:-280px;top:-260px;width:950px;height:950px;background:radial-gradient(circle,rgba(125,112,176,.55),transparent 65%)}
-.glow2{position:absolute;right:-300px;bottom:-300px;width:900px;height:900px;background:radial-gradient(circle,rgba(242,161,58,.22),transparent 65%)}
-.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(156,144,212,.05) 2px,transparent 2px),linear-gradient(90deg,rgba(156,144,212,.05) 2px,transparent 2px);background-size:90px 90px}
-.stripes{position:absolute;right:0;bottom:0;width:320px;height:320px;opacity:.5;background:repeating-linear-gradient(135deg,var(--lavd) 0 12px,transparent 12px 36px);-webkit-mask:linear-gradient(-45deg,#000 30%,transparent 62%)}
-.logo{position:absolute;left:80px;font-weight:900;font-size:36px;letter-spacing:.35em;color:var(--lav);display:flex;align-items:baseline;line-height:1}
+body{font-family:Montserrat,sans-serif;color:var(--tinta);background:var(--branco);-webkit-font-smoothing:antialiased;overflow:hidden}
+#c{position:relative;overflow:hidden;background:var(--branco)}
+.blob{position:absolute;right:-260px;top:-260px;width:820px;height:820px;border-radius:50%;background:radial-gradient(circle,var(--lilas-claro) 0%,rgba(236,232,248,0) 68%)}
+.blob2{position:absolute;left:-300px;bottom:-320px;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle,#F3F0FB 0%,rgba(243,240,251,0) 68%)}
+.pontos{position:absolute;right:70px;bottom:150px;width:220px;height:220px;background-image:radial-gradient(var(--linha) 3px,transparent 3.5px);background-size:28px 28px}
+.logo{position:absolute;left:80px;font-weight:900;font-size:34px;letter-spacing:.35em;color:var(--lilas-esc);display:flex;align-items:baseline;line-height:1}
 .logo svg{height:.7em;width:.8em;margin-right:.35em;fill:currentColor}
-.handle{position:absolute;right:80px;font-weight:800;font-size:30px;letter-spacing:.06em;color:var(--cinza)}
+.counter{position:absolute;right:80px;font-weight:800;font-size:28px;letter-spacing:.14em;color:var(--lilas)}
+.rodape{position:absolute;left:80px;right:80px;display:flex;align-items:center;gap:24px}
+.rodape i{flex:1;height:3px;background:var(--linha);border-radius:3px}
+.rodape span{font-weight:800;font-size:28px;letter-spacing:.12em;color:var(--lilas-esc)}
 .cont{position:absolute;left:80px;right:80px;display:flex;flex-direction:column;justify-content:center}
-.label{font-weight:800;font-size:28px;letter-spacing:.22em;color:var(--lar);margin-bottom:26px}
-h1{font-weight:900;font-size:92px;line-height:1.04;letter-spacing:-.02em;text-wrap:balance}
-.sub{font-weight:800;font-size:40px;line-height:1.2;color:var(--nevoa);margin-top:30px}
-.aspas{font-weight:900;font-size:260px;line-height:.6;color:var(--lar);height:120px;margin-bottom:10px}
-.quote{font-weight:800;font-size:var(--qf,52px);line-height:1.22;letter-spacing:-.01em;text-wrap:pretty}
-.quote b{color:var(--lav);font-weight:900}
-.pessoa{display:flex;align-items:center;gap:26px;margin-top:56px}
-.ini{flex:0 0 108px;height:108px;border-radius:50%;background:var(--lav);color:var(--tinta);font-weight:900;font-size:40px;display:flex;align-items:center;justify-content:center;letter-spacing:.02em}
-.nome{font-weight:900;font-size:40px}
-.cargo{font-weight:700;font-size:30px;color:var(--nevoa);margin-top:6px;line-height:1.25}
-.contexto{display:inline-block;margin-bottom:34px;border-radius:60px;border:3px solid var(--lav);background:rgba(156,144,212,.18);padding:12px 28px;font-weight:800;font-size:28px;letter-spacing:.12em}
-.counter{position:absolute;right:80px;font-weight:800;font-size:30px;letter-spacing:.14em;color:var(--cinza)}
-.card{border-radius:30px;border:3px solid rgba(156,144,212,.55);background:rgba(125,112,176,.16);padding:28px 34px;font-weight:800;font-size:40px;line-height:1.2;display:flex;align-items:center;gap:24px}
-.chk{flex:0 0 64px;height:64px;border-radius:50%;background:var(--lav);display:flex;align-items:center;justify-content:center}
-.lista{display:flex;flex-direction:column;gap:22px;margin-top:44px}
-.pill{display:inline-block;border-radius:60px;background:var(--lar);color:var(--tinta);padding:22px 40px;font-weight:900;font-size:38px;letter-spacing:.04em}
-.mini{font-weight:700;font-size:30px;color:var(--cinza);margin-top:26px}
+.label{font-weight:800;font-size:28px;letter-spacing:.22em;color:var(--lilas-esc);margin-bottom:26px}
+h1{font-weight:900;font-size:88px;line-height:1.04;letter-spacing:-.025em;text-wrap:balance}
+h1 em{font-style:normal;color:var(--lilas-esc)}
+.sub{font-weight:600;font-size:38px;line-height:1.3;color:var(--texto2);margin-top:28px}
+.foto{border-radius:50%;background-size:cover;background-position:center;box-shadow:0 0 0 8px var(--branco),0 0 0 14px var(--lilas)}
+.topo-dep{display:flex;align-items:center;gap:30px;margin-bottom:46px}
+.ctx{display:inline-block;border-radius:60px;background:var(--lilas-claro);color:var(--lilas-esc);padding:12px 26px;font-weight:800;font-size:26px;letter-spacing:.12em}
+.aspas{font-family:Georgia,serif;font-weight:700;font-size:200px;line-height:.5;color:var(--lilas);height:80px;margin-bottom:8px}
+.quote{font-weight:700;font-size:var(--qf,50px);line-height:1.3;letter-spacing:-.01em;text-wrap:pretty}
+.quote b{color:var(--lilas-esc);font-weight:900}
+.nome{font-weight:900;font-size:40px;margin-top:46px}
+.cargo{font-weight:600;font-size:30px;color:var(--texto2);margin-top:8px;line-height:1.3}
+.fotos{display:flex;margin-top:56px}
+.fotos .foto{width:150px;height:150px;margin-right:-26px}
+.painel{border-radius:40px;background:var(--lilas);color:var(--tinta);padding:56px 56px}
+.painel h1{font-size:var(--pf,70px)}
+.lista{display:flex;flex-direction:column;gap:18px;margin-top:38px}
+.item{display:flex;align-items:center;gap:22px;font-weight:800;font-size:var(--lf,36px);line-height:1.2}
+.chk{flex:0 0 58px;height:58px;border-radius:50%;background:var(--tinta);display:flex;align-items:center;justify-content:center}
+.pill{display:inline-block;border-radius:60px;background:var(--tinta);color:var(--branco);padding:22px 40px;font-weight:900;font-size:34px;letter-spacing:.05em;margin-top:42px}
+.assina{font-weight:700;font-size:28px;color:var(--texto2);margin-top:30px;letter-spacing:.06em}
 </style></head>
 <body><div id="c"></div>
 <script>
 const q=new URLSearchParams(location.search);const F=q.get('f')||'li';const I=+(q.get('i')||0);
 const W=1080,H=F==='st'?1920:1350;
 const D=[
- {ini:'LS',nome:'Luanna Siqueira',cargo:'Coordenadora Educacional · Impacto Social',ctx:'PROCESSO SELETIVO',
+ {foto:'fotos/luanna.jpg',nome:'Luanna Siqueira',cargo:'Coordenadora Educacional · Impacto Social',ctx:'PROCESSO SELETIVO',
   q:'Uma das experiências <b>mais empáticas e cuidadosas</b> que vivenciei. Me senti acolhida em todo o processo, com segurança em cada etapa.'},
- {ini:'LR',nome:'Luisa Ribeiro',cargo:'HR Business Partner & Talent Acquisition',ctx:'PROCESSO SELETIVO',
+ {foto:'fotos/luisa.jpg',nome:'Luisa Ribeiro',cargo:'HR Business Partner & Talent Acquisition',ctx:'PROCESSO SELETIVO',
   q:'Atencioso, claro e preciso em todas as etapas. <b>Feedbacks construtivos e claros</b> durante todo o processo.'},
- {ini:'JD',nome:'Julia Dentello',cargo:'Ao chegar no time da Moky, na Netza&CO',ctx:'NOVA CONTRATAÇÃO',
+ {foto:'fotos/julia.jpg',nome:'Julia Dentello',cargo:'Ao chegar no time da Moky, na Netza&CO',ctx:'NOVA CONTRATAÇÃO',
   q:'Obrigada demais <b>pelo cuidado com o meu processo seletivo.</b>'},
- {ini:'RM',nome:'Rariany Monteiro',cargo:'Senior Economist · hoje no WWF-Brasil',ctx:'HEADHUNTING',
+ {foto:'fotos/rariany.jpg',nome:'Rariany Monteiro',cargo:'Senior Economist · hoje no WWF-Brasil',ctx:'HEADHUNTING',
   q:'Um raro comprometimento em conectar pessoas a oportunidades alinhadas <b>não só com suas competências, mas também com seus propósitos.</b>'},
- {ini:'LO',nome:'Luana Oliveira',cargo:'Engenheira Civil · Gerenciamento de obras',ctx:'CONSULTORIA DE RH',
+ {foto:'fotos/luana.jpg',nome:'Luana Oliveira',cargo:'Engenheira Civil · Gerenciamento de obras',ctx:'CONSULTORIA DE RH',
   q:'Sua contribuição foi essencial para <b>fortalecer a cultura organizacional</b> e melhorar os processos de gestão de pessoas.'},
 ];
 const TRI='<svg viewBox="0 0 100 88"><path d="M0 0H100L50 88Z"/></svg>';
-const CHK='<svg width="32" height="32" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#13111B" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const CHK='<svg width="30" height="30" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#9C90D4" stroke-width="3.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const c=document.getElementById('c');c.style.width=W+'px';c.style.height=H+'px';
-document.body.style.width=W+'px';if(F==='st')document.documentElement.style.setProperty('--qf','62px');document.body.style.height=H+'px';
-const topo=F==='st'?260:70, base=F==='st'?1600:H-70;
+document.body.style.width=W+'px';document.body.style.height=H+'px';
+const st=F==='st'; if(st){document.documentElement.style.setProperty('--qf','58px');}
+const topo=st?260:72, base=st?1600:H-72;
 let corpo='';
 if(I===0){
-  corpo=`<div class="label">DEPOIMENTOS</div><h1>O QUE AS PESSOAS DIZEM DEPOIS DE UM PROCESSO COMIGO</h1>
-   <div class="sub">RECRUTAMENTO, CARREIRA E CULTURA, NAS PALAVRAS DE QUEM VIVEU.</div>`;
+  corpo=`<div class="label">DEPOIMENTOS</div><h1>O que as pessoas dizem <em>depois</em> de um processo comigo</h1>
+   <div class="sub">Recrutamento, carreira e cultura, nas palavras de quem viveu.</div>
+   <div class="fotos">${D.map(d=>`<div class="foto" style="background-image:url(${d.foto})"></div>`).join('')}</div>`;
 }else if(I<=5){
-  const d=D[I-1];
-  corpo=`<div><span class="contexto">${d.ctx}</span></div><div class="aspas">“</div><div class="quote">${d.q}</div>
-   <div class="pessoa"><div class="ini">${d.ini}</div><div><div class="nome">${d.nome}</div><div class="cargo">${d.cargo}</div></div></div>`;
+  const d=D[I-1];const fs=st?190:160;
+  corpo=`<div class="topo-dep"><div class="foto" style="width:${fs}px;height:${fs}px;flex:0 0 ${fs}px;background-image:url(${d.foto})"></div><span class="ctx">${d.ctx}</span></div>
+   <div class="aspas">“</div><div class="quote">${d.q}</div>
+   <div class="nome">${d.nome}</div><div class="cargo">${d.cargo}</div>`;
 }else{
-  const it=['PROCESSO SELETIVO HUMANO, COM MÉTODO','HEADHUNTING COM PROPÓSITO','CONSULTORIA DE CARREIRA','CLIMA, CULTURA E DESENVOLVIMENTO'];
-  corpo=`<h1 style="font-size:${F==='st'?88:72}px">CUIDADO TEM MÉTODO. E DÁ RESULTADO.</h1>
-   <div class="lista" style="${F==='st'?'':'gap:16px;margin-top:34px'}">${it.map(t=>`<div class="card" style="${F==='st'?'':'font-size:34px;padding:20px 28px'}"><div class="chk">${CHK}</div><div>${t}</div></div>`).join('')}</div>
-   <div style="margin-top:${F==='st'?46:32}px"><span class="pill">${F==='st'?'ME CHAMA NO DIRECT':'VAMOS CONVERSAR?'}</span></div>
-   <div class="mini">BRUNO MAGALHÃES · HR BUSINESS PARTNER</div>`;
+  const it=['Processo seletivo humano, com método','Headhunting com propósito','Consultoria de carreira','Clima, cultura e desenvolvimento'];
+  if(!st){document.documentElement.style.setProperty('--pf','64px');document.documentElement.style.setProperty('--lf','34px');}
+  corpo=`<div class="painel"><div class="label" style="color:var(--tinta)">POLVO RH</div><h1>Cuidado tem método. E dá resultado.</h1>
+   <div class="lista">${it.map(t=>`<div class="item"><div class="chk">${CHK}</div><div>${t}</div></div>`).join('')}</div>
+   <span class="pill">${st?'ME CHAMA NO DIRECT':'VAMOS CONVERSAR?'}</span></div>
+   <div class="assina">BRUNO MAGALHÃES · HR BUSINESS PARTNER</div>`;
 }
-c.innerHTML=`<div class="glow1"></div><div class="glow2"></div><div class="grid"></div><div class="stripes"></div>
+c.innerHTML=`<div class="blob"></div><div class="blob2"></div><div class="pontos"></div>
  <div class="logo" style="top:${topo}px">POL${TRI}O</div>
  <div class="counter" style="top:${topo}px">${String(I+1).padStart(2,'0')} / 07</div>
- <div class="cont" style="top:${topo+110}px;bottom:${H-base+80}px">${corpo}</div>
- <div class="handle" style="top:${base-30}px">POLVO RH</div>`;
-document.fonts.ready.then(()=>{const ct=document.querySelector('.cont');window.__ok=ct.scrollHeight<=ct.clientHeight+2;window.__ready=true});
+ <div class="cont" style="top:${topo+100}px;bottom:${H-base+70}px">${corpo}</div>
+ <div class="rodape" style="top:${base-20}px"><i></i><span>POLVO RH</span></div>`;
+Promise.all([document.fonts.ready,...[...document.querySelectorAll('.foto')].map(()=>new Promise(r=>setTimeout(r,150)))]).then(()=>{const ct=document.querySelector('.cont');window.__ok=ct.scrollHeight<=ct.clientHeight+2;window.__ready=true});
 </script></body></html>
