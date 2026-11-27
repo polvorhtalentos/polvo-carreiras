@@ -1,15 +1,36 @@
 """Gera web/index.html: página dos depoimentos (LinkedIn + stories) com downloads. Visual branco + lilás."""
 import json, html
 e = lambda s: html.escape(s, quote=True)
-TXT = open('out/linkedin-texto.txt').read()
-NOMES = ['capa', 'Luanna Siqueira', 'Luisa Ribeiro', 'Julia Dentello', 'Rariany Monteiro', 'Luana Oliveira', 'chamada final']
+VERS = [('bruno', 'Assinatura Bruno Magalhães'), ('polvo', 'Assinatura POL▼O RH')]
+TXT = {v: open(f'out/{v}/linkedin-texto.txt').read() for v, _ in VERS}
+NOMES = ['capa', 'Luanna Siqueira', 'Luisa Ribeiro', 'Rariany Monteiro', 'Luana Oliveira', 'chamada final']
 
-def strip(pre, w, h, rotulo):
+def strip(v, pre, w, h, rotulo):
     return ''.join(
-        f'<figure class="peca {pre}"><img src="m/{pre}-{i:02d}.jpg" alt="{rotulo} {i}: {e(NOMES[i-1])}" loading="lazy" width="{w}" height="{h}">'
+        f'<figure class="peca {pre}"><img src="m/{v}/{pre}-{i:02d}.jpg" alt="{rotulo} {i}: {e(NOMES[i-1])}" loading="lazy" width="{w}" height="{h}">'
         f'<figcaption>{i:02d} · {e(NOMES[i-1])}</figcaption>'
-        f'<button class="dl" type="button" data-arq="m/{pre}-{i:02d}.png" data-nome="polvo-depoimentos-{pre}-{i:02d}.png">Baixar</button></figure>'
-        for i in range(1, 8))
+        f'<button class="dl" type="button" data-arq="m/{v}/{pre}-{i:02d}.png" data-nome="depoimentos-{v}-{pre}-{i:02d}.png">Baixar</button></figure>'
+        for i in range(1, 7))
+
+def versao(v, titulo):
+    return f'''<h2 class="versao" id="v-{v}">{e(titulo)}</h2>
+  <div class="acoes"><button class="btn btn-forte dl-grande" type="button" data-zip="tudo" data-v="{v}">Baixar esta versão (.zip)</button></div>
+  <section class="bloco">
+    <div class="bloco-head"><h3>LinkedIn</h3><span class="tag">Carrossel 6 cards · 1080×1350 · PDF</span></div>
+    <div class="tira" tabindex="0" aria-label="Carrossel do LinkedIn, {e(titulo)}">{strip(v, 'linkedin', 1080, 1350, 'Card')}</div>
+    <div class="acoes">
+      <button class="btn btn-forte dl-grande" type="button" data-arq="m/{v}/linkedin-carrossel-depoimentos.pdf" data-nome="depoimentos-{v}-linkedin-carrossel.pdf">Baixar PDF do carrossel</button>
+      <button class="btn btn-leve dl-grande" type="button" data-zip="linkedin" data-v="{v}">Baixar kit do LinkedIn (.zip)</button>
+      <span class="mini">No LinkedIn, poste o PDF em "Adicionar documento": ele vira carrossel.</span>
+    </div>
+    <pre class="texto" id="txt-{v}">{e(TXT[v])}</pre>
+    <div class="acoes"><button class="btn btn-forte copiar" type="button" data-alvo="txt-{v}">Copiar texto do post</button><button class="btn btn-leve dl-grande" type="button" data-txt="{v}">Baixar .txt</button></div>
+  </section>
+  <section class="bloco">
+    <div class="bloco-head"><h3>Instagram · stories</h3><span class="tag">6 stories · 1080×1920</span></div>
+    <div class="tira" tabindex="0" aria-label="Stories, {e(titulo)}">{strip(v, 'story', 1080, 1920, 'Story')}</div>
+    <div class="acoes"><button class="btn btn-forte dl-grande" type="button" data-zip="stories" data-v="{v}">Baixar os 6 stories (.zip)</button><span class="mini">Poste na ordem. No último, coloque a figurinha de link ou de mensagem pro direct.</span></div>
+  </section>'''
 
 page = f'''<title>Depoimentos POLVO RH</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -36,7 +57,9 @@ h1 em {{ font-style:normal; color:var(--lilas-esc) }}
 .acoes {{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:12px }}
 .bloco {{ background:var(--nevoa); border:1px solid var(--linha); border-radius:24px; padding:22px; margin-top:24px; min-width:0 }}
 .bloco-head {{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:12px }}
-.bloco h2 {{ margin:0; font-weight:900; font-size:22px }}
+.bloco h3 {{ margin:0; font-weight:900; font-size:20px }}
+.versao {{ font-weight:900; font-size:26px; margin:40px 0 4px; padding-top:18px; border-top:2px solid var(--linha) }}
+.nav {{ margin-top:18px; font-weight:700; color:var(--texto2) }}
 .tag {{ font-size:12px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--lilas-esc); background:var(--lilas-claro); border-radius:99px; padding:5px 12px }}
 .tira {{ display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:10px }}
 .peca {{ margin:0; scroll-snap-align:start; display:flex; flex-direction:column; align-items:flex-start; gap:6px }}
@@ -62,28 +85,13 @@ button:disabled {{ opacity:.7; cursor:progress }}
 
   <p class="eyebrow">Depoimentos</p>
   <h1>O que as pessoas dizem <em>depois</em> de um processo comigo</h1>
-  <p class="intro">Cinco recomendações, em cards pro LinkedIn e stories pro Instagram, no visual branco e lilás. Cada peça tem download, e dá pra baixar tudo junto.</p>
-  <div class="acoes"><button class="btn btn-forte dl-grande" type="button" data-zip="tudo">Baixar tudo (.zip)</button><span class="mini">LinkedIn (cards, PDF e texto) e stories, cerca de 6 MB.</span></div>
+  <p class="intro">Quatro recomendações em cards pro LinkedIn e stories pro Instagram, no visual branco e lilás, em duas versões de assinatura. Cada peça tem download.</p>
+  <div class="acoes"><button class="btn btn-forte dl-grande" type="button" data-zip="tudo" data-v="ambas">Baixar as duas versões (.zip)</button><span class="mini">Cada versão numa pasta, com LinkedIn (cards, PDF e texto) e stories.</span></div>
   <p class="aviso">Os downloads aparecem quando a página termina de carregar no Claude. Se não aparecerem, abra a página num navegador.</p>
 
-  <section class="bloco" aria-labelledby="h-li">
-    <div class="bloco-head"><h2 id="h-li">LinkedIn</h2><span class="tag">Carrossel 7 cards · 1080×1350 · PDF</span></div>
-    <div class="tira" tabindex="0" aria-label="Carrossel do LinkedIn">{strip('linkedin', 1080, 1350, 'Card')}</div>
-    <div class="acoes">
-      <button class="btn btn-forte dl-grande" type="button" data-arq="m/linkedin-carrossel-depoimentos.pdf" data-nome="polvo-depoimentos-linkedin-carrossel.pdf">Baixar PDF do carrossel</button>
-      <button class="btn btn-leve dl-grande" type="button" data-zip="linkedin">Baixar kit do LinkedIn (.zip)</button>
-      <span class="mini">No LinkedIn, poste o PDF em "Adicionar documento": ele vira carrossel.</span>
-    </div>
-    <pre class="texto" id="txt-li">{e(TXT)}</pre>
-    <div class="acoes"><button class="btn btn-forte" type="button" id="copiar">Copiar texto do post</button><button class="btn btn-leve dl-grande" type="button" data-txt="1">Baixar .txt</button></div>
-  </section>
-
-  <section class="bloco" aria-labelledby="h-st">
-    <div class="bloco-head"><h2 id="h-st">Instagram · stories</h2><span class="tag">7 stories · 1080×1920</span></div>
-    <div class="tira" tabindex="0" aria-label="Stories do Instagram">{strip('story', 1080, 1920, 'Story')}</div>
-    <div class="acoes"><button class="btn btn-forte dl-grande" type="button" data-zip="stories">Baixar os 7 stories (.zip)</button><span class="mini">Poste na ordem. No último, coloque a figurinha de link ou de mensagem pro direct.</span></div>
-  </section>
-
+  <nav class="nav">Versões: <a href="#v-bruno">Bruno Magalhães</a> · <a href="#v-polvo">POL▼O RH</a></nav>
+  {versao('bruno', 'Versão 1 · Assinatura Bruno Magalhães')}
+  {versao('polvo', 'Versão 2 · Assinatura POL▼O RH')}
   <p class="nota">As fotos são as de perfil do LinkedIn de cada profissional. Antes de postar, vale avisar quem foi citado.</p>
 </div>
 <script>
@@ -91,12 +99,16 @@ const NL = String.fromCharCode(10);
 let DL = null;
 if (window.claude && claude.use) claude.use('downloads').then(d => {{ DL = d; if (d) document.body.classList.add('pode-baixar'); }}).catch(() => {{}});
 const busca = async (u) => {{ const r = await fetch(u); if (!r.ok) throw {{ code: 'fetch' }}; return r.blob(); }};
-const TXT = document.getElementById('txt-li').textContent;
-const LI = [1,2,3,4,5,6,7].map(i => 'linkedin-0' + i + '.png'), ST = [1,2,3,4,5,6,7].map(i => 'story-0' + i + '.png');
-async function zip(tipo) {{
+const PECAS = (pre) => [1,2,3,4,5,6].map(i => pre + '-0' + i + '.png');
+async function poe(z, v, tipo, pasta) {{
+  const p = pasta ? pasta + '/' : '';
+  if (tipo !== 'stories') {{ const q = tipo === 'tudo' ? p + 'linkedin/' : p; for (const f of PECAS('linkedin')) z.file(q + f, await busca('m/' + v + '/' + f)); z.file(q + 'carrossel-depoimentos.pdf', await busca('m/' + v + '/linkedin-carrossel-depoimentos.pdf')); z.file(q + 'texto-do-post.txt', document.getElementById('txt-' + v).textContent + NL); }}
+  if (tipo !== 'linkedin') {{ const q = tipo === 'tudo' ? p + 'stories/' : p; for (const f of PECAS('story')) z.file(q + f, await busca('m/' + v + '/' + f)); }}
+}}
+async function zip(tipo, v) {{
   const z = new JSZip();
-  if (tipo !== 'stories') {{ const p = tipo === 'tudo' ? 'linkedin/' : ''; for (const f of LI) z.file(p + f, await busca('m/' + f)); z.file(p + 'carrossel-depoimentos.pdf', await busca('m/linkedin-carrossel-depoimentos.pdf')); z.file(p + 'texto-do-post.txt', TXT + NL); }}
-  if (tipo !== 'linkedin') {{ const p = tipo === 'tudo' ? 'stories/' : ''; for (const f of ST) z.file(p + f, await busca('m/' + f)); }}
+  if (v === 'ambas') {{ await poe(z, 'bruno', 'tudo', 'assinatura-bruno-magalhaes'); await poe(z, 'polvo', 'tudo', 'assinatura-polvo-rh'); }}
+  else await poe(z, v, tipo, '');
   return z.generateAsync({{ type: 'blob', compression: 'STORE' }});
 }}
 const MSG = {{ declined: 'Download cancelado', rate_limited: 'Aguarde e tente de novo', host_unavailable: 'Abra num navegador pra baixar', fetch: 'Não achei o arquivo' }};
@@ -104,18 +116,18 @@ document.querySelectorAll('[data-arq],[data-zip],[data-txt]').forEach(b => b.add
   if (!DL) return; const rot = b.textContent; b.disabled = true; b.textContent = 'Preparando…';
   try {{
     let nome, dados;
-    if (b.dataset.zip) {{ if (!window.JSZip) throw {{ code: 'zip' }}; nome = 'polvo-depoimentos-' + b.dataset.zip + '.zip'; dados = await zip(b.dataset.zip); }}
-    else if (b.dataset.txt) {{ nome = 'polvo-depoimentos-texto-linkedin.txt'; dados = TXT + NL; }}
+    if (b.dataset.zip) {{ if (!window.JSZip) throw {{ code: 'zip' }}; nome = 'depoimentos-' + b.dataset.v + '-' + b.dataset.zip + '.zip'; dados = await zip(b.dataset.zip, b.dataset.v); }}
+    else if (b.dataset.txt) {{ nome = 'depoimentos-' + b.dataset.txt + '-texto-linkedin.txt'; dados = document.getElementById('txt-' + b.dataset.txt).textContent + NL; }}
     else {{ nome = b.dataset.nome; dados = await busca(b.dataset.arq); }}
     b.textContent = 'Confirme o download'; await DL.save({{ filename: nome, data: dados }}); b.textContent = 'Baixado';
   }} catch (err) {{ b.textContent = (err && err.code === 'zip') ? 'Não deu pra montar o ZIP aqui' : (MSG[err && err.code] || 'Não foi possível baixar'); }}
   setTimeout(() => {{ b.textContent = rot; b.disabled = false; }}, 2500);
 }}));
-document.getElementById('copiar').addEventListener('click', (ev) => {{
-  const b = ev.currentTarget, rot = b.textContent, el = document.getElementById('txt-li');
+document.querySelectorAll('.copiar').forEach(b => b.addEventListener('click', () => {{
+  const rot = b.textContent, el = document.getElementById(b.dataset.alvo);
   const sel = () => {{ const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Texto selecionado: use Ctrl+C'; setTimeout(() => b.textContent = rot, 2500); }};
   try {{ navigator.clipboard.writeText(el.textContent).then(() => {{ b.textContent = 'Copiado'; setTimeout(() => b.textContent = rot, 1800); }}, sel); }} catch (x) {{ sel(); }}
-}});
+}}));
 </script>
 '''
 open('web/index.html', 'w').write(page)

@@ -23,7 +23,9 @@ h1 em { font-style:normal; color:var(--lilas-esc) }
 .acoes { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:12px }
 .bloco { background:var(--nevoa); border:1px solid var(--linha); border-radius:24px; padding:22px; margin-top:24px; min-width:0 }
 .bloco-head { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:12px }
-.bloco h2 { margin:0; font-weight:900; font-size:22px }
+.bloco h3 { margin:0; font-weight:900; font-size:20px }
+.versao { font-weight:900; font-size:26px; margin:40px 0 4px; padding-top:18px; border-top:2px solid var(--linha) }
+.nav { margin-top:18px; font-weight:700; color:var(--texto2) }
 .tag { font-size:12px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--lilas-esc); background:var(--lilas-claro); border-radius:99px; padding:5px 12px }
 .tira { display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:10px }
 .peca { margin:0; scroll-snap-align:start; display:flex; flex-direction:column; align-items:flex-start; gap:6px }
@@ -49,25 +51,27 @@ button:disabled { opacity:.7; cursor:progress }
 
   <p class="eyebrow">Depoimentos</p>
   <h1>O que as pessoas dizem <em>depois</em> de um processo comigo</h1>
-  <p class="intro">Cinco recomendações, em cards pro LinkedIn e stories pro Instagram, no visual branco e lilás. Cada peça tem download, e dá pra baixar tudo junto.</p>
-  <div class="acoes"><button class="btn btn-forte dl-grande" type="button" data-zip="tudo">Baixar tudo (.zip)</button><span class="mini">LinkedIn (cards, PDF e texto) e stories, cerca de 6 MB.</span></div>
+  <p class="intro">Quatro recomendações em cards pro LinkedIn e stories pro Instagram, no visual branco e lilás, em duas versões de assinatura. Cada peça tem download.</p>
+  <div class="acoes"><button class="btn btn-forte dl-grande" type="button" data-zip="tudo" data-v="ambas">Baixar as duas versões (.zip)</button><span class="mini">Cada versão numa pasta, com LinkedIn (cards, PDF e texto) e stories.</span></div>
   <p class="aviso">Os downloads aparecem quando a página termina de carregar no Claude. Se não aparecerem, abra a página num navegador.</p>
 
-  <section class="bloco" aria-labelledby="h-li">
-    <div class="bloco-head"><h2 id="h-li">LinkedIn</h2><span class="tag">Carrossel 7 cards · 1080×1350 · PDF</span></div>
-    <div class="tira" tabindex="0" aria-label="Carrossel do LinkedIn"><figure class="peca linkedin"><img src="m/linkedin-01.jpg" alt="Card 1: capa" loading="lazy" width="1080" height="1350"><figcaption>01 · capa</figcaption><button class="dl" type="button" data-arq="m/linkedin-01.png" data-nome="polvo-depoimentos-linkedin-01.png">Baixar</button></figure><figure class="peca linkedin"><img src="m/linkedin-02.jpg" alt="Card 2: Luanna Siqueira" loading="lazy" width="1080" height="1350"><figcaption>02 · Luanna Siqueira</figcaption><button class="dl" type="button" data-arq="m/linkedin-02.png" data-nome="polvo-depoimentos-linkedin-02.png">Baixar</button></figure><figure class="peca linkedin"><img src="m/linkedin-03.jpg" alt="Card 3: Luisa Ribeiro" loading="lazy" width="1080" height="1350"><figcaption>03 · Luisa Ribeiro</figcaption><button class="dl" type="button" data-arq="m/linkedin-03.png" data-nome="polvo-depoimentos-linkedin-03.png">Baixar</button></figure><figure class="peca linkedin"><img src="m/linkedin-04.jpg" alt="Card 4: Julia Dentello" loading="lazy" width="1080" height="1350"><figcaption>04 · Julia Dentello</figcaption><button class="dl" type="button" data-arq="m/linkedin-04.png" data-nome="polvo-depoimentos-linkedin-04.png">Baixar</button></figure><figure class="peca linkedin"><img src="m/linkedin-05.jpg" alt="Card 5: Rariany Monteiro" loading="lazy" width="1080" height="1350"><figcaption>05 · Rariany Monteiro</figcaption><button class="dl" type="button" data-arq="m/linkedin-05.png" data-nome="polvo-depoimentos-linkedin-05.png">Baixar</button></figure><figure class="peca linkedin"><img src="m/linkedin-06.jpg" alt="Card 6: Luana Oliveira" loading="lazy" width="1080" height="1350"><figcaption>06 · Luana Oliveira</figcaption><button class="dl" type="button" data-arq="m/linkedin-06.png" data-nome="polvo-depoimentos-linkedin-06.png">Baixar</button></figure><figure class="peca linkedin"><img src="m/linkedin-07.jpg" alt="Card 7: chamada final" loading="lazy" width="1080" height="1350"><figcaption>07 · chamada final</figcaption><button class="dl" type="button" data-arq="m/linkedin-07.png" data-nome="polvo-depoimentos-linkedin-07.png">Baixar</button></figure></div>
+  <nav class="nav">Versões: <a href="#v-bruno">Bruno Magalhães</a> · <a href="#v-polvo">POL▼O RH</a></nav>
+  <h2 class="versao" id="v-bruno">Versão 1 · Assinatura Bruno Magalhães</h2>
+  <div class="acoes"><button class="btn btn-forte dl-grande" type="button" data-zip="tudo" data-v="bruno">Baixar esta versão (.zip)</button></div>
+  <section class="bloco">
+    <div class="bloco-head"><h3>LinkedIn</h3><span class="tag">Carrossel 6 cards · 1080×1350 · PDF</span></div>
+    <div class="tira" tabindex="0" aria-label="Carrossel do LinkedIn, Versão 1 · Assinatura Bruno Magalhães"><figure class="peca linkedin"><img src="m/bruno/linkedin-01.jpg" alt="Card 1: capa" loading="lazy" width="1080" height="1350"><figcaption>01 · capa</figcaption><button class="dl" type="button" data-arq="m/bruno/linkedin-01.png" data-nome="depoimentos-bruno-linkedin-01.png">Baixar</button></figure><figure class="peca linkedin"><img src="m/bruno/linkedin-02.jpg" alt="Card 2: Luanna Siqueira" loading="lazy" width="1080" height="1350"><figcaption>02 · Luanna Siqueira</figcaption><button class="dl" type="button" data-arq="m/bruno/linkedin-02.png" data-nome="depoimentos-bruno-linkedin-02.png">Baixar</button></figure><figure class="peca linkedin"><img src="m/bruno/linkedin-03.jpg" alt="Card 3: Luisa Ribeiro" loading="lazy" width="1080" height="1350"><figcaption>03 · Luisa Ribeiro</figcaption><button class="dl" type="button" data-arq="m/bruno/linkedin-03.png" data-nome="depoimentos-bruno-linkedin-03.png">Baixar</button></figure><figure class="peca linkedin"><img src="m/bruno/linkedin-04.jpg" alt="Card 4: Rariany Monteiro" loading="lazy" width="1080" height="1350"><figcaption>04 · Rariany Monteiro</figcaption><button class="dl" type="button" data-arq="m/bruno/linkedin-04.png" data-nome="depoimentos-bruno-linkedin-04.png">Baixar</button></figure><figure class="peca linkedin"><img src="m/bruno/linkedin-05.jpg" alt="Card 5: Luana Oliveira" loading="lazy" width="1080" height="1350"><figcaption>05 · Luana Oliveira</figcaption><button class="dl" type="button" data-arq="m/bruno/linkedin-05.png" data-nome="depoimentos-bruno-linkedin-05.png">Baixar</button></figure><figure class="peca linkedin"><img src="m/bruno/linkedin-06.jpg" alt="Card 6: chamada final" loading="lazy" width="1080" height="1350"><figcaption>06 · chamada final</figcaption><button class="dl" type="button" data-arq="m/bruno/linkedin-06.png" data-nome="depoimentos-bruno-linkedin-06.png">Baixar</button></figure></div>
     <div class="acoes">
-      <button class="btn btn-forte dl-grande" type="button" data-arq="m/linkedin-carrossel-depoimentos.pdf" data-nome="polvo-depoimentos-linkedin-carrossel.pdf">Baixar PDF do carrossel</button>
-      <button class="btn btn-leve dl-grande" type="button" data-zip="linkedin">Baixar kit do LinkedIn (.zip)</button>
+      <button class="btn btn-forte dl-grande" type="button" data-arq="m/bruno/linkedin-carrossel-depoimentos.pdf" data-nome="depoimentos-bruno-linkedin-carrossel.pdf">Baixar PDF do carrossel</button>
+      <button class="btn btn-leve dl-grande" type="button" data-zip="linkedin" data-v="bruno">Baixar kit do LinkedIn (.zip)</button>
       <span class="mini">No LinkedIn, poste o PDF em "Adicionar documento": ele vira carrossel.</span>
     </div>
-    <pre class="texto" id="txt-li">Processo seletivo não termina na contratação. Ele termina no que a pessoa sente quando lembra dele.
+    <pre class="texto" id="txt-bruno">Processo seletivo não termina na contratação. Ele termina no que a pessoa sente quando lembra dele.
 
 Juntei aqui o que algumas pessoas escreveram sobre os processos, as consultorias e os caminhos de carreira em que estive junto.
 
 &quot;Uma das experiências mais empáticas e cuidadosas que vivenciei.&quot; Luanna, num processo seletivo.
 &quot;Feedbacks construtivos e claros durante todo o processo.&quot; Luisa, que também é de RH.
-&quot;Obrigada demais pelo cuidado com o meu processo seletivo.&quot; Julia, ao chegar no time da Moky.
 &quot;Conectar pessoas a oportunidades alinhadas não só com suas competências, mas também com seus propósitos.&quot; Rariany, que hoje está no WWF-Brasil.
 &quot;Essencial para fortalecer a cultura organizacional.&quot; Luana, sobre a consultoria de RH.
 
@@ -84,16 +88,58 @@ Se a sua empresa quer contratar bem sem perder o lado humano, ou se você está 
 Obrigado a cada pessoa que dedicou um tempo pra escrever essas palavras. 💜
 
 #RecrutamentoESeleção #Carreira #RHEstratégico
+
+Bruno Magalhães | HR Business Partner | R&amp;S, D&amp;I, DHO e People Analytics
 </pre>
-    <div class="acoes"><button class="btn btn-forte" type="button" id="copiar">Copiar texto do post</button><button class="btn btn-leve dl-grande" type="button" data-txt="1">Baixar .txt</button></div>
+    <div class="acoes"><button class="btn btn-forte copiar" type="button" data-alvo="txt-bruno">Copiar texto do post</button><button class="btn btn-leve dl-grande" type="button" data-txt="bruno">Baixar .txt</button></div>
   </section>
-
-  <section class="bloco" aria-labelledby="h-st">
-    <div class="bloco-head"><h2 id="h-st">Instagram · stories</h2><span class="tag">7 stories · 1080×1920</span></div>
-    <div class="tira" tabindex="0" aria-label="Stories do Instagram"><figure class="peca story"><img src="m/story-01.jpg" alt="Story 1: capa" loading="lazy" width="1080" height="1920"><figcaption>01 · capa</figcaption><button class="dl" type="button" data-arq="m/story-01.png" data-nome="polvo-depoimentos-story-01.png">Baixar</button></figure><figure class="peca story"><img src="m/story-02.jpg" alt="Story 2: Luanna Siqueira" loading="lazy" width="1080" height="1920"><figcaption>02 · Luanna Siqueira</figcaption><button class="dl" type="button" data-arq="m/story-02.png" data-nome="polvo-depoimentos-story-02.png">Baixar</button></figure><figure class="peca story"><img src="m/story-03.jpg" alt="Story 3: Luisa Ribeiro" loading="lazy" width="1080" height="1920"><figcaption>03 · Luisa Ribeiro</figcaption><button class="dl" type="button" data-arq="m/story-03.png" data-nome="polvo-depoimentos-story-03.png">Baixar</button></figure><figure class="peca story"><img src="m/story-04.jpg" alt="Story 4: Julia Dentello" loading="lazy" width="1080" height="1920"><figcaption>04 · Julia Dentello</figcaption><button class="dl" type="button" data-arq="m/story-04.png" data-nome="polvo-depoimentos-story-04.png">Baixar</button></figure><figure class="peca story"><img src="m/story-05.jpg" alt="Story 5: Rariany Monteiro" loading="lazy" width="1080" height="1920"><figcaption>05 · Rariany Monteiro</figcaption><button class="dl" type="button" data-arq="m/story-05.png" data-nome="polvo-depoimentos-story-05.png">Baixar</button></figure><figure class="peca story"><img src="m/story-06.jpg" alt="Story 6: Luana Oliveira" loading="lazy" width="1080" height="1920"><figcaption>06 · Luana Oliveira</figcaption><button class="dl" type="button" data-arq="m/story-06.png" data-nome="polvo-depoimentos-story-06.png">Baixar</button></figure><figure class="peca story"><img src="m/story-07.jpg" alt="Story 7: chamada final" loading="lazy" width="1080" height="1920"><figcaption>07 · chamada final</figcaption><button class="dl" type="button" data-arq="m/story-07.png" data-nome="polvo-depoimentos-story-07.png">Baixar</button></figure></div>
-    <div class="acoes"><button class="btn btn-forte dl-grande" type="button" data-zip="stories">Baixar os 7 stories (.zip)</button><span class="mini">Poste na ordem. No último, coloque a figurinha de link ou de mensagem pro direct.</span></div>
+  <section class="bloco">
+    <div class="bloco-head"><h3>Instagram · stories</h3><span class="tag">6 stories · 1080×1920</span></div>
+    <div class="tira" tabindex="0" aria-label="Stories, Versão 1 · Assinatura Bruno Magalhães"><figure class="peca story"><img src="m/bruno/story-01.jpg" alt="Story 1: capa" loading="lazy" width="1080" height="1920"><figcaption>01 · capa</figcaption><button class="dl" type="button" data-arq="m/bruno/story-01.png" data-nome="depoimentos-bruno-story-01.png">Baixar</button></figure><figure class="peca story"><img src="m/bruno/story-02.jpg" alt="Story 2: Luanna Siqueira" loading="lazy" width="1080" height="1920"><figcaption>02 · Luanna Siqueira</figcaption><button class="dl" type="button" data-arq="m/bruno/story-02.png" data-nome="depoimentos-bruno-story-02.png">Baixar</button></figure><figure class="peca story"><img src="m/bruno/story-03.jpg" alt="Story 3: Luisa Ribeiro" loading="lazy" width="1080" height="1920"><figcaption>03 · Luisa Ribeiro</figcaption><button class="dl" type="button" data-arq="m/bruno/story-03.png" data-nome="depoimentos-bruno-story-03.png">Baixar</button></figure><figure class="peca story"><img src="m/bruno/story-04.jpg" alt="Story 4: Rariany Monteiro" loading="lazy" width="1080" height="1920"><figcaption>04 · Rariany Monteiro</figcaption><button class="dl" type="button" data-arq="m/bruno/story-04.png" data-nome="depoimentos-bruno-story-04.png">Baixar</button></figure><figure class="peca story"><img src="m/bruno/story-05.jpg" alt="Story 5: Luana Oliveira" loading="lazy" width="1080" height="1920"><figcaption>05 · Luana Oliveira</figcaption><button class="dl" type="button" data-arq="m/bruno/story-05.png" data-nome="depoimentos-bruno-story-05.png">Baixar</button></figure><figure class="peca story"><img src="m/bruno/story-06.jpg" alt="Story 6: chamada final" loading="lazy" width="1080" height="1920"><figcaption>06 · chamada final</figcaption><button class="dl" type="button" data-arq="m/bruno/story-06.png" data-nome="depoimentos-bruno-story-06.png">Baixar</button></figure></div>
+    <div class="acoes"><button class="btn btn-forte dl-grande" type="button" data-zip="stories" data-v="bruno">Baixar os 6 stories (.zip)</button><span class="mini">Poste na ordem. No último, coloque a figurinha de link ou de mensagem pro direct.</span></div>
   </section>
+  <h2 class="versao" id="v-polvo">Versão 2 · Assinatura POL▼O RH</h2>
+  <div class="acoes"><button class="btn btn-forte dl-grande" type="button" data-zip="tudo" data-v="polvo">Baixar esta versão (.zip)</button></div>
+  <section class="bloco">
+    <div class="bloco-head"><h3>LinkedIn</h3><span class="tag">Carrossel 6 cards · 1080×1350 · PDF</span></div>
+    <div class="tira" tabindex="0" aria-label="Carrossel do LinkedIn, Versão 2 · Assinatura POL▼O RH"><figure class="peca linkedin"><img src="m/polvo/linkedin-01.jpg" alt="Card 1: capa" loading="lazy" width="1080" height="1350"><figcaption>01 · capa</figcaption><button class="dl" type="button" data-arq="m/polvo/linkedin-01.png" data-nome="depoimentos-polvo-linkedin-01.png">Baixar</button></figure><figure class="peca linkedin"><img src="m/polvo/linkedin-02.jpg" alt="Card 2: Luanna Siqueira" loading="lazy" width="1080" height="1350"><figcaption>02 · Luanna Siqueira</figcaption><button class="dl" type="button" data-arq="m/polvo/linkedin-02.png" data-nome="depoimentos-polvo-linkedin-02.png">Baixar</button></figure><figure class="peca linkedin"><img src="m/polvo/linkedin-03.jpg" alt="Card 3: Luisa Ribeiro" loading="lazy" width="1080" height="1350"><figcaption>03 · Luisa Ribeiro</figcaption><button class="dl" type="button" data-arq="m/polvo/linkedin-03.png" data-nome="depoimentos-polvo-linkedin-03.png">Baixar</button></figure><figure class="peca linkedin"><img src="m/polvo/linkedin-04.jpg" alt="Card 4: Rariany Monteiro" loading="lazy" width="1080" height="1350"><figcaption>04 · Rariany Monteiro</figcaption><button class="dl" type="button" data-arq="m/polvo/linkedin-04.png" data-nome="depoimentos-polvo-linkedin-04.png">Baixar</button></figure><figure class="peca linkedin"><img src="m/polvo/linkedin-05.jpg" alt="Card 5: Luana Oliveira" loading="lazy" width="1080" height="1350"><figcaption>05 · Luana Oliveira</figcaption><button class="dl" type="button" data-arq="m/polvo/linkedin-05.png" data-nome="depoimentos-polvo-linkedin-05.png">Baixar</button></figure><figure class="peca linkedin"><img src="m/polvo/linkedin-06.jpg" alt="Card 6: chamada final" loading="lazy" width="1080" height="1350"><figcaption>06 · chamada final</figcaption><button class="dl" type="button" data-arq="m/polvo/linkedin-06.png" data-nome="depoimentos-polvo-linkedin-06.png">Baixar</button></figure></div>
+    <div class="acoes">
+      <button class="btn btn-forte dl-grande" type="button" data-arq="m/polvo/linkedin-carrossel-depoimentos.pdf" data-nome="depoimentos-polvo-linkedin-carrossel.pdf">Baixar PDF do carrossel</button>
+      <button class="btn btn-leve dl-grande" type="button" data-zip="linkedin" data-v="polvo">Baixar kit do LinkedIn (.zip)</button>
+      <span class="mini">No LinkedIn, poste o PDF em "Adicionar documento": ele vira carrossel.</span>
+    </div>
+    <pre class="texto" id="txt-polvo">Processo seletivo não termina na contratação. Ele termina no que a pessoa sente quando lembra dele.
 
+Juntei aqui o que algumas pessoas escreveram sobre os processos, as consultorias e os caminhos de carreira em que estive junto.
+
+&quot;Uma das experiências mais empáticas e cuidadosas que vivenciei.&quot; Luanna, num processo seletivo.
+&quot;Feedbacks construtivos e claros durante todo o processo.&quot; Luisa, que também é de RH.
+&quot;Conectar pessoas a oportunidades alinhadas não só com suas competências, mas também com seus propósitos.&quot; Rariany, que hoje está no WWF-Brasil.
+&quot;Essencial para fortalecer a cultura organizacional.&quot; Luana, sobre a consultoria de RH.
+
+O que eu tiro disso: cuidado não é ser bonzinho. É explicar cada etapa, dar feedback de verdade e tratar a pessoa como gente, mesmo quando a resposta é &quot;não&quot;. Isso tem método.
+
+Na POLVO RH, a gente leva esse método pra:
+✅ Processos seletivos humanos e bem estruturados
+✅ Headhunting com propósito
+✅ Consultoria de carreira
+✅ Clima, cultura e desenvolvimento de pessoas
+
+Se a sua empresa quer contratar bem sem perder o lado humano, ou se você está buscando o próximo passo da sua carreira, vamos conversar?
+
+Obrigado a cada pessoa que dedicou um tempo pra escrever essas palavras. 💜
+
+#RecrutamentoESeleção #Carreira #RHEstratégico
+
+POLVO RH · Consultoria de carreira e RH
+</pre>
+    <div class="acoes"><button class="btn btn-forte copiar" type="button" data-alvo="txt-polvo">Copiar texto do post</button><button class="btn btn-leve dl-grande" type="button" data-txt="polvo">Baixar .txt</button></div>
+  </section>
+  <section class="bloco">
+    <div class="bloco-head"><h3>Instagram · stories</h3><span class="tag">6 stories · 1080×1920</span></div>
+    <div class="tira" tabindex="0" aria-label="Stories, Versão 2 · Assinatura POL▼O RH"><figure class="peca story"><img src="m/polvo/story-01.jpg" alt="Story 1: capa" loading="lazy" width="1080" height="1920"><figcaption>01 · capa</figcaption><button class="dl" type="button" data-arq="m/polvo/story-01.png" data-nome="depoimentos-polvo-story-01.png">Baixar</button></figure><figure class="peca story"><img src="m/polvo/story-02.jpg" alt="Story 2: Luanna Siqueira" loading="lazy" width="1080" height="1920"><figcaption>02 · Luanna Siqueira</figcaption><button class="dl" type="button" data-arq="m/polvo/story-02.png" data-nome="depoimentos-polvo-story-02.png">Baixar</button></figure><figure class="peca story"><img src="m/polvo/story-03.jpg" alt="Story 3: Luisa Ribeiro" loading="lazy" width="1080" height="1920"><figcaption>03 · Luisa Ribeiro</figcaption><button class="dl" type="button" data-arq="m/polvo/story-03.png" data-nome="depoimentos-polvo-story-03.png">Baixar</button></figure><figure class="peca story"><img src="m/polvo/story-04.jpg" alt="Story 4: Rariany Monteiro" loading="lazy" width="1080" height="1920"><figcaption>04 · Rariany Monteiro</figcaption><button class="dl" type="button" data-arq="m/polvo/story-04.png" data-nome="depoimentos-polvo-story-04.png">Baixar</button></figure><figure class="peca story"><img src="m/polvo/story-05.jpg" alt="Story 5: Luana Oliveira" loading="lazy" width="1080" height="1920"><figcaption>05 · Luana Oliveira</figcaption><button class="dl" type="button" data-arq="m/polvo/story-05.png" data-nome="depoimentos-polvo-story-05.png">Baixar</button></figure><figure class="peca story"><img src="m/polvo/story-06.jpg" alt="Story 6: chamada final" loading="lazy" width="1080" height="1920"><figcaption>06 · chamada final</figcaption><button class="dl" type="button" data-arq="m/polvo/story-06.png" data-nome="depoimentos-polvo-story-06.png">Baixar</button></figure></div>
+    <div class="acoes"><button class="btn btn-forte dl-grande" type="button" data-zip="stories" data-v="polvo">Baixar os 6 stories (.zip)</button><span class="mini">Poste na ordem. No último, coloque a figurinha de link ou de mensagem pro direct.</span></div>
+  </section>
   <p class="nota">As fotos são as de perfil do LinkedIn de cada profissional. Antes de postar, vale avisar quem foi citado.</p>
 </div>
 <script>
@@ -101,12 +147,16 @@ const NL = String.fromCharCode(10);
 let DL = null;
 if (window.claude && claude.use) claude.use('downloads').then(d => { DL = d; if (d) document.body.classList.add('pode-baixar'); }).catch(() => {});
 const busca = async (u) => { const r = await fetch(u); if (!r.ok) throw { code: 'fetch' }; return r.blob(); };
-const TXT = document.getElementById('txt-li').textContent;
-const LI = [1,2,3,4,5,6,7].map(i => 'linkedin-0' + i + '.png'), ST = [1,2,3,4,5,6,7].map(i => 'story-0' + i + '.png');
-async function zip(tipo) {
+const PECAS = (pre) => [1,2,3,4,5,6].map(i => pre + '-0' + i + '.png');
+async function poe(z, v, tipo, pasta) {
+  const p = pasta ? pasta + '/' : '';
+  if (tipo !== 'stories') { const q = tipo === 'tudo' ? p + 'linkedin/' : p; for (const f of PECAS('linkedin')) z.file(q + f, await busca('m/' + v + '/' + f)); z.file(q + 'carrossel-depoimentos.pdf', await busca('m/' + v + '/linkedin-carrossel-depoimentos.pdf')); z.file(q + 'texto-do-post.txt', document.getElementById('txt-' + v).textContent + NL); }
+  if (tipo !== 'linkedin') { const q = tipo === 'tudo' ? p + 'stories/' : p; for (const f of PECAS('story')) z.file(q + f, await busca('m/' + v + '/' + f)); }
+}
+async function zip(tipo, v) {
   const z = new JSZip();
-  if (tipo !== 'stories') { const p = tipo === 'tudo' ? 'linkedin/' : ''; for (const f of LI) z.file(p + f, await busca('m/' + f)); z.file(p + 'carrossel-depoimentos.pdf', await busca('m/linkedin-carrossel-depoimentos.pdf')); z.file(p + 'texto-do-post.txt', TXT + NL); }
-  if (tipo !== 'linkedin') { const p = tipo === 'tudo' ? 'stories/' : ''; for (const f of ST) z.file(p + f, await busca('m/' + f)); }
+  if (v === 'ambas') { await poe(z, 'bruno', 'tudo', 'assinatura-bruno-magalhaes'); await poe(z, 'polvo', 'tudo', 'assinatura-polvo-rh'); }
+  else await poe(z, v, tipo, '');
   return z.generateAsync({ type: 'blob', compression: 'STORE' });
 }
 const MSG = { declined: 'Download cancelado', rate_limited: 'Aguarde e tente de novo', host_unavailable: 'Abra num navegador pra baixar', fetch: 'Não achei o arquivo' };
@@ -114,16 +164,16 @@ document.querySelectorAll('[data-arq],[data-zip],[data-txt]').forEach(b => b.add
   if (!DL) return; const rot = b.textContent; b.disabled = true; b.textContent = 'Preparando…';
   try {
     let nome, dados;
-    if (b.dataset.zip) { if (!window.JSZip) throw { code: 'zip' }; nome = 'polvo-depoimentos-' + b.dataset.zip + '.zip'; dados = await zip(b.dataset.zip); }
-    else if (b.dataset.txt) { nome = 'polvo-depoimentos-texto-linkedin.txt'; dados = TXT + NL; }
+    if (b.dataset.zip) { if (!window.JSZip) throw { code: 'zip' }; nome = 'depoimentos-' + b.dataset.v + '-' + b.dataset.zip + '.zip'; dados = await zip(b.dataset.zip, b.dataset.v); }
+    else if (b.dataset.txt) { nome = 'depoimentos-' + b.dataset.txt + '-texto-linkedin.txt'; dados = document.getElementById('txt-' + b.dataset.txt).textContent + NL; }
     else { nome = b.dataset.nome; dados = await busca(b.dataset.arq); }
     b.textContent = 'Confirme o download'; await DL.save({ filename: nome, data: dados }); b.textContent = 'Baixado';
   } catch (err) { b.textContent = (err && err.code === 'zip') ? 'Não deu pra montar o ZIP aqui' : (MSG[err && err.code] || 'Não foi possível baixar'); }
   setTimeout(() => { b.textContent = rot; b.disabled = false; }, 2500);
 }));
-document.getElementById('copiar').addEventListener('click', (ev) => {
-  const b = ev.currentTarget, rot = b.textContent, el = document.getElementById('txt-li');
+document.querySelectorAll('.copiar').forEach(b => b.addEventListener('click', () => {
+  const rot = b.textContent, el = document.getElementById(b.dataset.alvo);
   const sel = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Texto selecionado: use Ctrl+C'; setTimeout(() => b.textContent = rot, 2500); };
   try { navigator.clipboard.writeText(el.textContent).then(() => { b.textContent = 'Copiado'; setTimeout(() => b.textContent = rot, 1800); }, sel); } catch (x) { sel(); }
-});
+}));
 </script>
