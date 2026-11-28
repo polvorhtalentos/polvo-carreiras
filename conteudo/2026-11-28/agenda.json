@@ -1,12 +1,30 @@
 {
   "produzido_em": "2026-11-28",
   "fuso": "America/Sao_Paulo",
-  "status": "aprovada pelo Bruno em 28/11/2026 (temas 1, 2, 3 e 6; modo manual)",
+  "status": "aprovada pelo Bruno em 28/11/2026 (temas 1, 2, 3, 6 e 7; modo manual)",
   "itens": [
+    {
+      "tema": 7,
+      "tipo": "carrossel",
+      "quando": "2026-11-28T12:10:00",
+      "capa": 2
+    },
+    {
+      "tema": 7,
+      "tipo": "stories",
+      "quando": "2026-11-28T19:10:00",
+      "capa": 2
+    },
     {
       "tema": 2,
       "tipo": "carrossel",
       "quando": "2026-11-30T12:10:00",
+      "capa": 2
+    },
+    {
+      "tema": 7,
+      "tipo": "reels",
+      "quando": "2026-11-30T18:40:00",
       "capa": 2
     },
     {
