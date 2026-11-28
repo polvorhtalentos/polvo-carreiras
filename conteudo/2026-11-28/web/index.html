@@ -1,0 +1,544 @@
+<title>Pauta POLVO RH 28/11</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style>
+/* Layout: painel escuro POLVO; grade de capas na entrada, cada tema em rota própria com 3 blocos (LinkedIn, Instagram, Stories). */
+:root {
+  --tinta:#13111B; --sup:#1E1B29; --sup2:#2A2638; --borda:#3A3649;
+  --lav:#9C90D4; --lavd:#7D70B0; --lar:#F2A13A; --papel:#F9F8FB; --nevoa:#C4C0CE; --cinza:#A9A6B5;
+  --f:'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing:border-box }
+body { margin:0; background:var(--tinta); color:var(--papel); font-family:var(--f); font-weight:500; line-height:1.5;
+  padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); padding-block:24px 64px }
+.wrap { max-width:1080px; margin:0 auto }
+a { color:var(--lav) }
+a:focus-visible, button:focus-visible, input:focus-visible + span, .carrossel:focus-visible { outline:3px solid var(--lar); outline-offset:3px }
+.topo { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; padding-bottom:20px; border-bottom:1px solid var(--borda) }
+.logo { font-weight:900; letter-spacing:.35em; color:var(--lav); font-size:20px; display:flex; align-items:baseline }
+.logo svg { width:.8em; height:.7em; margin-right:.35em; fill:currentColor }
+.topo .data { color:var(--cinza); font-weight:700; font-size:13px; letter-spacing:.14em; text-transform:uppercase }
+.eyebrow { display:block; color:var(--lar); font-weight:800; font-size:12px; letter-spacing:.2em; text-transform:uppercase; margin:0 }
+h1 { font-weight:900; font-size:clamp(30px, 6vw, 52px); line-height:1.05; letter-spacing:-.02em; margin:28px 0 10px; text-wrap:balance }
+.intro { color:var(--nevoa); max-width:62ch; margin:0 0 28px }
+.grade { display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:18px }
+.card { display:flex; flex-direction:column; text-decoration:none; color:var(--papel); background:var(--sup); border:1px solid var(--borda); border-radius:18px; overflow:hidden; transition:transform .15s, border-color .15s }
+.card:hover { transform:translateY(-3px); border-color:var(--lavd) }
+.card img { width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; display:block }
+.card-txt { display:flex; flex-direction:column; gap:6px; padding:14px 16px 18px }
+.card-txt b { font-weight:800; font-size:17px; line-height:1.25 }
+.mini { color:var(--cinza); font-size:13px }
+.voltar { display:inline-block; margin:22px 0 8px; font-weight:700; text-decoration:none }
+.tema-head h2 { font-weight:900; font-size:clamp(28px, 5.4vw, 46px); line-height:1.08; letter-spacing:-.02em; margin:10px 0 14px; text-wrap:balance }
+.fato { color:var(--nevoa); max-width:68ch; margin:0 0 6px }
+.fonte { color:var(--cinza); font-size:14px; margin:0 0 8px }
+.bloco { background:var(--sup); border:1px solid var(--borda); border-radius:22px; padding:22px; margin-top:22px; min-width:0 }
+.bloco-head { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:10px }
+.bloco h3 { margin:0; font-weight:900; font-size:22px }
+.tag { font-size:12px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--tinta); background:var(--lav); border-radius:99px; padding:5px 12px }
+.ajuda { color:var(--cinza); font-size:14px; margin:0 0 12px }
+.hooks { display:grid; gap:10px; margin-bottom:14px }
+.hook { display:flex; gap:12px; align-items:flex-start; background:var(--sup2); border:1px solid var(--borda); border-radius:14px; padding:12px 14px; cursor:pointer; font-weight:700 }
+.hook input { accent-color:var(--lar); margin-top:4px; flex:0 0 auto }
+.hook:has(input:checked) { border-color:var(--lar) }
+.texto { white-space:pre-wrap; word-wrap:break-word; font-family:var(--f); font-size:15px; line-height:1.6; background:var(--tinta); border:1px solid var(--borda); border-radius:14px; padding:16px 18px; margin:0 0 12px; max-height:520px; overflow:auto }
+.copiar { font-family:var(--f); font-weight:800; font-size:14px; letter-spacing:.04em; color:var(--tinta); background:var(--lar); border:0; border-radius:99px; padding:12px 20px; cursor:pointer }
+.copiar.ok { background:var(--lav) }
+.acoes { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:10px }
+.dl { display:none; font-family:var(--f); font-weight:800; font-size:14px; color:var(--papel); background:transparent; border:2px solid var(--lav); border-radius:99px; padding:10px 18px; cursor:pointer }
+.dl:hover { background:rgba(156,144,212,.18) }
+.dl:disabled { opacity:.7; cursor:progress }
+.dl-forte { border-color:var(--lar); color:var(--lar) }
+.dl-mini { font-size:12px; padding:6px 12px; margin-top:6px }
+body.pode-baixar .dl { display:inline-flex }
+body.pode-baixar .aviso-dl { display:none }
+.aviso-dl { color:var(--cinza); font-size:13px; margin:6px 0 18px }
+.topo-dl { margin:0 0 6px }
+body.pode-baixar .topo-dl { margin-bottom:22px }
+.slide { margin:0; flex:0 0 min(78%, 300px); width:min(78%, 300px); display:flex; flex-direction:column; align-items:flex-start; scroll-snap-align:start }
+.slide img { width:100%; height:auto; border-radius:12px; display:block }
+.lista-dl, .capa-item { list-style:none; margin-left:-18px }
+.capas { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:12px; max-width:520px }
+.capas-tit { margin:6px 0 8px; color:var(--nevoa); font-size:14px }
+.capa { margin:0; min-width:0 }
+.capa img { width:100%; height:auto; border-radius:10px; display:block }
+.carrossel { display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:10px }
+
+.dupla { display:grid; grid-template-columns:minmax(0, 300px) minmax(0, 1fr); gap:20px; margin-top:18px; align-items:start }
+.post-unico { margin:0 }
+.post-unico img { width:100%; height:auto; border-radius:12px; display:block }
+figcaption { color:var(--cinza); font-size:13px; margin-top:6px }
+.legenda h4 { margin:0 0 8px; font-weight:800 }
+.story-wrap { display:grid; grid-template-columns:minmax(0, 300px) minmax(0, 1fr); gap:20px; align-items:start }
+video { width:100%; aspect-ratio:9/16; background:#000; border-radius:16px; display:block }
+.dicas { margin:0; padding-left:18px; color:var(--nevoa); display:grid; gap:8px }
+.rodape { margin-top:40px; color:var(--cinza); font-size:13px; border-top:1px solid var(--borda); padding-top:16px }
+@media (max-width:640px) { .dupla, .story-wrap { grid-template-columns:1fr } .post-unico, video { max-width:320px } }
+@media (prefers-reduced-motion:reduce) { .card { transition:none } }
+</style>
+<div class="wrap">
+  <div class="topo"><span class="logo">POL<svg viewBox="0 0 100 88" aria-hidden="true"><path d="M0 0H100L50 88Z"/></svg>O</span><span class="data">POLVO RH · 28/11/2026</span></div>
+
+  <section id="inicio">
+    <h1>Pauta da semana</h1>
+    <p class="intro">6 temas a partir dos alertas do Google e das notícias do LinkedIn. Cada tema tem o texto do LinkedIn, o carrossel e o post único do Instagram com legenda, e o motion pros stories.</p>
+    <div class="acoes topo-dl"><button class="dl dl-forte" type="button" data-acao="tudo">Baixar tudo dos 6 temas (.zip)</button><span class="mini">Cerca de 65 MB. Cada tema numa pasta.</span></div>
+    <p class="aviso-dl" id="aviso-dl">Os downloads aparecem quando a página termina de carregar no Claude. Se não aparecerem, abra a página num navegador.</p>
+    <div class="grade">
+  <a class="card" href="#tema-1">
+    <img src="m/t1-c1.jpg" alt="" loading="lazy" width="1080" height="1350">
+    <span class="card-txt"><span class="eyebrow">Carreira</span><b>Invisible skills na liderança</b><span class="mini">Exame · 26/11/2026</span></span>
+  </a>
+  <a class="card" href="#tema-2">
+    <img src="m/t2-c1.jpg" alt="" loading="lazy" width="1080" height="1350">
+    <span class="card-txt"><span class="eyebrow">Liderança</span><b>Bom profissional ≠ bom líder</b><span class="mini">Você RH · nov/2026</span></span>
+  </a>
+  <a class="card" href="#tema-3">
+    <img src="m/t3-c1.jpg" alt="" loading="lazy" width="1080" height="1350">
+    <span class="card-txt"><span class="eyebrow">Liderança</span><b>Líderes transformadores são raros</b><span class="mini">Valor Econômico · 25/11/2026</span></span>
+  </a>
+  <a class="card" href="#tema-4">
+    <img src="m/t4-c1.jpg" alt="" loading="lazy" width="1080" height="1350">
+    <span class="card-txt"><span class="eyebrow">DHO</span><b>Falta de talento em 80% das empresas</b><span class="mini">BRA 1 · nov/2026</span></span>
+  </a>
+  <a class="card" href="#tema-5">
+    <img src="m/t5-c1.jpg" alt="" loading="lazy" width="1080" height="1350">
+    <span class="card-txt"><span class="eyebrow">RH estratégico</span><b>IA e o redesenho do trabalho</b><span class="mini">StartSe · nov/2026</span></span>
+  </a>
+  <a class="card" href="#tema-6">
+    <img src="m/t6-c1.jpg" alt="" loading="lazy" width="1080" height="1350">
+    <span class="card-txt"><span class="eyebrow">D&amp;I</span><b>Diversidade na seleção de chefias</b><span class="mini">Agência Gov · 24/11/2026 · Correio Braziliense</span></span>
+  </a>
+    </div>
+  </section>
+  
+<section class="tema" id="tema-1" hidden>
+  <a class="voltar" href="#inicio">← Todos os temas</a>
+  <header class="tema-head">
+    <p class="eyebrow">Alerta Skill carreira · 27/11 · Carreira</p>
+    <h2>Invisible skills na liderança</h2>
+    <p class="fato">Talita Motta, fundadora da INSIDE Executive Search, chama de &quot;invisible skills&quot; a capacidade de ler contexto e agir no momento certo: saber quando falar, com quem, em que tom e como construir alianças. Ela vê ainda dois comportamentos frequentes entre os promovidos (protagonismo e inquietação intelectual) e diz que, com a IA, o domínio técnico perde exclusividade.</p>
+    <p class="fonte">Fonte: <a href="https://exame.com/carreira/o-que-mais-voce-sabe-headhunter-fala-sobre-as-invisible-skills-como-fator-para-futuros-lideres/" target="_blank" rel="noopener">Exame · 26/11/2026</a></p>
+    <div class="acoes"><button class="dl dl-forte" type="button" data-acao="tema" data-n="1">Baixar tudo deste tema (.zip)</button></div>
+  </header>
+
+  <div class="bloco">
+    <div class="bloco-head"><h3>LinkedIn</h3><span class="tag">Texto · voz Top Voice</span></div>
+    <p class="ajuda">Escolha o gancho. O texto copiado já sai com ele no topo.</p>
+    <div class="hooks"><label class="hook"><input type="radio" name="h1" id="h1-0" value="0" checked><span>Nem sempre o mais técnico chega ao topo.</span></label><label class="hook"><input type="radio" name="h1" id="h1-1" value="1"><span>Tem habilidade que não cabe no currículo. E é ela que tem pesado na promoção.</span></label><label class="hook"><input type="radio" name="h1" id="h1-2" value="2"><span>&quot;O que mais você sabe fazer?&quot; Essa pergunta de uma headhunter ficou na minha cabeça.</span></label></div>
+    <pre class="texto" id="li-1"></pre>
+    <div class="acoes"><button class="copiar" data-alvo="li-1" type="button">Copiar texto do LinkedIn</button><button class="dl" type="button" data-acao="li" data-n="1">Baixar .txt</button></div>
+  </div>
+
+  <div class="bloco">
+    <div class="bloco-head"><h3>Instagram</h3><span class="tag">Carrossel 6 slides · 1080×1350</span></div>
+    <div class="carrossel" tabindex="0" aria-label="Carrossel: deslize para ver os 6 slides"><figure class="slide"><img src="m/t1-c1.jpg" alt="Slide 1 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="1" data-i="1">Baixar slide 1</button></figure><figure class="slide"><img src="m/t1-c2.jpg" alt="Slide 2 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="1" data-i="2">Baixar slide 2</button></figure><figure class="slide"><img src="m/t1-c3.jpg" alt="Slide 3 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="1" data-i="3">Baixar slide 3</button></figure><figure class="slide"><img src="m/t1-c4.jpg" alt="Slide 4 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="1" data-i="4">Baixar slide 4</button></figure><figure class="slide"><img src="m/t1-c5.jpg" alt="Slide 5 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="1" data-i="5">Baixar slide 5</button></figure><figure class="slide"><img src="m/t1-c6.jpg" alt="Slide 6 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="1" data-i="6">Baixar slide 6</button></figure></div>
+    <div class="acoes"><button class="dl dl-forte" type="button" data-acao="kit" data-n="1">Baixar kit do carrossel (.zip)</button><span class="mini">6 slides em PNG + legenda</span></div>
+    <div class="dupla">
+      <figure class="post-unico"><img src="m/t1-info.jpg" alt="Post único (infográfico)" loading="lazy" width="1080" height="1350"><figcaption>Post único · infográfico</figcaption><button class="dl dl-mini" type="button" data-acao="info" data-n="1">Baixar post único</button></figure>
+      <div class="legenda">
+        <h4>Legenda</h4>
+        <pre class="texto" id="ig-1">As habilidades que não aparecem no currículo, mas pesam na hora de chegar à liderança.
+
+Na Exame, a headhunter Talita Motta chama de &quot;invisible skills&quot;: saber quando falar, com quem, em que tom e como construir alianças. Com a IA deixando a técnica mais acessível, ler o contexto passa a valer mais.
+
+Pra praticar esta semana: antes da próxima reunião importante, anote quem decide, o que preocupa essa pessoa e qual é o melhor momento pra falar.
+
+O que você sabe além do que está no currículo?
+
+#carreira #lideranca #desenvolvimento
+
+Bruno Magalhães | HR Business Partner | R&amp;S, D&amp;I, DHO e People Analytics</pre>
+        <div class="acoes"><button class="copiar" data-alvo="ig-1" type="button">Copiar legenda</button><button class="dl" type="button" data-acao="leg" data-n="1">Baixar .txt</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="bloco-head"><h3>Stories e Reels</h3><span class="tag">Motion na prática · 3 capas</span></div>
+    <div class="story-wrap">
+      <video src="m/t1-story.mp4" controls playsinline preload="metadata" poster="m/t1-c1.jpg"></video>
+      <ul class="dicas">
+        <li class="lista-dl"><button class="dl" type="button" data-acao="story" data-n="1">Baixar vídeo (.mp4)</button></li>
+        <li class="capa-item"><p class="capas-tit">3 capas de Reels pra escolher · 1080×1920. Texto e logo ficam no recorte 3:4 do grid.</p><div class="capas"><figure class="capa"><img src="m/t1-capa-1.jpg" alt="Capa de Reels 1" loading="lazy" width="1080" height="1920"><figcaption>Tipográfica</figcaption><button class="dl dl-mini" type="button" data-acao="capa" data-n="1" data-v="1">Baixar capa 1</button></figure><figure class="capa"><img src="m/t1-capa-2.jpg" alt="Capa de Reels 2" loading="lazy" width="1080" height="1920"><figcaption>Com foto</figcaption><button class="dl dl-mini" type="button" data-acao="capa" data-n="1" data-v="2">Baixar capa 2</button></figure><figure class="capa"><img src="m/t1-capa-3.jpg" alt="Capa de Reels 3" loading="lazy" width="1080" height="1920"><figcaption>Checklist</figcaption><button class="dl dl-mini" type="button" data-acao="capa" data-n="1" data-v="3">Baixar capa 3</button></figure></div></li>
+        <li>O motion mostra como fazer na prática o que o carrossel ensina, em 4 passos.</li>
+        <li>Nos stories, suba o vídeo inteiro. Nos Reels, escolha uma das capas em "Editar capa" &gt; "Adicionar da galeria". Alterne entre elas pra o perfil não ficar repetitivo.</li>
+        <li>Na última tela, cole a figurinha <b>Caixinha de perguntas</b> logo abaixo da pergunta.</li>
+        <li>Texto dentro da área segura: nada fica escondido pela barra do app.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="tema" id="tema-2" hidden>
+  <a class="voltar" href="#inicio">← Todos os temas</a>
+  <header class="tema-head">
+    <p class="eyebrow">Alerta Desenvolvimento de líderes · 27/11 · Liderança</p>
+    <h2>Bom profissional ≠ bom líder</h2>
+    <p class="fato">Para Douglas Domingues, CEO da DomEduc, o erro mais comum na escolha de líderes é confundir alta performance técnica com prontidão para liderar pessoas. Ele alerta contra promoções por tempo de casa, afinidade ou percepção subjetiva e recomenda critérios objetivos de prontidão, além de trilhas com projetos interáreas, mentoria, shadowing, feedback estruturado e desafios progressivos.</p>
+    <p class="fonte">Fonte: <a href="https://vocerh.abril.com.br/web-stories-abril/como-identificar-potenciais-lideres-dentro-da-empresa/" target="_blank" rel="noopener">Você RH · nov/2026</a></p>
+    <div class="acoes"><button class="dl dl-forte" type="button" data-acao="tema" data-n="2">Baixar tudo deste tema (.zip)</button></div>
+  </header>
+
+  <div class="bloco">
+    <div class="bloco-head"><h3>LinkedIn</h3><span class="tag">Texto · voz Top Voice</span></div>
+    <p class="ajuda">Escolha o gancho. O texto copiado já sai com ele no topo.</p>
+    <div class="hooks"><label class="hook"><input type="radio" name="h2" id="h2-0" value="0" checked><span>Promoção não é prêmio. É mudança de função.</span></label><label class="hook"><input type="radio" name="h2" id="h2-1" value="1"><span>Promover o melhor técnico pode custar caro: você perde um bom especialista e ganha um gestor despreparado.</span></label><label class="hook"><input type="radio" name="h2" id="h2-2" value="2"><span>Tinha um gestor que me achava incrível. Mas cadê essa informação?</span></label></div>
+    <pre class="texto" id="li-2"></pre>
+    <div class="acoes"><button class="copiar" data-alvo="li-2" type="button">Copiar texto do LinkedIn</button><button class="dl" type="button" data-acao="li" data-n="2">Baixar .txt</button></div>
+  </div>
+
+  <div class="bloco">
+    <div class="bloco-head"><h3>Instagram</h3><span class="tag">Carrossel 6 slides · 1080×1350</span></div>
+    <div class="carrossel" tabindex="0" aria-label="Carrossel: deslize para ver os 6 slides"><figure class="slide"><img src="m/t2-c1.jpg" alt="Slide 1 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="2" data-i="1">Baixar slide 1</button></figure><figure class="slide"><img src="m/t2-c2.jpg" alt="Slide 2 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="2" data-i="2">Baixar slide 2</button></figure><figure class="slide"><img src="m/t2-c3.jpg" alt="Slide 3 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="2" data-i="3">Baixar slide 3</button></figure><figure class="slide"><img src="m/t2-c4.jpg" alt="Slide 4 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="2" data-i="4">Baixar slide 4</button></figure><figure class="slide"><img src="m/t2-c5.jpg" alt="Slide 5 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="2" data-i="5">Baixar slide 5</button></figure><figure class="slide"><img src="m/t2-c6.jpg" alt="Slide 6 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="2" data-i="6">Baixar slide 6</button></figure></div>
+    <div class="acoes"><button class="dl dl-forte" type="button" data-acao="kit" data-n="2">Baixar kit do carrossel (.zip)</button><span class="mini">6 slides em PNG + legenda</span></div>
+    <div class="dupla">
+      <figure class="post-unico"><img src="m/t2-info.jpg" alt="Post único (infográfico)" loading="lazy" width="1080" height="1350"><figcaption>Post único · infográfico</figcaption><button class="dl dl-mini" type="button" data-acao="info" data-n="2">Baixar post único</button></figure>
+      <div class="legenda">
+        <h4>Legenda</h4>
+        <pre class="texto" id="ig-2">Promoção não é prêmio. É mudança de função.
+
+Na Você RH, Douglas Domingues, CEO da DomEduc, aponta o erro mais comum: confundir alta performance técnica com prontidão pra liderar. No improviso, a empresa perde um bom especialista e ganha um gestor despreparado.
+
+Os sinais de um futuro líder: senso de dono, influência sem cargo, maturidade sob pressão, curiosidade e coragem pra decidir.
+
+Pra praticar esta semana: escreva 3 critérios do que sua empresa chama de prontidão pra liderar.
+
+Na sua empresa, promoção é prêmio ou mudança de função?
+
+#lideranca #gestaodepessoas #rh
+
+Bruno Magalhães | HR Business Partner | R&amp;S, D&amp;I, DHO e People Analytics</pre>
+        <div class="acoes"><button class="copiar" data-alvo="ig-2" type="button">Copiar legenda</button><button class="dl" type="button" data-acao="leg" data-n="2">Baixar .txt</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="bloco-head"><h3>Stories e Reels</h3><span class="tag">Motion na prática · 3 capas</span></div>
+    <div class="story-wrap">
+      <video src="m/t2-story.mp4" controls playsinline preload="metadata" poster="m/t2-c1.jpg"></video>
+      <ul class="dicas">
+        <li class="lista-dl"><button class="dl" type="button" data-acao="story" data-n="2">Baixar vídeo (.mp4)</button></li>
+        <li class="capa-item"><p class="capas-tit">3 capas de Reels pra escolher · 1080×1920. Texto e logo ficam no recorte 3:4 do grid.</p><div class="capas"><figure class="capa"><img src="m/t2-capa-1.jpg" alt="Capa de Reels 1" loading="lazy" width="1080" height="1920"><figcaption>Tipográfica</figcaption><button class="dl dl-mini" type="button" data-acao="capa" data-n="2" data-v="1">Baixar capa 1</button></figure><figure class="capa"><img src="m/t2-capa-2.jpg" alt="Capa de Reels 2" loading="lazy" width="1080" height="1920"><figcaption>Com foto</figcaption><button class="dl dl-mini" type="button" data-acao="capa" data-n="2" data-v="2">Baixar capa 2</button></figure><figure class="capa"><img src="m/t2-capa-3.jpg" alt="Capa de Reels 3" loading="lazy" width="1080" height="1920"><figcaption>Checklist</figcaption><button class="dl dl-mini" type="button" data-acao="capa" data-n="2" data-v="3">Baixar capa 3</button></figure></div></li>
+        <li>O motion mostra como fazer na prática o que o carrossel ensina, em 4 passos.</li>
+        <li>Nos stories, suba o vídeo inteiro. Nos Reels, escolha uma das capas em "Editar capa" &gt; "Adicionar da galeria". Alterne entre elas pra o perfil não ficar repetitivo.</li>
+        <li>Na última tela, cole a figurinha <b>Caixinha de perguntas</b> logo abaixo da pergunta.</li>
+        <li>Texto dentro da área segura: nada fica escondido pela barra do app.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="tema" id="tema-3" hidden>
+  <a class="voltar" href="#inicio">← Todos os temas</a>
+  <header class="tema-head">
+    <p class="eyebrow">Alerta Desenvolvimento de líderes · 27/11 · Liderança</p>
+    <h2>Líderes transformadores são raros</h2>
+    <p class="fato">A 3ª edição do Observatório de Liderança, da People &amp; Results, mostra que só 9% dos chefes mapeados têm perfil transformador e 80% são mantenedores, que sustentam e aperfeiçoam o que já funciona. Pouco mais da metade dos gestores não tem o perfil ideal para o cargo. Segundo a CEO Maria Candida Baumer, ter muitos mantenedores não é, por si só, um problema, e fundadores pedem alguém que não espere ordens e ajude a carregar o peso das decisões.</p>
+    <p class="fonte">Fonte: <a href="https://valor.globo.com/carreira/noticia/2026/11/25/lideres-transformadores-sao-raridade-nas-empresas-brasileiras.ghtml" target="_blank" rel="noopener">Valor Econômico · 25/11/2026</a></p>
+    <div class="acoes"><button class="dl dl-forte" type="button" data-acao="tema" data-n="3">Baixar tudo deste tema (.zip)</button></div>
+  </header>
+
+  <div class="bloco">
+    <div class="bloco-head"><h3>LinkedIn</h3><span class="tag">Texto · voz Top Voice</span></div>
+    <p class="ajuda">Escolha o gancho. O texto copiado já sai com ele no topo.</p>
+    <div class="hooks"><label class="hook"><input type="radio" name="h3" id="h3-0" value="0" checked><span>&quot;Eu quero dividir meu cérebro com outra pessoa.&quot; É isso que os donos de empresa estão pedindo.</span></label><label class="hook"><input type="radio" name="h3" id="h3-1" value="1"><span>Só 9% dos chefes têm perfil transformador. E tudo bem que não sejam todos.</span></label><label class="hook"><input type="radio" name="h3" id="h3-2" value="2"><span>Sua liderança sustenta ou transforma?</span></label></div>
+    <pre class="texto" id="li-3"></pre>
+    <div class="acoes"><button class="copiar" data-alvo="li-3" type="button">Copiar texto do LinkedIn</button><button class="dl" type="button" data-acao="li" data-n="3">Baixar .txt</button></div>
+  </div>
+
+  <div class="bloco">
+    <div class="bloco-head"><h3>Instagram</h3><span class="tag">Carrossel 6 slides · 1080×1350</span></div>
+    <div class="carrossel" tabindex="0" aria-label="Carrossel: deslize para ver os 6 slides"><figure class="slide"><img src="m/t3-c1.jpg" alt="Slide 1 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="3" data-i="1">Baixar slide 1</button></figure><figure class="slide"><img src="m/t3-c2.jpg" alt="Slide 2 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="3" data-i="2">Baixar slide 2</button></figure><figure class="slide"><img src="m/t3-c3.jpg" alt="Slide 3 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="3" data-i="3">Baixar slide 3</button></figure><figure class="slide"><img src="m/t3-c4.jpg" alt="Slide 4 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="3" data-i="4">Baixar slide 4</button></figure><figure class="slide"><img src="m/t3-c5.jpg" alt="Slide 5 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="3" data-i="5">Baixar slide 5</button></figure><figure class="slide"><img src="m/t3-c6.jpg" alt="Slide 6 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="3" data-i="6">Baixar slide 6</button></figure></div>
+    <div class="acoes"><button class="dl dl-forte" type="button" data-acao="kit" data-n="3">Baixar kit do carrossel (.zip)</button><span class="mini">6 slides em PNG + legenda</span></div>
+    <div class="dupla">
+      <figure class="post-unico"><img src="m/t3-info.jpg" alt="Post único (infográfico)" loading="lazy" width="1080" height="1350"><figcaption>Post único · infográfico</figcaption><button class="dl dl-mini" type="button" data-acao="info" data-n="3">Baixar post único</button></figure>
+      <div class="legenda">
+        <h4>Legenda</h4>
+        <pre class="texto" id="ig-3">Só 9% dos chefes têm perfil transformador.
+
+Segundo o Observatório de Liderança, da People &amp; Results, publicado pelo Valor, 80% são mantenedores, que sustentam e aperfeiçoam o que já funciona. E tudo bem: a empresa precisa dos dois. O pedido dos donos é por quem não espere ordens e ajude a carregar o peso das decisões.
+
+Pra praticar esta semana: leve pra sua liderança uma proposta, não só um problema.
+
+Você se vê mais mantenedor ou transformador?
+
+#lideranca #carreira #gestao
+
+Bruno Magalhães | HR Business Partner | R&amp;S, D&amp;I, DHO e People Analytics</pre>
+        <div class="acoes"><button class="copiar" data-alvo="ig-3" type="button">Copiar legenda</button><button class="dl" type="button" data-acao="leg" data-n="3">Baixar .txt</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="bloco-head"><h3>Stories e Reels</h3><span class="tag">Motion na prática · 3 capas</span></div>
+    <div class="story-wrap">
+      <video src="m/t3-story.mp4" controls playsinline preload="metadata" poster="m/t3-c1.jpg"></video>
+      <ul class="dicas">
+        <li class="lista-dl"><button class="dl" type="button" data-acao="story" data-n="3">Baixar vídeo (.mp4)</button></li>
+        <li class="capa-item"><p class="capas-tit">3 capas de Reels pra escolher · 1080×1920. Texto e logo ficam no recorte 3:4 do grid.</p><div class="capas"><figure class="capa"><img src="m/t3-capa-1.jpg" alt="Capa de Reels 1" loading="lazy" width="1080" height="1920"><figcaption>Tipográfica</figcaption><button class="dl dl-mini" type="button" data-acao="capa" data-n="3" data-v="1">Baixar capa 1</button></figure><figure class="capa"><img src="m/t3-capa-2.jpg" alt="Capa de Reels 2" loading="lazy" width="1080" height="1920"><figcaption>Com foto</figcaption><button class="dl dl-mini" type="button" data-acao="capa" data-n="3" data-v="2">Baixar capa 2</button></figure><figure class="capa"><img src="m/t3-capa-3.jpg" alt="Capa de Reels 3" loading="lazy" width="1080" height="1920"><figcaption>Checklist</figcaption><button class="dl dl-mini" type="button" data-acao="capa" data-n="3" data-v="3">Baixar capa 3</button></figure></div></li>
+        <li>O motion mostra como fazer na prática o que o carrossel ensina, em 4 passos.</li>
+        <li>Nos stories, suba o vídeo inteiro. Nos Reels, escolha uma das capas em "Editar capa" &gt; "Adicionar da galeria". Alterne entre elas pra o perfil não ficar repetitivo.</li>
+        <li>Na última tela, cole a figurinha <b>Caixinha de perguntas</b> logo abaixo da pergunta.</li>
+        <li>Texto dentro da área segura: nada fica escondido pela barra do app.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="tema" id="tema-4" hidden>
+  <a class="voltar" href="#inicio">← Todos os temas</a>
+  <header class="tema-head">
+    <p class="eyebrow">Alerta Desenvolvimento de líderes · 27/11 · DHO</p>
+    <h2>Falta de talento em 80% das empresas</h2>
+    <p class="fato">Oito em cada dez empresas no Brasil têm dificuldade para encontrar talentos (Pesquisa Global de Escassez de Talentos 2026, ManpowerGroup). Na 29ª CEO Survey da PwC, 29% dos CEOs brasileiros se dizem muito ou extremamente expostos à falta de talentos, contra 22% da média global. Só 28,5% dos profissionais estão no estágio de aprendizagem integrada (DOT Digital Group). Anderson Silva, fundador da A2 Paralegal, defende que reunião, conflito e projeto virem oportunidades de desenvolvimento.</p>
+    <p class="fonte">Fonte: <a href="https://www.bra1.com.br/economia/id-732804/falta_de_talento_afeta_80__das_empresas_no_brasil__especialistas_alertam_para_a_crise_na_formacao_de_lideres" target="_blank" rel="noopener">BRA 1 · nov/2026</a></p>
+    <div class="acoes"><button class="dl dl-forte" type="button" data-acao="tema" data-n="4">Baixar tudo deste tema (.zip)</button></div>
+  </header>
+
+  <div class="bloco">
+    <div class="bloco-head"><h3>LinkedIn</h3><span class="tag">Texto · voz Top Voice</span></div>
+    <p class="ajuda">Escolha o gancho. O texto copiado já sai com ele no topo.</p>
+    <div class="hooks"><label class="hook"><input type="radio" name="h4" id="h4-0" value="0" checked><span>8 em cada 10 empresas não acham o talento que procuram. Quantas estão formando?</span></label><label class="hook"><input type="radio" name="h4" id="h4-1" value="1"><span>Uma reunião pode ser treinamento. Um conflito também.</span></label><label class="hook"><input type="radio" name="h4" id="h4-2" value="2"><span>Saber fazer não significa saber liderar.</span></label></div>
+    <pre class="texto" id="li-4"></pre>
+    <div class="acoes"><button class="copiar" data-alvo="li-4" type="button">Copiar texto do LinkedIn</button><button class="dl" type="button" data-acao="li" data-n="4">Baixar .txt</button></div>
+  </div>
+
+  <div class="bloco">
+    <div class="bloco-head"><h3>Instagram</h3><span class="tag">Carrossel 6 slides · 1080×1350</span></div>
+    <div class="carrossel" tabindex="0" aria-label="Carrossel: deslize para ver os 6 slides"><figure class="slide"><img src="m/t4-c1.jpg" alt="Slide 1 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="4" data-i="1">Baixar slide 1</button></figure><figure class="slide"><img src="m/t4-c2.jpg" alt="Slide 2 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="4" data-i="2">Baixar slide 2</button></figure><figure class="slide"><img src="m/t4-c3.jpg" alt="Slide 3 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="4" data-i="3">Baixar slide 3</button></figure><figure class="slide"><img src="m/t4-c4.jpg" alt="Slide 4 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="4" data-i="4">Baixar slide 4</button></figure><figure class="slide"><img src="m/t4-c5.jpg" alt="Slide 5 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="4" data-i="5">Baixar slide 5</button></figure><figure class="slide"><img src="m/t4-c6.jpg" alt="Slide 6 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="4" data-i="6">Baixar slide 6</button></figure></div>
+    <div class="acoes"><button class="dl dl-forte" type="button" data-acao="kit" data-n="4">Baixar kit do carrossel (.zip)</button><span class="mini">6 slides em PNG + legenda</span></div>
+    <div class="dupla">
+      <figure class="post-unico"><img src="m/t4-info.jpg" alt="Post único (infográfico)" loading="lazy" width="1080" height="1350"><figcaption>Post único · infográfico</figcaption><button class="dl dl-mini" type="button" data-acao="info" data-n="4">Baixar post único</button></figure>
+      <div class="legenda">
+        <h4>Legenda</h4>
+        <pre class="texto" id="ig-4">8 em cada 10 empresas não acham o talento que procuram.
+
+Segundo o BRA 1, 29% dos CEOs brasileiros se dizem muito expostos à falta de talentos (22% na média global). E o problema piora quando o técnico vira gestor sem preparo.
+
+A virada: usar o próprio trabalho como escola. Reunião treina decisão, conflito ensina comunicação, projeto prepara pra liderar.
+
+Pra praticar esta semana: deixe alguém do time conduzir uma reunião e dê 15 minutos de feedback no fim.
+
+Sua empresa procura talento fora ou forma dentro?
+
+#mercadodetrabalho #desenvolvimento #rh
+
+Bruno Magalhães | HR Business Partner | R&amp;S, D&amp;I, DHO e People Analytics</pre>
+        <div class="acoes"><button class="copiar" data-alvo="ig-4" type="button">Copiar legenda</button><button class="dl" type="button" data-acao="leg" data-n="4">Baixar .txt</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="bloco-head"><h3>Stories e Reels</h3><span class="tag">Motion na prática · 3 capas</span></div>
+    <div class="story-wrap">
+      <video src="m/t4-story.mp4" controls playsinline preload="metadata" poster="m/t4-c1.jpg"></video>
+      <ul class="dicas">
+        <li class="lista-dl"><button class="dl" type="button" data-acao="story" data-n="4">Baixar vídeo (.mp4)</button></li>
+        <li class="capa-item"><p class="capas-tit">3 capas de Reels pra escolher · 1080×1920. Texto e logo ficam no recorte 3:4 do grid.</p><div class="capas"><figure class="capa"><img src="m/t4-capa-1.jpg" alt="Capa de Reels 1" loading="lazy" width="1080" height="1920"><figcaption>Tipográfica</figcaption><button class="dl dl-mini" type="button" data-acao="capa" data-n="4" data-v="1">Baixar capa 1</button></figure><figure class="capa"><img src="m/t4-capa-2.jpg" alt="Capa de Reels 2" loading="lazy" width="1080" height="1920"><figcaption>Com foto</figcaption><button class="dl dl-mini" type="button" data-acao="capa" data-n="4" data-v="2">Baixar capa 2</button></figure><figure class="capa"><img src="m/t4-capa-3.jpg" alt="Capa de Reels 3" loading="lazy" width="1080" height="1920"><figcaption>Checklist</figcaption><button class="dl dl-mini" type="button" data-acao="capa" data-n="4" data-v="3">Baixar capa 3</button></figure></div></li>
+        <li>O motion mostra como fazer na prática o que o carrossel ensina, em 4 passos.</li>
+        <li>Nos stories, suba o vídeo inteiro. Nos Reels, escolha uma das capas em "Editar capa" &gt; "Adicionar da galeria". Alterne entre elas pra o perfil não ficar repetitivo.</li>
+        <li>Na última tela, cole a figurinha <b>Caixinha de perguntas</b> logo abaixo da pergunta.</li>
+        <li>Texto dentro da área segura: nada fica escondido pela barra do app.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="tema" id="tema-5" hidden>
+  <a class="voltar" href="#inicio">← Todos os temas</a>
+  <header class="tema-head">
+    <p class="eyebrow">Alerta Rh brasil · 27/11 · RH estratégico</p>
+    <h2>IA e o redesenho do trabalho</h2>
+    <p class="fato">Pesquisa da Kyndryl com 200 líderes brasileiros (Forbes Brasil) indica que 56% têm mais pilotos de IA do que conseguem escalar. Pelo Global Human Capital Trends 2026, da Deloitte, só 7% das organizações são boas em desenhar como pessoas e IA trabalham juntas, e 93% do investimento em IA vai para tecnologia. Uma operadora de telecom europeia teve ganho de 5% ao só adicionar IA e de 30% ao redesenhar o trabalho.</p>
+    <p class="fonte">Fonte: <a href="https://www.startse.com/artigos/redesenho-do-trabalho-com-ia-a-nova-missao-do-rh-1" target="_blank" rel="noopener">StartSe · nov/2026</a></p>
+    <div class="acoes"><button class="dl dl-forte" type="button" data-acao="tema" data-n="5">Baixar tudo deste tema (.zip)</button></div>
+  </header>
+
+  <div class="bloco">
+    <div class="bloco-head"><h3>LinkedIn</h3><span class="tag">Texto · voz Top Voice</span></div>
+    <p class="ajuda">Escolha o gancho. O texto copiado já sai com ele no topo.</p>
+    <div class="hooks"><label class="hook"><input type="radio" name="h5" id="h5-0" value="0" checked><span>Comprar IA ficou fácil. Redesenhar o trabalho, não.</span></label><label class="hook"><input type="radio" name="h5" id="h5-1" value="1"><span>56% dos líderes brasileiros têm mais pilotos de IA do que conseguem escalar.</span></label><label class="hook"><input type="radio" name="h5" id="h5-2" value="2"><span>Mesma IA, resultado 6 vezes maior. A diferença foi quem redesenhou o trabalho.</span></label></div>
+    <pre class="texto" id="li-5"></pre>
+    <div class="acoes"><button class="copiar" data-alvo="li-5" type="button">Copiar texto do LinkedIn</button><button class="dl" type="button" data-acao="li" data-n="5">Baixar .txt</button></div>
+  </div>
+
+  <div class="bloco">
+    <div class="bloco-head"><h3>Instagram</h3><span class="tag">Carrossel 6 slides · 1080×1350</span></div>
+    <div class="carrossel" tabindex="0" aria-label="Carrossel: deslize para ver os 6 slides"><figure class="slide"><img src="m/t5-c1.jpg" alt="Slide 1 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="5" data-i="1">Baixar slide 1</button></figure><figure class="slide"><img src="m/t5-c2.jpg" alt="Slide 2 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="5" data-i="2">Baixar slide 2</button></figure><figure class="slide"><img src="m/t5-c3.jpg" alt="Slide 3 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="5" data-i="3">Baixar slide 3</button></figure><figure class="slide"><img src="m/t5-c4.jpg" alt="Slide 4 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="5" data-i="4">Baixar slide 4</button></figure><figure class="slide"><img src="m/t5-c5.jpg" alt="Slide 5 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="5" data-i="5">Baixar slide 5</button></figure><figure class="slide"><img src="m/t5-c6.jpg" alt="Slide 6 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="5" data-i="6">Baixar slide 6</button></figure></div>
+    <div class="acoes"><button class="dl dl-forte" type="button" data-acao="kit" data-n="5">Baixar kit do carrossel (.zip)</button><span class="mini">6 slides em PNG + legenda</span></div>
+    <div class="dupla">
+      <figure class="post-unico"><img src="m/t5-info.jpg" alt="Post único (infográfico)" loading="lazy" width="1080" height="1350"><figcaption>Post único · infográfico</figcaption><button class="dl dl-mini" type="button" data-acao="info" data-n="5">Baixar post único</button></figure>
+      <div class="legenda">
+        <h4>Legenda</h4>
+        <pre class="texto" id="ig-5">Comprar IA ficou fácil. Redesenhar o trabalho, não.
+
+Segundo a StartSe, 56% dos líderes brasileiros têm mais pilotos de IA do que conseguem escalar. E, pela Deloitte, 93% do investimento em IA vai pra tecnologia e só 7% pra pessoas.
+
+Num caso citado, a mesma IA deu +5% de produtividade quando só foi adicionada e +30% quando o trabalho foi redesenhado.
+
+Pra praticar esta semana: escolha um processo e escreva o que a IA faz, o que a pessoa revisa e quem responde pelo resultado.
+
+Na sua empresa, a IA mudou o trabalho ou só a ferramenta?
+
+#inteligenciaartificial #futurodotrabalho #rh
+
+Bruno Magalhães | HR Business Partner | R&amp;S, D&amp;I, DHO e People Analytics</pre>
+        <div class="acoes"><button class="copiar" data-alvo="ig-5" type="button">Copiar legenda</button><button class="dl" type="button" data-acao="leg" data-n="5">Baixar .txt</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="bloco-head"><h3>Stories e Reels</h3><span class="tag">Motion na prática · 3 capas</span></div>
+    <div class="story-wrap">
+      <video src="m/t5-story.mp4" controls playsinline preload="metadata" poster="m/t5-c1.jpg"></video>
+      <ul class="dicas">
+        <li class="lista-dl"><button class="dl" type="button" data-acao="story" data-n="5">Baixar vídeo (.mp4)</button></li>
+        <li class="capa-item"><p class="capas-tit">3 capas de Reels pra escolher · 1080×1920. Texto e logo ficam no recorte 3:4 do grid.</p><div class="capas"><figure class="capa"><img src="m/t5-capa-1.jpg" alt="Capa de Reels 1" loading="lazy" width="1080" height="1920"><figcaption>Tipográfica</figcaption><button class="dl dl-mini" type="button" data-acao="capa" data-n="5" data-v="1">Baixar capa 1</button></figure><figure class="capa"><img src="m/t5-capa-2.jpg" alt="Capa de Reels 2" loading="lazy" width="1080" height="1920"><figcaption>Com foto</figcaption><button class="dl dl-mini" type="button" data-acao="capa" data-n="5" data-v="2">Baixar capa 2</button></figure><figure class="capa"><img src="m/t5-capa-3.jpg" alt="Capa de Reels 3" loading="lazy" width="1080" height="1920"><figcaption>Checklist</figcaption><button class="dl dl-mini" type="button" data-acao="capa" data-n="5" data-v="3">Baixar capa 3</button></figure></div></li>
+        <li>O motion mostra como fazer na prática o que o carrossel ensina, em 4 passos.</li>
+        <li>Nos stories, suba o vídeo inteiro. Nos Reels, escolha uma das capas em "Editar capa" &gt; "Adicionar da galeria". Alterne entre elas pra o perfil não ficar repetitivo.</li>
+        <li>Na última tela, cole a figurinha <b>Caixinha de perguntas</b> logo abaixo da pergunta.</li>
+        <li>Texto dentro da área segura: nada fica escondido pela barra do app.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="tema" id="tema-6" hidden>
+  <a class="voltar" href="#inicio">← Todos os temas</a>
+  <header class="tema-head">
+    <p class="eyebrow">Alerta Inclusão e diversidade · 27/11 · D&amp;I</p>
+    <h2>Diversidade na seleção de chefias</h2>
+    <p class="fato">A HU Brasil (antiga Ebserh), que administra 47 hospitais universitários federais, lançou uma norma que prevê analisar a composição do quadro de cada hospital antes de publicar editais de chefia e permite medidas de equidade para ampliar a participação de mulheres, pessoas negras, pessoas com deficiência, indígenas, quilombolas e pessoas LGBTQIAPN+. Há prazo de 120 dias para definir os procedimentos, e as qualificações exigidas continuam valendo. O anúncio foi feito na 11ª Reunião do Pacto pela Diversidade, Equidade e Inclusão nas Empresas Estatais, que reúne 42 instituições.</p>
+    <p class="fonte">Fonte: <a href="https://agenciagov.ebc.com.br/noticias/202611/hu-brasil-lanca-norma-para-ampliar-representatividade-na-selecao-de-chefias-da-estatal" target="_blank" rel="noopener">Agência Gov · 24/11/2026 · Correio Braziliense</a></p>
+    <div class="acoes"><button class="dl dl-forte" type="button" data-acao="tema" data-n="6">Baixar tudo deste tema (.zip)</button></div>
+  </header>
+
+  <div class="bloco">
+    <div class="bloco-head"><h3>LinkedIn</h3><span class="tag">Texto · voz Top Voice</span></div>
+    <p class="ajuda">Escolha o gancho. O texto copiado já sai com ele no topo.</p>
+    <div class="hooks"><label class="hook"><input type="radio" name="h6" id="h6-0" value="0" checked><span>Diversidade na liderança começa antes do edital.</span></label><label class="hook"><input type="radio" name="h6" id="h6-1" value="1"><span>Uma estatal com 47 hospitais vai olhar quem está nas chefias antes de abrir cada vaga.</span></label><label class="hook"><input type="radio" name="h6" id="h6-2" value="2"><span>&quot;Permitir que as lideranças tenham mais a cara do Brasil.&quot; Isso cabe na sua próxima vaga de liderança?</span></label></div>
+    <pre class="texto" id="li-6"></pre>
+    <div class="acoes"><button class="copiar" data-alvo="li-6" type="button">Copiar texto do LinkedIn</button><button class="dl" type="button" data-acao="li" data-n="6">Baixar .txt</button></div>
+  </div>
+
+  <div class="bloco">
+    <div class="bloco-head"><h3>Instagram</h3><span class="tag">Carrossel 6 slides · 1080×1350</span></div>
+    <div class="carrossel" tabindex="0" aria-label="Carrossel: deslize para ver os 6 slides"><figure class="slide"><img src="m/t6-c1.jpg" alt="Slide 1 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="6" data-i="1">Baixar slide 1</button></figure><figure class="slide"><img src="m/t6-c2.jpg" alt="Slide 2 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="6" data-i="2">Baixar slide 2</button></figure><figure class="slide"><img src="m/t6-c3.jpg" alt="Slide 3 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="6" data-i="3">Baixar slide 3</button></figure><figure class="slide"><img src="m/t6-c4.jpg" alt="Slide 4 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="6" data-i="4">Baixar slide 4</button></figure><figure class="slide"><img src="m/t6-c5.jpg" alt="Slide 5 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="6" data-i="5">Baixar slide 5</button></figure><figure class="slide"><img src="m/t6-c6.jpg" alt="Slide 6 do carrossel" loading="lazy" width="1080" height="1350"><button class="dl dl-mini" type="button" data-acao="slide" data-n="6" data-i="6">Baixar slide 6</button></figure></div>
+    <div class="acoes"><button class="dl dl-forte" type="button" data-acao="kit" data-n="6">Baixar kit do carrossel (.zip)</button><span class="mini">6 slides em PNG + legenda</span></div>
+    <div class="dupla">
+      <figure class="post-unico"><img src="m/t6-info.jpg" alt="Post único (infográfico)" loading="lazy" width="1080" height="1350"><figcaption>Post único · infográfico</figcaption><button class="dl dl-mini" type="button" data-acao="info" data-n="6">Baixar post único</button></figure>
+      <div class="legenda">
+        <h4>Legenda</h4>
+        <pre class="texto" id="ig-6">Diversidade na liderança começa antes do edital.
+
+A HU Brasil, que administra 47 hospitais universitários federais, criou uma norma pra seleção de chefias: antes de abrir a vaga, analisa o quadro de cada hospital e pode adotar medidas de equidade pra grupos sub-representados, sem abrir mão das qualificações exigidas.
+
+Pra praticar esta semana: antes da próxima vaga de liderança, levante quem ocupa hoje as chefias da sua empresa, por gênero, raça e deficiência.
+
+Quem está nas chefias da sua empresa?
+
+#diversidadeeinclusao #lideranca #rh
+
+Bruno Magalhães | HR Business Partner | R&amp;S, D&amp;I, DHO e People Analytics</pre>
+        <div class="acoes"><button class="copiar" data-alvo="ig-6" type="button">Copiar legenda</button><button class="dl" type="button" data-acao="leg" data-n="6">Baixar .txt</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="bloco-head"><h3>Stories e Reels</h3><span class="tag">Motion na prática · 3 capas</span></div>
+    <div class="story-wrap">
+      <video src="m/t6-story.mp4" controls playsinline preload="metadata" poster="m/t6-c1.jpg"></video>
+      <ul class="dicas">
+        <li class="lista-dl"><button class="dl" type="button" data-acao="story" data-n="6">Baixar vídeo (.mp4)</button></li>
+        <li class="capa-item"><p class="capas-tit">3 capas de Reels pra escolher · 1080×1920. Texto e logo ficam no recorte 3:4 do grid.</p><div class="capas"><figure class="capa"><img src="m/t6-capa-1.jpg" alt="Capa de Reels 1" loading="lazy" width="1080" height="1920"><figcaption>Tipográfica</figcaption><button class="dl dl-mini" type="button" data-acao="capa" data-n="6" data-v="1">Baixar capa 1</button></figure><figure class="capa"><img src="m/t6-capa-2.jpg" alt="Capa de Reels 2" loading="lazy" width="1080" height="1920"><figcaption>Com foto</figcaption><button class="dl dl-mini" type="button" data-acao="capa" data-n="6" data-v="2">Baixar capa 2</button></figure><figure class="capa"><img src="m/t6-capa-3.jpg" alt="Capa de Reels 3" loading="lazy" width="1080" height="1920"><figcaption>Checklist</figcaption><button class="dl dl-mini" type="button" data-acao="capa" data-n="6" data-v="3">Baixar capa 3</button></figure></div></li>
+        <li>O motion mostra como fazer na prática o que o carrossel ensina, em 4 passos.</li>
+        <li>Nos stories, suba o vídeo inteiro. Nos Reels, escolha uma das capas em "Editar capa" &gt; "Adicionar da galeria". Alterne entre elas pra o perfil não ficar repetitivo.</li>
+        <li>Na última tela, cole a figurinha <b>Caixinha de perguntas</b> logo abaixo da pergunta.</li>
+        <li>Texto dentro da área segura: nada fica escondido pela barra do app.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+  <p class="rodape">Feito pra Bruno Magalhães · POLVO RH. Fatos e números vêm só das fontes citadas em cada tema.</p>
+</div>
+<script>
+const LI = {"1": {"ganchos": ["Nem sempre o mais técnico chega ao topo.", "Tem habilidade que não cabe no currículo. E é ela que tem pesado na promoção.", "\"O que mais você sabe fazer?\" Essa pergunta de uma headhunter ficou na minha cabeça."], "corpo": "A Exame entrevistou a Talita Motta, fundadora da INSIDE Executive Search. Depois de mais de uma década recrutando executivos, ela deu nome a um padrão que vê em quem chega ao topo: as \"invisible skills\".\n\nNão é técnica. Também não é só soft skill. É saber quando falar, com quem falar, em que tom e como construir alianças dentro da empresa. Leitura de contexto, na prática.\n\nEla aponta ainda dois comportamentos que aparecem muito em quem é promovido:\n\n📌 Protagonismo: não deixar a carreira na mão da empresa, do gestor ou das circunstâncias.\n📌 Inquietação: \"o profissional precisa estar constantemente incomodado com o próprio conhecimento\".\n\nE tem a parte da IA. Se a ferramenta deixa o conhecimento técnico mais acessível pra todo mundo, o que diferencia passa a ser interpretação, influência e julgamento.\n\nAqui no RH a gente vê isso o tempo todo. A pessoa entrega muito, mas leva a ideia certa pra pessoa errada, na hora errada. E aí a ideia morre.\n\nA boa notícia: dá pra treinar. Antes da próxima reunião importante, anota três coisas. Quem decide, o que preocupa essa pessoa e qual é o melhor momento pra falar.\n\nNão tem ninguém que não possa ser desenvolvido. Inclusive no que não aparece no currículo.\n\nE você, o que sabe fazer que não está no seu currículo?\n\n#Carreira #Liderança #DesenvolvimentoHumano", "slug": "invisible-skills", "legenda": "As habilidades que não aparecem no currículo, mas pesam na hora de chegar à liderança.\n\nNa Exame, a headhunter Talita Motta chama de \"invisible skills\": saber quando falar, com quem, em que tom e como construir alianças. Com a IA deixando a técnica mais acessível, ler o contexto passa a valer mais.\n\nPra praticar esta semana: antes da próxima reunião importante, anote quem decide, o que preocupa essa pessoa e qual é o melhor momento pra falar.\n\nO que você sabe além do que está no currículo?\n\n#carreira #lideranca #desenvolvimento\n\nBruno Magalhães | HR Business Partner | R&S, D&I, DHO e People Analytics", "nome": "Invisible skills na liderança", "fonte": "Exame · 26/11/2026", "link": "https://exame.com/carreira/o-que-mais-voce-sabe-headhunter-fala-sobre-as-invisible-skills-como-fator-para-futuros-lideres/"}, "2": {"ganchos": ["Promoção não é prêmio. É mudança de função.", "Promover o melhor técnico pode custar caro: você perde um bom especialista e ganha um gestor despreparado.", "Tinha um gestor que me achava incrível. Mas cadê essa informação?"], "corpo": "A Você RH ouviu o Douglas Domingues, CEO da DomEduc, sobre como identificar futuros líderes. Ele resume o erro mais comum numa frase: confundir alta performance técnica com prontidão pra liderar pessoas.\n\nE completa: \"As empresas erram quando tratam promoção como prêmio e não como mudança de função\". Quando a escolha é feita no improviso, o risco é perder um bom especialista e ganhar um gestor despreparado.\n\nPromoção por tempo de casa, por afinidade ou por impressão pessoal não é critério. É sorte.\n\nOs sinais que ele aponta num futuro líder: senso de dono, influência sem cargo, maturidade sob pressão, curiosidade e coragem pra decidir. O cargo só oficializa o que o comportamento já mostrava.\n\nE eu acrescento um ponto que aprendi na marra: se ninguém registrou esse comportamento, ele não existe na hora da decisão. Já ouvi muito \"meu gestor me achava incrível\". Mas cadê essa informação?\n\nO que funciona:\n\n✅ Definir, por escrito, o que a empresa chama de prontidão pra liderar.\n✅ Dar projetos entre áreas, mentoria e shadowing antes da vaga abrir.\n✅ Registrar feedback com exemplo, não só com adjetivo.\n\nDesenvolvimento de liderança precisa ser processo, não reação.\n\nNa sua empresa, promoção é prêmio ou mudança de função?\n\n#Liderança #DesenvolvimentoHumano #RHEstratégico", "slug": "promocao-nao-e-premio", "legenda": "Promoção não é prêmio. É mudança de função.\n\nNa Você RH, Douglas Domingues, CEO da DomEduc, aponta o erro mais comum: confundir alta performance técnica com prontidão pra liderar. No improviso, a empresa perde um bom especialista e ganha um gestor despreparado.\n\nOs sinais de um futuro líder: senso de dono, influência sem cargo, maturidade sob pressão, curiosidade e coragem pra decidir.\n\nPra praticar esta semana: escreva 3 critérios do que sua empresa chama de prontidão pra liderar.\n\nNa sua empresa, promoção é prêmio ou mudança de função?\n\n#lideranca #gestaodepessoas #rh\n\nBruno Magalhães | HR Business Partner | R&S, D&I, DHO e People Analytics", "nome": "Bom profissional ≠ bom líder", "fonte": "Você RH · nov/2026", "link": "https://vocerh.abril.com.br/web-stories-abril/como-identificar-potenciais-lideres-dentro-da-empresa/"}, "3": {"ganchos": ["\"Eu quero dividir meu cérebro com outra pessoa.\" É isso que os donos de empresa estão pedindo.", "Só 9% dos chefes têm perfil transformador. E tudo bem que não sejam todos.", "Sua liderança sustenta ou transforma?"], "corpo": "O Valor trouxe a 3ª edição do Observatório de Liderança, da People & Results. O retrato é direto: só 9% dos chefes mapeados têm perfil transformador. Outros 80% são mantenedores, que sustentam e aperfeiçoam o que já funciona.\n\nA CEO, Maria Candida Baumer, conta que ouve o mesmo pedido de fundadores e presidentes: alguém que não fique esperando ordens, que seja ousado e ajude a carregar o peso das decisões. \"Eu quero dividir meu cérebro com outra pessoa.\"\n\nO ponto que eu mais gostei: ter muitos mantenedores não é, por si só, um problema. Empresa nenhuma gira só com quem quer mudar tudo. Alguém precisa segurar a operação enquanto a roda é ajustada.\n\nO problema é quando a empresa precisa transformar e só tem gente formada pra manter. Aí não adianta cobrar ousadia. Tem que desenvolver.\n\nPra quem quer sair do modo mantenedor, começo por aqui:\n\n📌 Leve proposta, não só o problema.\n📌 Decida o que cabe na sua alçada, sem subir tudo pro chefe.\n📌 Escolha um processo pra mudar por trimestre.\n📌 Mostre o antes e o depois com número.\n\nNão tem ninguém que não possa ser desenvolvido. Nem pra manter, nem pra transformar.\n\nE você, se vê mais como mantenedor ou transformador? O que te faria mudar de quadrante?\n\n#Liderança #DesenvolvimentoHumano #Gestão", "slug": "lideres-transformadores", "legenda": "Só 9% dos chefes têm perfil transformador.\n\nSegundo o Observatório de Liderança, da People & Results, publicado pelo Valor, 80% são mantenedores, que sustentam e aperfeiçoam o que já funciona. E tudo bem: a empresa precisa dos dois. O pedido dos donos é por quem não espere ordens e ajude a carregar o peso das decisões.\n\nPra praticar esta semana: leve pra sua liderança uma proposta, não só um problema.\n\nVocê se vê mais mantenedor ou transformador?\n\n#lideranca #carreira #gestao\n\nBruno Magalhães | HR Business Partner | R&S, D&I, DHO e People Analytics", "nome": "Líderes transformadores são raros", "fonte": "Valor Econômico · 25/11/2026", "link": "https://valor.globo.com/carreira/noticia/2026/11/25/lideres-transformadores-sao-raridade-nas-empresas-brasileiras.ghtml"}, "4": {"ganchos": ["8 em cada 10 empresas não acham o talento que procuram. Quantas estão formando?", "Uma reunião pode ser treinamento. Um conflito também.", "Saber fazer não significa saber liderar."], "corpo": "Oito em cada dez empresas no Brasil têm dificuldade pra encontrar talentos, segundo a pesquisa de escassez de talentos do ManpowerGroup citada pelo BRA 1.\n\nE não é só percepção do RH. Na CEO Survey da PwC, 29% dos CEOs brasileiros dizem que a empresa está muito ou extremamente exposta à falta de gente qualificada. A média global é 22%.\n\nA matéria aponta onde o problema piora: o técnico excelente que vira gestor de um dia pro outro, sem preparo pra liderar pessoas, conflitos e decisões difíceis.\n\nO Anderson Silva, fundador da A2 Paralegal, defende uma saída que eu assino embaixo: \"Uma reunião pode desenvolver capacidade de decisão, um conflito pode ensinar comunicação e um projeto pode preparar alguém para liderar.\"\n\nOu seja, parte do talento que a empresa procura lá fora pode ser formado aqui dentro, no trabalho que já está acontecendo.\n\nComo começar sem orçamento novo:\n\n✅ Troque quem conduz a reunião semanal.\n✅ Depois de um conflito, pergunte o que funcionou na conversa e o que não.\n✅ Dê um projeto pequeno com dono pra quem quer liderar.\n✅ Feche com 15 minutos de feedback: o que viu, o impacto e o próximo passo.\n\nÉ trabalho de formiguinha. Mas é ele que forma gente.\n\nSua empresa procura talento fora ou forma dentro?\n\n#DesenvolvimentoHumano #Liderança #RHEstratégico", "slug": "falta-de-talento", "legenda": "8 em cada 10 empresas não acham o talento que procuram.\n\nSegundo o BRA 1, 29% dos CEOs brasileiros se dizem muito expostos à falta de talentos (22% na média global). E o problema piora quando o técnico vira gestor sem preparo.\n\nA virada: usar o próprio trabalho como escola. Reunião treina decisão, conflito ensina comunicação, projeto prepara pra liderar.\n\nPra praticar esta semana: deixe alguém do time conduzir uma reunião e dê 15 minutos de feedback no fim.\n\nSua empresa procura talento fora ou forma dentro?\n\n#mercadodetrabalho #desenvolvimento #rh\n\nBruno Magalhães | HR Business Partner | R&S, D&I, DHO e People Analytics", "nome": "Falta de talento em 80% das empresas", "fonte": "BRA 1 · nov/2026", "link": "https://www.bra1.com.br/economia/id-732804/falta_de_talento_afeta_80__das_empresas_no_brasil__especialistas_alertam_para_a_crise_na_formacao_de_lideres"}, "5": {"ganchos": ["Comprar IA ficou fácil. Redesenhar o trabalho, não.", "56% dos líderes brasileiros têm mais pilotos de IA do que conseguem escalar.", "Mesma IA, resultado 6 vezes maior. A diferença foi quem redesenhou o trabalho."], "corpo": "Um artigo da StartSe juntou dois números que explicam muita coisa.\n\nNo Brasil, uma pesquisa da Kyndryl com 200 líderes, publicada pela Forbes Brasil, mostra que 56% têm mais pilotos de IA do que conseguem escalar. A ferramenta chega, o teste funciona e a operação segue igual.\n\nNo mundo, o Global Human Capital Trends 2026, da Deloitte, mostra que 93% do investimento em IA vai pra tecnologia e só 7% vai pra pessoas. E só 7% das empresas dizem saber desenhar como pessoas e IA trabalham juntas.\n\nO caso que mais me pegou: uma operadora de telecom europeia colocou IA nas equipes sem mudar papéis e ganhou 5% de produtividade. Quando redesenhou fluxos, limites e treinamento, chegou a 30%. Mesma tecnologia.\n\nEu comecei a usar IA no RH há 2 anos pela triagem. O que fez diferença não foi a ferramenta. Foi combinar quem faz o quê: a IA organiza, a pessoa revisa e decide, e alguém responde pelo resultado.\n\nPor onde começar:\n\n🎯 Defina a decisão ou o processo que quer melhorar antes de escolher a tecnologia.\n🎯 Pegue poucos processos e redesenhe de ponta a ponta.\n🎯 Escreva quem decide, quem revisa e quem responde.\n🎯 Meça tempo de ciclo, qualidade da decisão e carga do time, não só a taxa de uso.\n\nCargo, alçada, trilha e avaliação são assunto de gestão de pessoas. Por isso essa missão é do RH.\n\nNa sua empresa, a IA mudou o trabalho ou só a ferramenta?\n\n#IA #RHEstratégico #FuturoDoTrabalho", "slug": "redesenho-do-trabalho-com-ia", "legenda": "Comprar IA ficou fácil. Redesenhar o trabalho, não.\n\nSegundo a StartSe, 56% dos líderes brasileiros têm mais pilotos de IA do que conseguem escalar. E, pela Deloitte, 93% do investimento em IA vai pra tecnologia e só 7% pra pessoas.\n\nNum caso citado, a mesma IA deu +5% de produtividade quando só foi adicionada e +30% quando o trabalho foi redesenhado.\n\nPra praticar esta semana: escolha um processo e escreva o que a IA faz, o que a pessoa revisa e quem responde pelo resultado.\n\nNa sua empresa, a IA mudou o trabalho ou só a ferramenta?\n\n#inteligenciaartificial #futurodotrabalho #rh\n\nBruno Magalhães | HR Business Partner | R&S, D&I, DHO e People Analytics", "nome": "IA e o redesenho do trabalho", "fonte": "StartSe · nov/2026", "link": "https://www.startse.com/artigos/redesenho-do-trabalho-com-ia-a-nova-missao-do-rh-1"}, "6": {"ganchos": ["Diversidade na liderança começa antes do edital.", "Uma estatal com 47 hospitais vai olhar quem está nas chefias antes de abrir cada vaga.", "\"Permitir que as lideranças tenham mais a cara do Brasil.\" Isso cabe na sua próxima vaga de liderança?"], "corpo": "A HU Brasil, estatal que administra 47 hospitais universitários federais, lançou uma norma pra ampliar a diversidade na seleção de chefias. O anúncio foi na 11ª Reunião do Pacto pela Diversidade, Equidade e Inclusão nas Empresas Estatais, que reúne 42 instituições.\n\nO que a norma faz, segundo a Agência Gov e o Correio Braziliense:\n\n📌 Antes de publicar o edital, analisa a composição do quadro de cada hospital.\n📌 Permite medidas de equidade pra ampliar a participação de mulheres, pessoas negras, pessoas com deficiência, indígenas, quilombolas e pessoas LGBTQIAPN+.\n📌 Mantém as qualificações técnicas exigidas.\n📌 Dá 120 dias pra definir os procedimentos.\n\nO que eu mais gosto aqui é a ordem das coisas. A diversidade não entra como correção depois que a vaga foi preenchida. Ela entra no diagnóstico, antes da vaga abrir.\n\nE isso qualquer empresa consegue fazer, estatal ou não. Escuta vira dado, dado vira decisão. Primeiro o retrato de quem lidera hoje. Depois a comparação com o quadro todo. Aí sim, a medida pra próxima seleção, sem abrir mão do critério técnico.\n\nO presidente da HU Brasil, Arthur Chioro, resumiu bem o objetivo: \"permitir que as lideranças tenham mais a cara do Brasil\".\n\nNa sua empresa, alguém já olhou quem está nas chefias antes de abrir a próxima vaga?\n\n#DiversidadeEInclusão #Liderança #RHEstratégico", "slug": "diversidade-na-selecao-de-chefias", "legenda": "Diversidade na liderança começa antes do edital.\n\nA HU Brasil, que administra 47 hospitais universitários federais, criou uma norma pra seleção de chefias: antes de abrir a vaga, analisa o quadro de cada hospital e pode adotar medidas de equidade pra grupos sub-representados, sem abrir mão das qualificações exigidas.\n\nPra praticar esta semana: antes da próxima vaga de liderança, levante quem ocupa hoje as chefias da sua empresa, por gênero, raça e deficiência.\n\nQuem está nas chefias da sua empresa?\n\n#diversidadeeinclusao #lideranca #rh\n\nBruno Magalhães | HR Business Partner | R&S, D&I, DHO e People Analytics", "nome": "Diversidade na seleção de chefias", "fonte": "Agência Gov · 24/11/2026 · Correio Braziliense", "link": "https://agenciagov.ebc.com.br/noticias/202611/hu-brasil-lanca-norma-para-ampliar-representatividade-na-selecao-de-chefias-da-estatal"}};
+function montaLI(n) {
+  const sel = document.querySelector('input[name="h' + n + '"]:checked');
+  const i = sel ? +sel.value : 0;
+  document.getElementById('li-' + n).textContent = LI[n].ganchos[i] + '\n\n' + LI[n].corpo;
+}
+Object.keys(LI).forEach(n => {
+  montaLI(n);
+  document.querySelectorAll('input[name="h' + n + '"]').forEach(r => r.addEventListener('change', () => montaLI(n)));
+});
+document.querySelectorAll('.copiar').forEach(b => b.addEventListener('click', () => {
+  const el = document.getElementById(b.dataset.alvo);
+  const rot = b.textContent;
+  const feito = () => { b.textContent = 'Copiado'; b.classList.add('ok'); setTimeout(() => { b.textContent = rot; b.classList.remove('ok'); }, 1800); };
+  const selec = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Texto selecionado: use Ctrl+C'; setTimeout(() => b.textContent = rot, 2500); };
+  try { navigator.clipboard.writeText(el.textContent).then(feito, selec); } catch (err) { selec(); }
+}));
+function rota() {
+  const h = location.hash.replace('#', '');
+  const alvo = /^tema-\d+$/.test(h) && document.getElementById(h) ? h : 'inicio';
+  document.querySelectorAll('#inicio, .tema').forEach(s => s.hidden = s.id !== alvo);
+  document.querySelectorAll('video').forEach(v => { if (!v.closest('#' + alvo)) v.pause(); });
+  window.scrollTo(0, 0);
+}
+
+// ───── downloads (capability "downloads"; ZIPs montados no navegador com JSZip)
+const NL = String.fromCharCode(10);
+let DL = null;
+if (window.claude && claude.use) claude.use('downloads').then(d => { DL = d; if (d) document.body.classList.add('pode-baixar'); }).catch(() => {});
+const DIA = '28-11';
+const nomeArq = (n, resto) => 'polvo-' + DIA + '-' + n + '-' + LI[n].slug + '-' + resto;
+const busca = async (url) => { const r = await fetch(url); if (!r.ok) throw { code: 'fetch', message: url }; return r.blob(); };
+const txtLinkedIn = (n) => {
+  const sel = document.querySelector('input[name="h' + n + '"]:checked'); const i = sel ? +sel.value : 0;
+  const outros = LI[n].ganchos.filter((_, k) => k !== i).map(g => '- ' + g).join(NL);
+  return [LI[n].ganchos[i], '', LI[n].corpo, '', '---', 'Outras opções de gancho:', outros, '', 'Fonte: ' + LI[n].fonte + ' · ' + LI[n].link, ''].join(NL);
+};
+const txtLegenda = (n) => LI[n].legenda + NL;
+async function poeTema(z, n, pasta, completo) {
+  const p = pasta ? pasta + '/' : '';
+  const fotos = await Promise.all([1,2,3,4,5,6].map(i => busca('m/png/t' + n + '-c' + i + '.png')));
+  fotos.forEach((b, k) => z.file(p + 'carrossel/slide-0' + (k + 1) + '.png', b));
+  z.file(p + 'carrossel/legenda.txt', txtLegenda(n));
+  if (completo) {
+    z.file(p + 'post-unico.png', await busca('m/png/t' + n + '-info.png'));
+    z.file(p + 'stories-motion.mp4', await busca('m/t' + n + '-story.mp4'));
+    for (const v of [1, 2, 3]) z.file(p + 'capas-reels/capa-' + v + '.png', await busca('m/png/t' + n + '-capa-' + v + '.png'));
+    z.file(p + 'linkedin.txt', txtLinkedIn(n));
+  }
+}
+const zipa = (z) => z.generateAsync({ type: 'blob', compression: 'STORE' });
+const ACOES = {
+  slide: (b) => ({ nome: nomeArq(b.dataset.n, 'slide-0' + b.dataset.i + '.png'), dados: () => busca('m/png/t' + b.dataset.n + '-c' + b.dataset.i + '.png') }),
+  info: (b) => ({ nome: nomeArq(b.dataset.n, 'post-unico.png'), dados: () => busca('m/png/t' + b.dataset.n + '-info.png') }),
+  capa: (b) => ({ nome: nomeArq(b.dataset.n, 'capa-reels-' + b.dataset.v + '.png'), dados: () => busca('m/png/t' + b.dataset.n + '-capa-' + b.dataset.v + '.png') }),
+  story: (b) => ({ nome: nomeArq(b.dataset.n, 'stories.mp4'), dados: () => busca('m/t' + b.dataset.n + '-story.mp4') }),
+  li: (b) => ({ nome: nomeArq(b.dataset.n, 'linkedin.txt'), dados: async () => txtLinkedIn(b.dataset.n) }),
+  leg: (b) => ({ nome: nomeArq(b.dataset.n, 'legenda-instagram.txt'), dados: async () => txtLegenda(b.dataset.n) }),
+  kit: (b) => ({ nome: nomeArq(b.dataset.n, 'kit-carrossel.zip'), dados: async () => { const z = new JSZip(); await poeTema(z, b.dataset.n, '', false); return zipa(z); } }),
+  tema: (b) => ({ nome: nomeArq(b.dataset.n, 'tudo.zip'), dados: async () => { const z = new JSZip(); await poeTema(z, b.dataset.n, '', true); return zipa(z); } }),
+  tudo: () => ({ nome: 'polvo-' + DIA + '-pauta-completa.zip', dados: async () => { const z = new JSZip(); for (const n of Object.keys(LI)) await poeTema(z, n, n + '-' + LI[n].slug, true); return zipa(z); } }),
+};
+const MSG = { declined: 'Download cancelado', rate_limited: 'Aguarde e tente de novo', too_large: 'Arquivo grande demais aqui', host_unavailable: 'Abra num navegador pra baixar', fetch: 'Não achei o arquivo' };
+document.querySelectorAll('.dl').forEach(b => b.addEventListener('click', async () => {
+  if (!DL) return;
+  const rot = b.textContent; const a = ACOES[b.dataset.acao](b);
+  if (['kit', 'tema', 'tudo'].includes(b.dataset.acao) && !window.JSZip) { b.textContent = 'Não deu pra montar o ZIP aqui'; setTimeout(() => b.textContent = rot, 2500); return; }
+  b.disabled = true; b.textContent = 'Preparando…';
+  try { const dados = await a.dados(); b.textContent = 'Confirme o download'; await DL.save({ filename: a.nome, data: dados }); b.textContent = 'Baixado'; }
+  catch (e) { b.textContent = MSG[e && e.code] || 'Não foi possível baixar'; }
+  setTimeout(() => { b.textContent = rot; b.disabled = false; }, 2500);
+}));
+
+addEventListener('hashchange', rota);
+rota();
+</script>
