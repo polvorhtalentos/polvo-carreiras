@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<link rel="stylesheet" href="fonts.css">
+<style>
+:root{--tinta:#13111B;--lav:#9C90D4;--lavd:#7D70B0;--lar:#F2A13A;--papel:#F9F8FB;--nevoa:#C4C0CE;--cinza:#A9A6B5;--sup:#2A2638;--borda:#3A3649;--alerta:#E96B6B}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1350px;overflow:hidden;background:var(--tinta)}
+body{font-family:Montserrat,sans-serif;color:var(--papel);-webkit-font-smoothing:antialiased}
+#c{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--tinta)}
+.glow1{position:absolute;left:-260px;top:-300px;width:900px;height:900px;background:radial-gradient(circle,rgba(125,112,176,.55),transparent 65%)}
+.glow2{position:absolute;right:-300px;bottom:-320px;width:900px;height:900px;background:radial-gradient(circle,rgba(242,161,58,.22),transparent 65%)}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(156,144,212,.05) 2px,transparent 2px),linear-gradient(90deg,rgba(156,144,212,.05) 2px,transparent 2px);background-size:90px 90px}
+.stripes{position:absolute;left:0;bottom:0;width:300px;height:300px;opacity:.55;background:repeating-linear-gradient(135deg,var(--lavd) 0 10px,transparent 10px 30px);-webkit-mask:linear-gradient(45deg,#000 30%,transparent 62%);mask:linear-gradient(45deg,#000 30%,transparent 62%)}
+.counter{position:absolute;top:66px;right:80px;font-weight:800;font-size:30px;letter-spacing:.14em;color:var(--cinza);z-index:5}
+.logo{position:absolute;left:80px;bottom:62px;z-index:5;font-weight:900;font-size:36px;letter-spacing:.35em;color:var(--lav);display:flex;align-items:baseline;line-height:1}
+.logo svg{height:.7em;width:.8em;margin-right:.35em;fill:currentColor}
+.handle{position:absolute;right:80px;bottom:64px;z-index:5;font-weight:800;font-size:30px;letter-spacing:.06em;color:var(--cinza)}
+.content{position:absolute;left:80px;right:80px;top:150px;bottom:150px;display:flex;flex-direction:column;z-index:3}
+.label{font-weight:800;font-size:28px;letter-spacing:.22em;color:var(--lar);margin-bottom:26px}
+h1{font-weight:900;font-size:92px;line-height:1.05;letter-spacing:-.02em;text-transform:uppercase}
+h1.m{font-size:84px}
+.sub{font-weight:800;font-size:40px;line-height:1.2;color:var(--nevoa);margin-top:28px}
+.card{border-radius:30px;border:3px solid rgba(156,144,212,.55);background:rgba(125,112,176,.16);padding:34px 38px}
+.card.hi{border-color:var(--lar);background:rgba(242,161,58,.12)}
+.body{font-weight:700;font-size:44px;line-height:1.22}
+.apoio{font-weight:700;font-size:30px;line-height:1.3;color:var(--nevoa)}
+.src{font-weight:800;font-size:28px;letter-spacing:.08em;color:var(--cinza)}
+.list{display:flex;flex-direction:column;gap:24px}
+.row{display:flex;align-items:center;gap:30px}
+.num{flex:0 0 78px;height:78px;border-radius:50%;background:var(--lar);color:var(--tinta);font-weight:900;font-size:40px;display:flex;align-items:center;justify-content:center}
+.check{flex:0 0 70px;height:70px;border-radius:50%;background:var(--lav);display:flex;align-items:center;justify-content:center}
+.pill{display:inline-block;border-radius:60px;border:3px solid var(--lav);background:rgba(156,144,212,.2);padding:16px 34px;font-weight:800;font-size:30px;letter-spacing:.08em;text-transform:uppercase}
+/* photo */
+.photo{position:absolute;inset:0;background-size:cover}
+.shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(19,17,27,1) 0%,rgba(19,17,27,.96) 30%,rgba(19,17,27,.55) 52%,rgba(19,17,27,0) 70%)}
+.shade.top{background:linear-gradient(to bottom,rgba(19,17,27,.55),transparent 18%)}
+.bottomtxt{position:absolute;left:80px;right:80px;bottom:150px;z-index:3}
+/* compare */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.col{display:flex;flex-direction:column;gap:22px}
+.colh{font-weight:900;font-size:40px;letter-spacing:.02em;padding:0 6px}
+.ci{border-radius:30px;padding:22px 28px;font-weight:700;font-size:32px;line-height:1.25;flex:1;display:flex;align-items:center}
+.ci.l{border:3px solid var(--borda);background:var(--sup);color:var(--nevoa)}
+.ci.r{border:3px solid var(--lar);background:rgba(242,161,58,.12)}
+.note{font-weight:700;font-size:30px;color:var(--cinza);margin-top:16px}
+/* stack */
+.stk{display:flex;flex-direction:column;gap:16px}
+.bar{border-radius:30px;padding:16px 32px;display:flex;flex-direction:column;justify-content:center}
+.bar b{font-weight:900;font-size:38px;letter-spacing:.01em}
+.bar span{font-weight:700;font-size:30px;margin-top:2px}
+/* grid4 */
+.g4{display:grid;grid-template-columns:1fr 1fr;gap:24px;flex:1}
+.g4 .card{display:flex;flex-direction:column;justify-content:flex-start;padding:34px 34px}
+.big-n{font-weight:900;font-size:80px;color:var(--lar);line-height:1}
+.g4 b{font-weight:900;font-size:40px;margin-top:14px}
+.g4 span{font-weight:700;font-size:32px;line-height:1.25;color:var(--nevoa);margin-top:14px}
+/* pairs */
+.pr{display:flex;flex-direction:column;gap:24px}
+.pr .card{display:flex;flex-direction:row;align-items:center;gap:24px;padding:24px 30px}
+.tag{flex:0 0 236px;text-align:center;border-radius:60px;background:var(--lav);color:var(--tinta);font-weight:800;font-size:28px;letter-spacing:.14em;padding:8px 22px}
+/* flow */
+.flow{position:relative;display:flex;flex-direction:column;gap:30px;padding-left:4px}
+.flow .line{position:absolute;left:52px;top:60px;bottom:60px;width:6px;background:repeating-linear-gradient(var(--lavd) 0 18px,transparent 18px 30px)}
+.fnode{display:flex;align-items:center;gap:34px;position:relative}
+.fnode .circ{flex:0 0 92px;height:92px;border-radius:50%;background:var(--tinta);border:6px solid var(--lar);color:var(--lar);font-weight:900;font-size:48px;display:flex;align-items:center;justify-content:center}
+.fnode .card{flex:1}
+.fnode b{display:block;font-weight:900;font-size:44px}
+.fnode span{display:block;font-weight:700;font-size:32px;color:var(--nevoa);margin-top:6px}
+/* pacto */
+.pacto{border-radius:30px;border:3px solid var(--borda);background:var(--sup);padding:24px 30px;display:flex;flex-direction:column;gap:14px}
+.pacto .t{font-weight:800;font-size:26px;letter-spacing:.14em;color:var(--lav)}
+.pacto .d{font-weight:700;font-size:30px;line-height:1.25}
+.ods{display:flex;gap:14px;flex-wrap:wrap}
+.ods span{border-radius:60px;background:rgba(156,144,212,.2);border:2px solid rgba(156,144,212,.55);padding:6px 18px;font-weight:800;font-size:26px}
+.ov{outline:6px solid red}
+</style></head>
+<body><div id="c"></div>
+<script src="content.js"></script>
+<script>
+const q=new URLSearchParams(location.search);const T=THEMES.find(x=>x.id==q.get('t'));const kind=q.get('k')||'c';const si=+(q.get('s')||1);
+const TRI='<svg viewBox="0 0 100 88"><path d="M0 0H100L50 88Z"/></svg>';
+const logo=()=>`<div class="logo">POL${TRI}O</div>`;
+const bg=()=>`<div class="glow1"></div><div class="glow2"></div><div class="grid"></div><div class="stripes"></div>`;
+const CHK='<svg width="34" height="34" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#13111B" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const pacto=()=>`<div class="pacto"><div class="t">PACTO GLOBAL DA ONU · PRINCÍPIO 6</div><div class="d">ELIMINAR A DISCRIMINAÇÃO NO EMPREGO</div><div class="ods"><span>ODS 5 · IGUALDADE DE GÊNERO</span><span>ODS 8 · TRABALHO DECENTE</span><span>ODS 10 · MENOS DESIGUALDADE</span></div></div>`;
+const h1=(t)=>`<h1 class="${t.length>34?'m':''}">${t}</h1>`;
+const c=document.getElementById('c');
+function slide(s,i){
+  const cnt=`<div class="counter">${String(i).padStart(2,'0')} / 06</div>`;
+  if(s.type==='cover'||s.type==='photo'){
+    return `<div class="photo" style="background-image:url(${s.img});background-position:${s.pos}"></div><div class="shade"></div><div class="shade top"></div>
+    ${cnt}<div class="bottomtxt">${s.label?`<div class="label">${s.label}</div>`:''}${h1(s.title)}${s.sub?`<div class="sub">${s.sub}</div>`:''}
+    ${s.type==='cover'?'<div style="margin-top:34px"><span class="pill">ARRASTA PRO LADO →</span></div>':''}</div>${logo()}<div class="handle">POLVO RH</div>`;
+  }
+  let inner='';
+  if(s.type==='text'){
+    inner=`<div class="label">${s.label}</div>${h1(s.title)}<div style="flex:1"></div><div class="card hi"><div class="body">${s.body}</div></div><div class="src" style="margin-top:30px">${s.source}</div>`;
+  } else if(s.type==='stack'){
+    const shades=['rgba(125,112,176,.16)','rgba(125,112,176,.28)','rgba(125,112,176,.42)','rgba(156,144,212,.85)','#F2A13A'];
+    inner=`<div class="label">${s.label}</div>${h1(s.title)}<div class="stk" style="margin-top:44px">${s.items.map((it,k)=>{const dark=k>=3;return `<div class="bar" style="width:${66+k*8.5}%;background:${shades[k]};border:3px solid ${k<3?'rgba(156,144,212,.55)':'transparent'};color:${dark?'#13111B':'#F9F8FB'}"><b>${it[0]}</b><span style="color:${dark?'#13111B':'#C4C0CE'}">${it[1]}</span></div>`}).join('')}</div>`;
+  } else if(s.type==='compare'){
+    const n=s.left.items.length;
+    inner=`<div class="label">${s.label}</div>${h1(s.title)}<div class="cmp" style="margin-top:30px;flex:1">
+      <div class="col"><div class="colh" style="color:var(--nevoa)">${s.left.head}</div>${s.left.items.map(x=>`<div class="ci l">${x}</div>`).join('')}</div>
+      <div class="col"><div class="colh" style="color:var(--lar)">${s.right.head}</div>${s.right.items.map(x=>`<div class="ci r">${x}</div>`).join('')}</div></div>
+      ${s.foot?`<div class="body" style="margin-top:30px;color:var(--lav);font-size:40px">${s.foot}</div>`:''}${s.note?`<div class="note">${s.note}</div>`:''}`;
+  } else if(s.type==='steps'){
+    const n5=s.items.length>4,sz=n5?36:40;
+    inner=`<div class="label">${s.label}</div>${h1(s.title)}<div class="list" style="margin-top:${n5?32:44}px;gap:${n5?18:24}px">${s.items.map((x,k)=>`<div class="row card" style="padding:${n5?16:24}px 30px"><div class="num">${k+1}</div><div class="body" style="font-size:${sz}px">${x}</div></div>`).join('')}</div>`;
+  } else if(s.type==='grid'){
+    inner=`<div class="label">${s.label}</div>${h1(s.title)}<div class="g4" style="margin-top:44px">${s.items.map((x,k)=>`<div class="card ${k==1?'':''}"><div class="big-n">0${k+1}</div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}</div>`;
+  } else if(s.type==='pairs'){
+    inner=`<div class="label">${s.label}</div>${h1(s.title)}<div class="pr" style="margin-top:44px">${s.items.map(x=>`<div class="card"><div class="tag">${x[0]}</div><div class="body" style="font-size:38px">${x[1]}</div></div>`).join('')}</div>`;
+  } else if(s.type==='flow'){
+    inner=`<div class="label">${s.label}</div>${h1(s.title)}<div class="flow" style="margin-top:30px;gap:22px"><div class="line"></div>${s.items.map((x,k)=>`<div class="fnode"><div class="circ">${k+1}</div><div class="card"><b>${x[0]}</b><span>${x[1]}</span></div></div>`).join('')}</div>
+      <div class="note" style="margin-top:30px">PEOPLE ANALYTICS: DECISÃO SOBRE PESSOAS COM BASE EM DADOS.</div>`;
+  } else if(s.type==='close'){
+    inner=`<div class="label">PRA PRATICAR ESTA SEMANA</div><div class="card hi"><div class="body">${s.practice}</div></div>
+      <div style="font-weight:900;font-size:${T.di?52:60}px;line-height:1.08;letter-spacing:-.02em;color:var(--lav);margin-top:${T.di?36:56}px">${s.question}</div>
+      <div style="flex:1"></div>${T.di?pacto():''}<div style="margin-top:${T.di?26:0}px"><span class="pill">SALVA E MANDA PRA QUEM PRECISA</span></div>`;
+  }
+  return `${bg()}${cnt}<div class="content">${inner}</div>${logo()}<div class="handle">POLVO RH</div>`;
+}
+function info(){
+  const I=T.info;const n=I.items.length;
+  const pad=n>4?16:22;
+  return `${bg()}<div class="content" style="top:70px;bottom:124px">
+   <div class="label">${I.label} · INFOGRÁFICO</div><h1 style="font-size:72px">${I.title}</h1>
+   <div class="flow" style="margin-top:34px;gap:${n>4?16:24}px"><div class="line"></div>${I.items.map((x,k)=>`<div class="fnode"><div class="circ" style="flex-basis:96px;height:96px">${k+1}</div><div class="card" style="padding:${pad}px 32px"><b style="font-size:36px">${x[0]}</b><span style="font-size:30px;margin-top:2px">${x[1]}</span></div></div>`).join('')}</div>
+   <div style="flex:1;min-height:20px"></div>
+   <div class="card hi" style="padding:22px 32px"><div class="body" style="font-size:34px">${I.tip}</div></div>
+   <div class="src" style="margin-top:16px;font-size:26px">PAUTA: ${T.fonte.toUpperCase()}</div>
+  </div>${logo()}<div class="handle">POLVO RH</div>`;
+}
+c.innerHTML= kind==='i'?info():slide(T.carousel[si-1],si);
+// overflow check
+window.__overflow=[];
+document.fonts.ready.then(()=>{
+  const ct=document.querySelector('.content');
+  if(ct){ if(ct.scrollHeight>ct.clientHeight+2) window.__overflow.push('content '+ct.scrollHeight+'>'+ct.clientHeight);}
+  const bt=document.querySelector('.bottomtxt'); if(bt&&bt.getBoundingClientRect().top<120) window.__overflow.push('bottomtxt too tall');
+  document.querySelectorAll('.ci,.card,.bar,h1').forEach(e=>{if(e.scrollWidth>e.clientWidth+2) window.__overflow.push('wide '+e.className)});
+  window.__ready=true;
+});
+</script></body></html>
