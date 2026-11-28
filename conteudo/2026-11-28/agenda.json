@@ -1,7 +1,7 @@
 {
   "produzido_em": "2026-11-28",
   "fuso": "America/Sao_Paulo",
-  "status": "proposta",
+  "status": "aprovada pelo Bruno em 28/11/2026 (temas 1, 2, 3 e 6; modo manual)",
   "itens": [
     {
       "tema": 2,
@@ -34,52 +34,16 @@
       "capa": 1
     },
     {
-      "tema": 4,
-      "tipo": "carrossel",
-      "quando": "2026-12-05T12:10:00",
-      "capa": 3
-    },
-    {
       "tema": 1,
       "tipo": "reels",
       "quando": "2026-12-05T18:40:00",
       "capa": 1
     },
     {
-      "tema": 4,
-      "tipo": "stories",
-      "quando": "2026-12-05T19:10:00",
-      "capa": 3
-    },
-    {
-      "tema": 4,
-      "tipo": "reels",
-      "quando": "2026-12-07T18:40:00",
-      "capa": 3
-    },
-    {
-      "tema": 5,
-      "tipo": "carrossel",
-      "quando": "2026-12-08T12:10:00",
-      "capa": 2
-    },
-    {
-      "tema": 5,
-      "tipo": "stories",
-      "quando": "2026-12-08T19:10:00",
-      "capa": 2
-    },
-    {
       "tema": 6,
       "tipo": "carrossel",
       "quando": "2026-12-09T12:10:00",
       "capa": 1
-    },
-    {
-      "tema": 5,
-      "tipo": "reels",
-      "quando": "2026-12-09T18:40:00",
-      "capa": 2
     },
     {
       "tema": 6,
