@@ -364,5 +364,71 @@ Quem está nas chefias da sua empresa?
 
 #diversidadeeinclusao #lideranca #rh
 
+Bruno Magalhães | HR Business Partner | R&S, D&I, DHO e People Analytics` },
+/* ───────── 7 · PPI SÃO MAIORIA NAS FEDERAIS (pauta enviada pelo Bruno) ───────── */
+{ id: 7, slug: 'ppi-maioria-nas-federais', nome: 'PPI são maioria nas federais', pilar: 'D&I', di: true,
+  alerta: 'Pauta do Bruno · MEC', fonte: 'MEC · Censo da Educação Superior 2025 · 27/11/2026',
+  link: 'https://www.gov.br/mec/pt-br/assuntos/noticias/2026/novembro/pretos-pardos-e-indigenas-sao-maioria-em-universidades-federais',
+  fato: 'Pela primeira vez desde 2011, estudantes pretos, pardos e indígenas (PPI) são maioria na graduação das universidades federais: 50,1% das matrículas em 2025, segundo o Censo da Educação Superior (MEC/Inep). Em 2025, quase 124 mil pessoas entraram nas federais por ações afirmativas (37,9% do ingresso), entre elas 64,9 mil estudantes PPI, 51,9 mil de baixa renda, 5,3 mil pessoas com deficiência e 2,1 mil quilombolas. Desde a criação da Lei de Cotas, cerca de 1,6 milhão de estudantes entraram por essa reserva.',
+  capa: { img: 'img/t7c.jpg', pos: '50% 50%' },
+  carousel: [
+    { type: 'cover', img: 'img/t7a.jpg', pos: '50% 0%', label: 'DIVERSIDADE E INCLUSÃO', title: 'PRETOS, PARDOS E INDÍGENAS JÁ SÃO MAIORIA NAS FEDERAIS', sub: 'SEU RECRUTAMENTO ESTÁ PRONTO PRA ESSA GERAÇÃO?' },
+    { type: 'text', label: 'O DADO', title: 'PELA PRIMEIRA VEZ DESDE 2011, ESTUDANTES PPI SÃO MAIORIA NA GRADUAÇÃO DAS FEDERAIS',
+      body: '50,1% DAS MATRÍCULAS EM 2025. É ESSA GERAÇÃO QUE VAI CHEGAR AO ESTÁGIO, AO TRAINEE E À LIDERANÇA.', source: 'FONTE: MEC/INEP · CENSO DA EDUCAÇÃO SUPERIOR 2025 · 27/11/2026' },
+    { type: 'pairs', label: 'AS COTAS EM 2025', title: 'QUEM ENTROU POR AÇÃO AFIRMATIVA',
+      items: [['124 MIL', 'INGRESSARAM NAS FEDERAIS POR AÇÃO AFIRMATIVA (37,9% DO TOTAL)'], ['64,9 MIL', 'ESTUDANTES PRETOS, PARDOS E INDÍGENAS'], ['1,6 MI', 'ENTRARAM PELA LEI DE COTAS DESDE QUE ELA FOI CRIADA']] },
+    { type: 'compare', label: 'NO RECRUTAMENTO', title: 'O FUNIL DE SEMPRE x O FUNIL QUE ACOMPANHA',
+      left: { head: 'DE SEMPRE', items: ['AS MESMAS FACULDADES', 'INDICAÇÃO DE QUEM JÁ ESTÁ', 'FILTRO SEM MOTIVO CLARO'] },
+      right: { head: 'QUE ACOMPANHA', items: ['FEDERAIS E INSTITUTOS', 'COLETIVOS E PARCEIROS', 'SÓ O REQUISITO QUE A VAGA PEDE'] }, foot: '', note: '' },
+    { type: 'photo', img: 'img/t7b.jpg', pos: '50% 30%', title: 'A UNIVERSIDADE MUDOU DE CARA. A SUA EMPRESA ACOMPANHOU?' },
+    { type: 'close', practice: 'PEGUE A ÚLTIMA SELEÇÃO DE ESTÁGIO OU TRAINEE E VEJA DE QUAIS FACULDADES VIERAM OS CANDIDATOS.', question: 'SUA VAGA CHEGA A QUEM ESTÁ NAS FEDERAIS HOJE?' } ],
+  info: { label: 'D&I', title: 'ENSINO SUPERIOR EM 2025',
+    items: [['50,1%', 'DAS MATRÍCULAS NAS FEDERAIS SÃO PPI.'], ['10,6 MI', 'DE ESTUDANTES NO ENSINO SUPERIOR.'], ['1 EM 4', 'JOVENS DE 18 A 24 ANOS ESTÁ NA GRADUAÇÃO.'], ['612 MIL', 'ENTRARAM PELO PROUNI E PELO FIES.']],
+    tip: 'PRIMEIRA VEZ DESDE 2011.' },
+  motion: [
+    { type: 'big', title: 'COMO LEVAR SUA VAGA DE ESTÁGIO ATÉ ESSA GERAÇÃO', sub: 'EM 4 PASSOS.' },
+    { type: 'passo', n: 1, de: 4, title: 'OLHE DE ONDE VÊM SEUS CANDIDATOS', ex: 'NA ÚLTIMA SELEÇÃO: QUAIS FACULDADES APARECERAM? QUAIS FALTARAM?' },
+    { type: 'passo', n: 2, de: 4, title: 'DIVULGUE ONDE ESSA GERAÇÃO ESTÁ', ex: 'FEDERAIS, INSTITUTOS FEDERAIS, COLETIVOS E CURSINHOS POPULARES.' },
+    { type: 'passo', n: 3, de: 4, title: 'REVISE OS REQUISITOS', ex: 'INGLÊS FLUENTE PRA UMA VAGA QUE NÃO USA INGLÊS? CORTA.' },
+    { type: 'passo', n: 4, de: 4, title: 'PENSE NA PERMANÊNCIA', ex: 'BOLSA COMPATÍVEL, HORÁRIO QUE CABE NA AULA E UM PADRINHO NO TIME.' },
+    { type: 'cta', question: 'DE QUAIS FACULDADES VIERAM SEUS ÚLTIMOS ESTAGIÁRIOS?', save: 'RESPONDE AQUI NA CAIXINHA.' } ],
+  linkedin: {
+    ganchos: ['Pela primeira vez desde 2011, pretos, pardos e indígenas são maioria nas universidades federais.', 'A universidade mudou de cara. O seu processo seletivo acompanhou?', '50,1%. Guarda esse número, porque é a geração que vai bater na porta do seu programa de estágio.'],
+    corpo: `O MEC e o Inep divulgaram o Censo da Educação Superior de 2025. Pela primeira vez desde 2011, quando a medição começou, estudantes autodeclarados pretos, pardos e indígenas são maioria na graduação das universidades federais: 50,1% das matrículas.
+
+Outros números da mesma divulgação:
+
+📌 Quase 124 mil pessoas entraram nas federais por ações afirmativas em 2025, 37,9% do ingresso.
+📌 Entre elas, 64,9 mil estudantes PPI, 51,9 mil de baixa renda, 5,3 mil pessoas com deficiência e 2,1 mil quilombolas.
+📌 Desde a criação da Lei de Cotas, cerca de 1,6 milhão de estudantes entraram por essa reserva.
+
+Agora vem a parte que é com a gente, do RH. Essa geração vai chegar ao estágio, ao trainee e, depois, à liderança. A pergunta é se o nosso funil está olhando pra ela.
+
+Quando o recrutamento divulga só nas mesmas faculdades, depende de indicação de quem já está dentro e mantém filtro sem motivo claro, ele não acompanha a mudança. Só repete o retrato antigo.
+
+O que eu faria esta semana:
+
+✅ Pegar a última seleção de estágio e ver de quais faculdades vieram os candidatos.
+✅ Divulgar a vaga em federais, institutos federais, coletivos e cursinhos populares.
+✅ Cortar requisito que a vaga não usa.
+✅ Pensar na permanência: bolsa, horário que cabe na aula e alguém do time pra acompanhar.
+
+Escuta vira dado, dado vira decisão. E esse dado já está na mesa.
+
+De quais faculdades vieram os últimos estagiários da sua empresa?
+
+#DiversidadeEInclusão #Recrutamento #RHEstratégico` },
+  caption: `Pretos, pardos e indígenas já são maioria nas universidades federais.
+
+Segundo o Censo da Educação Superior 2025 (MEC/Inep), o grupo PPI chegou a 50,1% das matrículas de graduação nas federais, a primeira vez desde 2011. Em 2025, quase 124 mil pessoas entraram por ações afirmativas.
+
+É essa geração que vai chegar ao estágio, ao trainee e à liderança. O recrutamento precisa acompanhar.
+
+Pra praticar esta semana: pegue a última seleção de estágio ou trainee e veja de quais faculdades vieram os candidatos.
+
+Sua vaga chega a quem está nas federais hoje?
+
+#diversidadeeinclusao #recrutamento #rh
+
 Bruno Magalhães | HR Business Partner | R&S, D&I, DHO e People Analytics` }
 ];
